@@ -1,0 +1,122 @@
+# SQI Scripting Language
+
+> SQI (Script Query Internal) is a text-replacement macro language embedded in SQL. Scripts use `.sqi` files containing `@COMMAND(args)` patterns that the engine resolves into pure SQL for database execution.
+
+## How It Works
+
+SQI processing is a 5-stage pipeline. First, pre-cleanup strips comment patterns and handles quoting. Second, the preprocessor substitutes built-in variables like `@STORE`, `@TER`, and `@USER` with runtime values and expands date tokens. Third, the main dispatch loop finds the innermost `@COMMAND(args)` pattern (by scanning for `)` then `(` then `@`), calls the handler, and replaces the entire `@COMMAND(args)` text with the handler's return value -- repeating until no commands remain. Fourth, final cleanup restores escaped characters (DLE back to `(`, DC1 back to `)`). Fifth, the resulting pure SQL is executed against the database.
+
+## Core Syntax
+
+```
+@COMMAND(arg1,arg2,arg3);
+```
+
+Every command starts with `@`, takes parenthesized comma-separated arguments, and is replaced inline with its return value. Commands nest and evaluate **innermost-first**:
+
+```
+@FMT(CMP,@WIZGET(MODE)=1,'action_a','action_b');
+```
+
+Here `@WIZGET(MODE)` resolves first (e.g., to `"1"`), then `@FMT(CMP,1=1,...)` evaluates.
+
+## The Branch Delimiter (CRITICAL)
+
+Inside `@FMT(CMP,...)` branch strings, you cannot use `@` directly -- the engine would try to resolve it before the branch is selected. Instead, use the `®` character (U+00AE, registered sign) as a placeholder for `@`. After the CMP handler picks the correct branch, every `®` is replaced with `@`, and the revealed commands are processed on subsequent iterations.
+
+```
+@FMT(CMP,@WIZGET(X)=1,'®WIZSET(Y=hello)®EXEC(FCT=720)','®EXEC(MSG=!Error)');
+```
+
+**Common mistake**: Writing `@WIZSET(...)` inside a CMP branch string. This causes the command to execute unconditionally before the comparison runs. Always use `®` inside branch strings.
+
+## Parameter Store
+
+The parameter store is a key-value dictionary (501 slots, case-insensitive keys) shared between scripts. Critical operations:
+
+| Command | Behavior |
+|---------|----------|
+| `@WIZGET(key)` | Read value (empty string if missing) |
+| `@WIZSET(key=value)` | **Overwrite** value (or create) |
+| `@WIZINIT(key=value)` | Set **only if key does not exist** (set default) |
+| `@WIZRPL(key=value)` | **APPENDS** to existing value (despite the name!) |
+| `@WIZAPPEND(key=value)` | Same as WIZRPL -- appends |
+| `@WIZCLR(key)` | Delete key |
+| `@WIZCLRALL(prefix)` | Delete all keys starting with prefix |
+| `@WIZISBLANK(key)` | Returns `"1"` if missing or empty |
+| `@WIZEXIST(key)` | Returns `"1"` if key exists |
+| `@WIZEXISTALL(prefix)` | Returns `"1"` if any key starts with prefix |
+| `@WIZRESET` | Clear all keys |
+
+**WIZRPL gotcha**: `@WIZRPL(ENTRY=abc)` when ENTRY already contains `"xyz"` produces `"xyzabc"`, not `"abc"`. Use `@WIZSET` to overwrite.
+
+## Preprocessor Variables
+
+Substituted before command processing:
+
+| Variable | Value |
+|----------|-------|
+| `@STORE` | Store number |
+| `@TER` | Terminal number |
+| `@USER` | Operator/user ID |
+| `@USERNAME` | Full username |
+| `@TIME` | Current time (hhnnss) |
+| `@NOW` | Current date/time |
+| `@RUN` | Run directory path |
+| `@OFFICE` | Office directory path |
+| `@CNC` | Connection number |
+| `@PROFILE` | User profile |
+| `@DID` | Device ID |
+| `@DSDF` | Current date (formatted) |
+| `@OFFICEDBT` | Office DBT directory |
+| `@RUNLINKS` | Run links directory |
+| `@Dxxx` | Inline date tokens |
+
+## Control Flow
+
+`@FMT(CHR,26)` exits the script with success. `@FMT(CHR,27)` aborts the script with error.
+
+## All 68 Commands by Category
+
+**Parameter Store**: WIZGET, WIZSET, WIZINIT, WIZRPL, WIZAPPEND, WIZCLR, WIZCLRALL, WIZISBLANK, WIZEXIST, WIZEXISTALL, WIZRESET
+
+**Format/Control Flow**: FMT (33 sub-commands: CMP, CHR, LEN, POS, POSCS, S-substring, UPPER, LOWER, TRIM, TRIMZERO, ORD, #-numeric, !-pad, TRUNC, MARGIN, RND, NUS, NUL, NUD, COMA, 2HTML, HTML2, 2URL, URL2, 2JS, JS2, 2QUOT, QUOT2, 2SPACE, SPACE2, MOD10, MOD10P, UPCA, UPC, UPC0, GPC, HUDON, HENING, VER, FLG, MSSQL6, ISSQL, LTR, LTRFR, LTRES)
+
+**Database Access**: dbHot (82 modes), dbExec, dbSelect, DBVIEW, DBROW, dbFld, dbGen, DBDCT, MACSIL
+
+**Execution**: EXEC (37 sub-command types: FCT, FCT_ONLY, MSG, SQI, SQL, USP, SQR, SQM, SQT, XCH, CGI, CGS, CGP, HTT, HTI, HTM, HTA, XAML, XAMLI, EXE, RUN, LNK, CLIEXE, CLIRUN, FRM, RPT, XLS, SET, BTN, INI, ENTRY, HOST, KEY, DRL, HLP, SSM, BYE)
+
+**Report**: RPTCLR, RPTTTL, RPTSET
+
+**Utility**: TOOLS (70+ sub-commands), READKEY, POST
+
+**Batch**: UPDATE_BATCH, CREATE, CREATE_INDEX, UPDATE, UPDATE_VIEW, UPDATE_STACK, INSERT_HOR, ACTIVATE_HEADER
+
+**Import**: IMPORT_SIL
+
+**Script Control**: ATTRIB, DATE, NULL, MACSHORT, SECURE, IF
+
+**Wizard UI**: WIZINIT-form, WIZDISPLAY, WIZMENU, WIZXSD, WIZDETAIL, WIZDATES, WIZDATE, WIZTARGET, WIZTLZ, WIZFIL, WIZEDIT, WIZLBL
+
+**Print/Report**: PRINT, SUM, DIV, DBRPT, RPT_DETAIL
+
+**Data Mapping**: FIELDS_FROM_QUERY, MAP_FROM_QUERY, MAP_FROM_VIEW, MAP_BACKUP
+
+**Text Processing**: REPLACE_START, REPLACE_STOP
+
+**MIME**: MIMESET
+
+**Window/Messaging**: WINMSG, WINMAIL, WINWAIT, MSGTABLE, MSGROW, MSGFILE, MSGSUM, MSGDEL, MSGLOG
+
+## Common Mistakes
+
+1. **Using `@` inside CMP branches** instead of `®`. Commands execute before the comparison.
+2. **Using `@WIZRPL` to set a value** when you mean `@WIZSET`. WIZRPL appends, it does not replace.
+3. **Forgetting innermost-first evaluation**. In `@A(@B(@C()))`, C runs first, then B, then A.
+4. **Comparing numbers as strings**. `@FMT(CMP,9>10,...)` is true because `"9" > "1"` in string comparison. Format numbers first: `@FMT(CMP,@FMT(!0:4,9)>@FMT(!0:4,10),...)`.
+5. **Missing the empty-branch syntax**. `@FMT(CMP,X=Y,,'®EXEC(MSG=!Fail)')` -- note the double comma for an empty true branch.
+6. **Not escaping parentheses in nested commands**. The engine uses DLE (0x10) and DC1 (0x11) internally to escape `(` and `)` during processing. This is automatic but explains why deeply nested expressions can sometimes behave unexpectedly.
+
+## Full Reference
+
+For complete command syntax, all @FMT sub-commands, @dbHot modes, @TOOLS sub-commands, and well-known parameter keys, see: llms-full.txt

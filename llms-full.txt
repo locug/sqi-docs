@@ -1,0 +1,744 @@
+# SQI Scripting Language -- Complete Reference
+
+> SQI (Script Query Internal) is a text-replacement macro language embedded in SQL. Scripts use `.sqi` files containing `@COMMAND(args)` patterns that the engine resolves into pure SQL for database execution.
+
+---
+
+## Architecture: 5-Stage Pipeline
+
+1. **Pre-cleanup**: Strip comment patterns (`@;`), handle quoting
+2. **Preprocessor**: Substitute built-in variables (`@STORE` -> `"001"`, `@TER` -> `"901"`, etc.), expand `@Dxxx` date tokens, escape unrecognized `@` with DLE (0x10)
+3. **Main dispatch loop**: Find innermost `@COMMAND(args)` (scan for `)` then `(` then `@`), call handler, replace with return value, repeat until no commands remain
+4. **Final cleanup**: Restore DLE -> `(`, DC1 -> `)`, process CHR(26) as exit-success, CHR(27) as abort-error
+5. **SQL execution**: Run resulting pure SQL against the database
+
+---
+
+## Core Syntax
+
+```
+@COMMAND(arg1,arg2,arg3);
+```
+
+Every command starts with `@`, takes parenthesized comma-separated arguments, and is replaced inline with its return value. Semicolons terminate statements. Commands nest and evaluate **innermost-first**:
+
+```
+@FMT(CMP,@WIZGET(MODE)=1,'action_a','action_b');
+```
+
+Here `@WIZGET(MODE)` resolves first (e.g., to `"1"`), then `@FMT(CMP,1=1,...)` evaluates.
+
+### Comments
+
+```
+/* This is a comment */
+```
+
+### Script File Types
+
+| Extension | Description |
+|-----------|-------------|
+| `.sqi` | Primary POS macro scripts |
+| `.sql` | Standard SQL scripts |
+| `.sqr` | Report template scripts |
+| `.sqm` | Data export mapping files |
+| `.htm` | CGI/HTML templates |
+
+---
+
+## Special Character System
+
+### Branch Delimiter: `®` (CRITICAL)
+
+Inside `@FMT(CMP,...)` branch strings, you **cannot** use `@` directly -- the engine would resolve it before the branch is selected. Use `®` (U+00AE, registered sign) as a placeholder for `@`. After the CMP handler picks the correct branch, every `®` is replaced with `@`, and the revealed commands are processed on subsequent iterations.
+
+```
+@FMT(CMP,@WIZGET(X)=1,'®WIZSET(Y=hello)®EXEC(FCT=720)','®EXEC(MSG=!Error)');
+```
+
+Processing order:
+1. Inner `@WIZGET(X)` resolves first -> `"1"`
+2. `@FMT(CMP,1=1,...)` selects true branch: `"®WIZSET(Y=hello)®EXEC(FCT=720)"`
+3. CMP handler replaces `®` with `@`: `"@WIZSET(Y=hello)@EXEC(FCT=720)"`
+4. Main loop processes `@WIZSET(...)` then `@EXEC(...)`
+
+**Empty branches**: Omit to do nothing:
+```
+@FMT(CMP,@WIZGET(X)=1,'®EXEC(FCT=720)');     /* no false branch */
+@FMT(CMP,@WIZGET(X)=1,,'®EXEC(MSG=!Error)');  /* no true branch -- note double comma */
+```
+
+### Internal Escape Characters
+
+| Character | Code | Purpose |
+|-----------|------|---------|
+| DLE | 0x10 | Temporarily replaces `(` during processing to prevent re-matching |
+| DC1 | 0x11 | Temporarily replaces `)` during processing |
+| SUB | 0x1A | CHR(26) -- exit script with success |
+| ESC | 0x1B | CHR(27) -- abort script with error |
+| `®` | 0xAE | Branch delimiter -- replaced with `@` after branch selection |
+
+These are transparent to script authors except for `®` which must be used explicitly.
+
+---
+
+## Preprocessor Variables
+
+Substituted before command processing. These are NOT commands -- they have no parentheses.
+
+| Variable | Value |
+|----------|-------|
+| `@STORE` | Store number |
+| `@TER` | Terminal number |
+| `@USER` | Operator/user ID |
+| `@USERNAME` | Full username |
+| `@TIME` | Current time (hhnnss) |
+| `@NOW` | Current date/time |
+| `@RUN` | Run directory path |
+| `@OFFICE` | Office directory path |
+| `@CNC` | Connection number |
+| `@PROFILE` | User profile |
+| `@DID` | Device ID |
+| `@DSDF` | Current date (formatted) |
+| `@OFFICEDBT` | Office DBT directory |
+| `@RUNLINKS` | Run links directory |
+| `@Dxxx` | Inline date tokens (char-class validated, e.g., `@D1D` for date component) |
+
+---
+
+## Parameter Store
+
+A key-value dictionary (501 slots, case-insensitive keys, max 59-char key names) shared between scripts.
+
+### Operations
+
+| Command | Syntax | Behavior |
+|---------|--------|----------|
+| `@WIZGET` | `@WIZGET(key)` | Read value; returns empty string if missing |
+| `@WIZSET` | `@WIZSET(key=value)` | **Overwrite** value or create new |
+| `@WIZINIT` | `@WIZINIT(key=value)` | Set **only if key does not exist** (set default) |
+| `@WIZRPL` | `@WIZRPL(key=value)` | **APPENDS** to existing value (does NOT replace!) |
+| `@WIZAPPEND` | `@WIZAPPEND(key=value)` | Same as WIZRPL -- appends |
+| `@WIZCLR` | `@WIZCLR(key)` | Delete key entirely |
+| `@WIZCLRALL` | `@WIZCLRALL(prefix)` | Delete all keys starting with prefix |
+| `@WIZISBLANK` | `@WIZISBLANK(key)` | Returns `"1"` if missing or empty, `"0"` otherwise |
+| `@WIZEXIST` | `@WIZEXIST(key)` | Returns `"1"` if key exists, `"0"` if not |
+| `@WIZEXISTALL` | `@WIZEXISTALL(prefix)` | Returns `"1"` if any key starts with prefix |
+| `@WIZRESET` | `@WIZRESET` | Clear all keys (preprocessor variable, no parens) |
+
+**WIZRPL gotcha**: `@WIZRPL(ENTRY=abc)` when ENTRY already contains `"xyz"` produces `"xyzabc"`. Use `@WIZSET` to overwrite.
+
+### Well-Known Parameter Keys
+
+**Transaction State**:
+`ENTRY` (current scan value), `LIVEENTRY` (live keyboard entry), `ENTRYNUMBER` (entry number), `PAYTRACK` (MSR swipe data), `MSRSWIPE` (0=error, 1=success), `PASSWORD`
+
+**Payment**:
+`CardType` (T=third-party, W=WIC), `PaySubType`, `PayTranCode` (201, etc.), `PAYSEQUENCE`, `PAYCVV` (NONE=skip), `PAYZIP` (NONE=skip), `PAYRCODE` (00=success), `PAYDISPLAY`, `PAYNET`, `PAYFOODSAMNT`, `PAYTENDAMNT`, `PAYFLEET`, `PAYWICSTATE`, `PAYOUTPUT`, `PAYENTRYTYPE` (B=barcode), `PAYTRANMODE` (N=normal, A=auto), `ConfirmAmount` (1=yes)
+
+**UI/Display**:
+`PROMPTMEM` (11=CVV, 12=ZIP), `FORM` (form name), `STATE` (MODAL, etc.), `TITLE`, `FRAME`, `WIDTH`, `HEIGHT`, `CLOSE` (Cancel, etc.)
+
+**Script Control**:
+`SCRIPT`, `SCRIPT_FAIL`, `BEHAVIOR`, `EXECUTEWIN`, `OUTPUT`, `PRINT_OUTPUT`, `STYLE` (TXT, etc.), `TARGET`, `SUBJECT`, `MASK`
+
+**File Operations**:
+`FILE`, `SRC_PATH`, `TAR_PATH`, `TAR_FILE`, `FILE_PATH`, `FILE_TYPE` (IMPORT), `MAP_FILE` (.SQM), `DIR_NAME`
+
+**Exchange/Communication**:
+`USEMAILSLOT` (1=yes), `TASK`, `XCH_SUBJECT`, `XCH_DETAIL`, `FTPLOCINBOX`, `FTPREMOUTBOX`, `FTPHOSTNAME`, `FTPRECVSKIPDELFILE`
+
+**Scan/Signature**:
+`ScanSign`, `SIGN_REJECT` (1=yes), `SIGN_RETRY`, `DataEntryMode` (PHONE, etc.), `DataEntryPrompt1`, `DataEntryPrompt2`, `DataEntryResponse`
+
+**Gift Card**:
+`GIFTTYPE` (B=balance), `GC_ENTRYTYPE` (S=swipe, M=manual), `GC_TRACK`, `GC_OUTPUT`, `GC_OPERID`, `GC_TERMID`, `GC_RESULT`, `GC_RCODE`, `GC_DISPLAY`, `GC_SEQUENCE`
+
+**Coupon System**:
+`CPN_MATCHCODE`, `CPN_OFFER`, `CPN_FUNCTION`, `CPN_ELECTRONIC` (1=electronic)
+
+**WIC**:
+`WICONLY`, `EWIC_EXCL_LIST`, `PAYWICSTATE`
+
+### State Save/Restore Pattern
+
+```
+@DBHOT(HOT_WIZ,PARAMTOLINE,PARAMSAV);    /* Serialize all params */
+@WIZRESET;                                  /* Clear for sub-script */
+/* ... run sub-script ... */
+@WIZRESET;                                  /* Clear sub-script's params */
+@DBHOT(HOT_WIZ,LINETOPARAM,PARAMSAV);    /* Restore saved params */
+@DBHOT(HOT_WIZ,CLR,PARAMSAV);            /* Clean up */
+```
+
+---
+
+## @FMT() -- Format and Control Flow (33 Sub-Commands)
+
+### Conditional
+
+**CMP** -- `@FMT(CMP, left_op_right, true_branch, false_branch)`
+Operators: `=`, `<>`, `>`, `<`, `>=`, `<=`. Case-insensitive string comparison.
+Compound conditions: `@FMT(CMP,@WIZGET(TMODE)@WIZEXIST(PAYSEQUENCE)=V1,...)` concatenates values.
+
+**CHR** -- `@FMT(CHR, ascii_code)`
+Returns character. 26=exit script success, 27=abort script error, 64=literal `@`.
+
+### String Operations
+
+| Sub-command | Syntax | Returns |
+|-------------|--------|---------|
+| LEN | `@FMT(LEN,string)` | Length as string |
+| POS | `@FMT(POS,needle,haystack[,start])` | 1-based position or `"0"` (case-insensitive) |
+| POSCS | `@FMT(POSCS,needle,haystack[,start])` | Same as POS, case-sensitive |
+| S (substring) | `@FMT(Sstart:length,string)` | Substring, 1-based index |
+| UPPER | `@FMT(UPPER,string)` | Uppercased string |
+| LOWER | `@FMT(LOWER,string)` | Lowercased string |
+| TRIM | `@FMT(TRIM,string)` | Whitespace-trimmed string |
+| TRIMZERO | `@FMT(TRIMZERO,string)` | Leading-zeros-trimmed string |
+| ORD | `@FMT(ORD,string)` | ASCII code of first character |
+
+### Number Formatting
+
+| Sub-command | Syntax | Returns |
+|-------------|--------|---------|
+| # (numeric) | `@FMT(#:decimals,number)` | Formatted number (`@FMT(#:2,123.456)` -> `"123.45"`) |
+| ! (pad) | `@FMT(!pad:width,string)` | Padded string (`@FMT(!0:4,42)` -> `"0042"`) |
+| TRUNC | `@FMT(TRUNC,number)` | Integer part only |
+| MARGIN | `@FMT(MARGIN,cost,retail,pct)` | Margin calculation |
+| RND | `@FMT(RND,format)` | Random number |
+
+### Null/Value Checks
+
+| Sub-command | Syntax | Returns |
+|-------------|--------|---------|
+| NUS | `@FMT(NUS,value)` | Numeric string, empty if "n/a" |
+| NUL | `@FMT(NUL,value)` | Empty if zero or "n/a" |
+| NUD | `@FMT(NUD,date)` | Empty if null date (contains "1899") |
+
+### Delimited Value Parsing
+
+**COMA** -- `@FMT(COMA,search_key,delimiter,[format],string)`
+Extracts named value from delimited string: `@FMT(COMA,PSQ,,,@WIZGET(F1081))` finds `PSQ=value`.
+
+### Encoding/Decoding
+
+| Sub-command | Direction |
+|-------------|-----------|
+| 2HTML / HTML2 | Encode/decode HTML entities |
+| 2URL / URL2 | Encode/decode URL percent-encoding |
+| 2JS / JS2 | Encode/decode JavaScript escaping |
+| 2QUOT / QUOT2 | Encode/decode quote-safe format |
+| 2SPACE / SPACE2 | Underscores <-> spaces |
+
+### Check Digit Algorithms
+
+| Sub-command | Algorithm |
+|-------------|-----------|
+| MOD10 | Luhn algorithm |
+| MOD10P | Paired modulo 10 |
+| UPCA | UPC-A with check digit |
+| UPC / UPC0 | Barcode formatting (auto-detect / explicit) |
+| GPC | General Product Code |
+| HUDON | Hudson's Bay Company format |
+| HENING | Henning format |
+
+### Other FMT Sub-Commands
+
+| Sub-command | Purpose |
+|-------------|---------|
+| VER | Parse version string (strips V/VER/VERSION prefix, splits by `.`) |
+| FLG | If value is `"1"`: returns `"checked"` (HTML attribute) |
+| MSSQL6 | Returns true/false result based on MSSQL compat flag |
+| ISSQL | Pass-through with special char replacement |
+| LTR / LTRFR / LTRES | Number to letter words (English / French / Spanish) |
+
+---
+
+## @dbHot() -- Database and System State Access (Top 20 Modes)
+
+### Dataset Access
+
+| Mode | Syntax | Description |
+|------|--------|-------------|
+| SAL_HDR | `@dbHot(SAL_HDR,field[,format])` | Sale header (F1032=trs#, F1067=status, F1068=type) |
+| SAL_REG | `@dbHot(SAL_REG,field[,format])` | Sale register (line items) |
+| REC_HDR | `@dbHot(REC_HDR,field[,format])` | Receiving header |
+| REC_REG | `@dbHot(REC_REG,field[,format])` | Receiving register |
+| INV_HDR | `@dbHot(INV_HDR,field[,format])` | Inventory header |
+| INV_REG | `@dbHot(INV_REG,field[,format])` | Inventory register |
+
+Format specs: `#` = numeric, `#:2` = 2 decimals, `!0:4` = zero-padded.
+
+### Find/Total
+
+| Mode | Syntax | Description |
+|------|--------|-------------|
+| SAL_TTL_FIND | `@dbHot(SAL_TTL_FIND,code,field[,format[,reportvar]])` | Find sale total by code |
+| SAL_REG_FIND | `@dbHot(SAL_REG_FIND,...)` | Find sale register entry |
+| REC_TTL_FIND | `@dbHot(REC_TTL_FIND,code,field,...)` | Find receiving total by code |
+
+### Hot Memory (In-Memory POS State)
+
+`@dbHot(HOT_MEM,variable)` reads runtime state:
+
+**Transaction**: FUNCTION, TRSMODE, TRSSTATE, TRSSTEP, TRSPROMPT, RECEIPTSTATUS
+**Client/Entry**: CLTENTRYUNIT, CLTENTRYCODE, CLTENTRYPRICE, CLTENTRYQTY, CLTENTRYNUMBER, CLTENTRYDATE
+**Return/Void**: CLTVOIDKEY, CLTRETURNKEY, CLTRETURNMODE
+**Amounts**: CLTSAVEAMOUNT, CLTTOTALPAID, CLTDISCOUNTTOTAL, CLTDISCOUNTREG, CLTDISCOUNTGROSS, CLTCOUPONGROSS, CLTCOUPONREG
+**Coupon**: CLTCOUPONMISSXML, CLTCOUPONGIVEXML, CLTCOUPONREJECTED, CLTCOUPONISSUED, CLTDONECOUPONLINK, CPN_MATCHCODE, CPN_OFFER
+**Offer**: CLTOFFERMISSXML, CLTOFFERGIVEXML, CLTOFFERCLIPXML
+**Limits**: CLTOVERLIMIT, CLTLIMITLINES, CLTWICONLY, CLTWICSALE
+**Other**: CLTPOINT, CLTPOINTREG, CLTTRAINING, CLTPRICEPACKAGE, CLTTOTALENVFEE, CLTRECORD, FSTAMP, CLTSILNAME
+
+### Hot Wizard (Cross-Script Parameters)
+
+| Sub-command | Syntax | Behavior |
+|-------------|--------|----------|
+| GET | `@dbHot(HOT_WIZ,GET,key)` | Read value |
+| CLR | `@dbHot(HOT_WIZ,CLR,key)` | Delete key |
+| ISBLANK | `@dbHot(HOT_WIZ,ISBLANK,key)` | `"1"` if empty/missing |
+| RPLS | `@dbHot(HOT_WIZ,RPLS,key,value)` | String replace |
+| RPLR | `@dbHot(HOT_WIZ,RPLR,key,value)` | Raw replace |
+| RPLF | `@dbHot(HOT_WIZ,RPLF,key,value)` | Float replace |
+| PARAMTOLINE | `@dbHot(HOT_WIZ,PARAMTOLINE,prefix)` | Serialize all params to string |
+| LINETOPARAM | `@dbHot(HOT_WIZ,LINETOPARAM,key)` | Deserialize string to params |
+| RESET | `@dbHot(HOT_WIZ,RESET[,prefix])` | Reset matching entries |
+
+### INI File Access
+
+- `@dbHot(INI,section,key)` -- default INI
+- `@dbHot(INI,filename,section,key)` -- specific file
+- Special sections: STARTUP, SETUP, SYSTEM
+
+### Configuration
+
+`@dbHot(CONFIG,key)` -- keys: VERSION, TERMINAL901FILES, RUNDIR, LOCALDIR, OFFICEDIR, RUNDIRNAME, KEYNUMBER, KEYVALIDDATE, KEYCONTRACT, KEYSTRING, PURGEDAYS
+
+### Other Key Modes
+
+| Mode | Syntax | Description |
+|------|--------|-------------|
+| FINDFIRST | `@dbHot(FINDFIRST,pattern[,index])` | File existence check |
+| DEVICE | `@dbHot(DEVICE[,sub])` | Device type (DEVIDX, DEVXCH, DEVCAP, NAME, etc.) |
+| PERIPHERAL | `@dbHot(PERIPHERAL,type,subtype,key)` | Peripheral status (COVEROPEN, LOWPAPER, etc.) |
+| HOT_IDX | `@dbHot(HOT_IDX,field)` | Current item field |
+| POS_TAB | `@dbHot(POS_TAB,field)` | POS item table |
+| CNCURRENT | `@dbHot(CNCURRENT)` | Current connection number |
+| CLK | `@dbHot(CLK,field,session)` | Clock/session (NUMBER, USERCODE, USERLEVEL, etc.) |
+| REG | `@dbHot(REG,field)` | Register field read |
+| VARSET/VARGET | `@dbHot(VARSET,name,value)` / `@dbHot(VARGET,name)` | Variable storage |
+| MSSQL | `@dbHot(MSSQL,sub)` | SQL transactions (STARTTRANSACTION, COMMIT, ROLLBACK) |
+| OFFER | `@dbHot(OFFER,sub)` | Offer data (COUNT, COUNTCLIP, STATUS, QUANTITY) |
+| PAYMENT | `@dbHot(PAYMENT,sub)` | Payment XML (GETXML, SETXML) |
+
+### Complete Mode List (82 modes)
+
+TABLE_RECORD, DBALIAS, DBUSERNAME, DBPASSWORD, DBPASSWORDC, REG, HOT_URL, CURRENT, OFFER, SAL_REG, SAL_HDR, REC_REG, REC_HDR, INV_REG, INV_HDR, REC_TTL, SAL_TTL, HOT_IDX, BROWSER, SAL_TTL_FIND, SAL_REG_FIND, NET_OFFICE, CLK, SUBQUERY, REC_TTL_FIND, RECALCULATE, REGISTER_VIEW, REGISTER_CONTRACT, REGISTER_SET, REGISTER_GET, REGISTER_VALID, REGISTER_SCRIPT, REGISTER_NAME, REGISTER_VERIFY, INI, FINDFIRST, FINDWINDOW, FINDTABLE, DONOTNORMALIZEUPC, VARSET, VARGET, VARRESET, COMPUTER, REDIRMSG, REDIRMAIL, USERLEVEL, LEVELFIELD, LANGUAGE, REGGEN, REGVALUE, TABLEBYTERMINAL, CNCURRENT, DETAIL_CHOICES, DETAIL_NAME, CNTABLE, REGSET, HOT_MEM, REGIONAL, FIELDS, DETAIL_PERIODS, DETAIL_DETAILS, DETAIL_NAMES, WEEKSTART, SYS_TAB, HOT_WIZ, CNCURRENT_SET, APPLICATION, CONFIG, DEVICE, MSSQL, PERIPHERAL, PAYMENT, PORTAL_SETKEY, PORTAL_GETKEY
+
+---
+
+## Other Database Commands
+
+| Command | Syntax | Description |
+|---------|--------|-------------|
+| @dbExec | `@dbExec(sql)` | Execute SQL, no return value |
+| @dbSelect | `@dbSelect(sql)` | Execute SQL, return single value |
+| @DBVIEW | `@DBVIEW(name,sql)` | Create named in-memory view |
+| @DBROW | `@DBROW(viewname,column[,format])` | Read column from named view |
+| @dbFld | `@dbFld(table,prefix,exclude)` | Generate field list |
+| @dbGen | `@dbGen(field,increment)` | Next sequence number |
+| @DBDCT | `@DBDCT(field_list)` | Column definitions for fields |
+| @MACSIL | `@MACSIL(sql)` | Execute SQL with macro expansion |
+
+---
+
+## @EXEC() -- Command Execution (37 Sub-Command Types)
+
+### FCT -- Function Code Dispatch
+
+`@EXEC(FCT=code[,ENTRY=value])` executes a POS function by code number.
+`@EXEC(FCT_ONLY=code)` executes without firing hook scripts.
+
+**Common FCT Codes**:
+
+| Code | Function |
+|------|----------|
+| 1 | Mode start |
+| 30 | Void/cancel transaction |
+| 37 | Display prompt |
+| 40 | No-sale |
+| 60 | Mode display refresh |
+| 104 | Function key |
+| 307 | Process entry (item scan) |
+| 318 | Price inquiry |
+| 380 | Open transaction by number |
+| 382 | Recall transaction |
+| 385 | Transaction close |
+| 391 | Transaction hold |
+| 395 | Transaction cancel |
+| 620 | Customer lookup |
+| 650 | Clerk lookup |
+| 691 | Override |
+| 710 | Third-party payment |
+| 715 | Payment type |
+| 720 | Subtotal |
+| 730 | Print receipt copy |
+| 10010 | Sub-total |
+| 10012 | Close/payment initiation |
+| 10015 | Print receipt |
+| 10017 | Payment finalize |
+| 10019 | Logout |
+| 10020 | Exit/close all |
+| 10230 | Password change |
+
+Additional FCT parameters: `ENTRY=`, `SKIPREFRESH=1`, `HOOKSKIP=ALL`, `TOP=`, `LEFT=`, `HEIGHT=`, `WIDTH=`, `PPI=`, `FONTSIZE=`, `MODE=`
+
+### MSG -- Message Display
+
+`@EXEC(MSG=text)` -- first character controls behavior:
+
+| Prefix | Behavior |
+|--------|----------|
+| `!` | Error dialog (blocking, requires acknowledgment) |
+| `?` | Input prompt (interactive) |
+| `~` | Timed notification (non-blocking) |
+| `#` | Log only (no visible display) |
+| `+` | Extended popup (reads MSG_URL, MSG_LVL, MSG_ID) |
+| `^` | Play sound (WAV file) |
+| `*` | External customer display |
+| ` ` (space) | Clear message area |
+| (other) | Standard status message |
+
+Bracketed type prefix: `@EXEC(MSG='[TYPE]text')`
+Types: FINAL, ERROR, WARNING, PADDSP (PIN pad), DEVSCR (device screen)
+Connection targeting: `[ERROR,CN=2]text` or `[ERROR,ALL]text`
+
+### SQI/SQL/SQR/SQM/SQT -- Script Execution
+
+| Sub-command | Extension | Description |
+|-------------|-----------|-------------|
+| `SQI=name` | `.sqi` | Execute SQI script |
+| `SQL=name` | `.sql` | Execute SQL script |
+| `USP=name` | `.usp` | Execute stored procedure script |
+| `SQR=name` | `.sqr` | Execute report script |
+| `SQM=name` | `.sqm` | Execute macro script |
+| `SQT=name` | `.sqt` | Execute template script |
+
+### XCH -- Exchange Commands
+
+**File Operations**:
+
+| Command | Description |
+|---------|-------------|
+| `DEL` | Delete file (SRC_PATH) |
+| `COPYFILE` | Copy SRC_PATH to TAR_PATH |
+| `MOVEFILE` | Move SRC_PATH to TAR_PATH |
+| `MOVE` | Copy then delete original |
+| `MERGE` | Merge source into target |
+| `SENDMAIL` | Send email |
+| `FTPEXE` | FTP transfer |
+| `RECV` | FTP receive |
+| `ZIPEXE` | ZIP operation |
+
+**Device/Peripheral**:
+
+| Command | Description |
+|---------|-------------|
+| `MSRSWIPE` | Magnetic stripe reader |
+| `PINENTER` | PIN entry on pad |
+| `SCANSIGN` | Capture signature |
+| `SCANDOC` | Scan document |
+| `SCANCARD` | Scan card image |
+| `SCANCODE` | Scan barcode |
+| `DEVDIRECT` | Raw device command |
+| `PERIPHERAL` | Generic peripheral control |
+
+**Payment**:
+
+| Command | Description |
+|---------|-------------|
+| `PAYUTIL` | Payment utility |
+| `PAYCOMPLETEAUTO` | Auto-complete payment |
+| `PAYCOMPLETEEXEC` | Execute payment completion |
+| `PAYRESET` | Reset payment state |
+| `PAYUSER` | Payment user operation |
+
+**Session**:
+
+| Command | Description |
+|---------|-------------|
+| `STANDBYALL` | Signal all connections to standby |
+| `STANDBYDONE` | Standby complete |
+| `SESSIONINFO` | Get session XML |
+| `MONITOR` | Start monitor mode |
+
+### EXE/RUN -- External Program Execution
+
+| Sub-command | Wait behavior |
+|-------------|---------------|
+| `EXE='cmd'` | Wait for process exit (blocking) |
+| `RUN='cmd'` | Wait for input idle (non-blocking) |
+| `CLIEXE='args'` | Run via SmsCli.exe, wait for exit |
+| `CLIRUN='args'` | Run via SmsCli.exe, no wait |
+| `LNK='path'` | Execute shell link/shortcut |
+
+### SET -- Table/Database Operations
+
+`@EXEC(SET=subcommand)`:
+TABLEALL, TABLESYS, TABLEAUX, TABLERUN (reload tables), MAGICTABLE (coupon table), CAMERA (BITMAP/START), PRINTBMP, OFFER_CHECK, COUPON_CHECK, TOUCH1000, WEBSOCKET, NEWLOG, LOGEXEC, LOGURL
+
+### BTN -- Button/Transaction Operations
+
+`@EXEC(BTN=subcommand)`:
+PRINT, POINT_CREATION, OFFERS, CLIP, UNCLIP, CLIPREG, SUSPEND, CLOSE
+
+### Other EXEC Sub-Commands
+
+| Sub-command | Description |
+|-------------|-------------|
+| `HTT=name` | HTML template in form window |
+| `HTI=name` | HTML template in inner frame |
+| `CGI=name` | CGI/HTML template |
+| `CGS=name` | CGI server-side script |
+| `CGP=name` | CGI print |
+| `HTM=name` | HTML form with button panels |
+| `HTA=name` | HTML Application template |
+| `XAML=name` | XAML template |
+| `XAMLI=name` | XAML in inner frame |
+| `XLS=name` | Excel export |
+| `RPT=name` | Report generation |
+| `FRM=name` | Form management |
+| `INI=section` | Load INI configuration |
+| `ENTRY=value` | Set entry buffer |
+| `HOST=addr` | Route to remote host |
+| `KEY=code` | Inject key press |
+| `DRL=cmd` | Cash drawer operation |
+| `HLP=page` | Display help |
+| `SSM=mode` | Session/mode switch |
+| `BYE=mode` | Exit/close (e.g., BYE=REC closes receiving) |
+
+---
+
+## @TOOLS() -- Utility Dispatcher (Top 30 Sub-Commands)
+
+### Parameter Parsing
+
+| Sub-command | Syntax | Returns |
+|-------------|--------|---------|
+| PARAM | `@TOOLS(PARAM,delim,index,string)` | Nth element from delimited string (1-based) |
+| PARAMTOLINE | `@TOOLS(PARAMTOLINE)` | All params serialized to single line |
+| LOADPARAMTOLINE | `@TOOLS(LOADPARAMTOLINE,ini[SECTION])` | INI section as param line |
+| PARAMTONODES | `@TOOLS(PARAMTONODES)` | Params as XML nodes |
+| PARAMTOINPUT | `@TOOLS(PARAMTOINPUT)` | Params as form input format |
+| PARAMTOCOMA | `@TOOLS(PARAMTOCOMA)` | Params as CSV |
+| PARAMTOURL | `@TOOLS(PARAMTOURL)` | Params as URL query string |
+| PARAMINBRAKET | `@TOOLS(PARAMINBRAKET,string)` | Extract value inside brackets |
+| PARAMCOPYVALUE | `@TOOLS(PARAMCOPYVALUE,src,dest)` | Copy param value between keys |
+| PARAMPURGE | `@TOOLS(PARAMPURGE,name)` | Remove a param |
+| PARAMSECURE | `@TOOLS(PARAMSECURE,list)` | Mark params as secure (masked in logs) |
+
+### Encoding/Security
+
+| Sub-command | Syntax | Returns |
+|-------------|--------|---------|
+| ENCODE | `@TOOLS(ENCODE,data)` | Encoded string |
+| DECODE | `@TOOLS(DECODE,data)` | Decoded string |
+| ENCODE_PARAM | `@TOOLS(ENCODE_PARAM,name)` | Encode param in-place (stronger) |
+| DECODE_DATA | `@TOOLS(DECODE_DATA,data)` | Decode (matching ENCODE_PARAM) |
+| ENCODE64 | `@TOOLS(ENCODE64,data)` | Base64 encode |
+| DECODE64 | `@TOOLS(DECODE64,data)` | Base64 decode |
+| FILE64 | `@TOOLS(FILE64,filepath)` | Read file as base64 |
+| HASHDATA | `@TOOLS(HASHDATA,data)` | Hash string |
+| HMAC_SHA1 | `@TOOLS(HMAC_SHA1,data,key[,BASE64])` | HMAC-SHA1 |
+| HMAC_SHA256 | `@TOOLS(HMAC_SHA256,data,key[,BASE64])` | HMAC-SHA256 |
+| SECUREEXEC | `@TOOLS(SECUREEXEC,name,sql_path)` | Execute script with forced OUTPUT |
+| SECURELOGIN | `@TOOLS(SECURELOGIN,user,pass)` | Validate credentials |
+| MINUTETOKENSTRING | `@TOOLS(MINUTETOKENSTRING,param,mins)` | Time-based token |
+| MINUTETOKENCHECK | `@TOOLS(MINUTETOKENCHECK,tok,cmp,mins,tol)` | Validate time token |
+
+### XML/JSON
+
+| Sub-command | Syntax | Returns |
+|-------------|--------|---------|
+| XMLSQL | `@TOOLS(XMLSQL,field,value)` | SQL-safe XML value |
+| XML_VALUE | `@TOOLS(XML_VALUE,xml)` | Extract value from XML |
+| XML_NODE | `@TOOLS(XML_NODE,xml)` | Extract node from XML |
+| REPORT_JSON | `@TOOLS(REPORT_JSON,...)` | Report data as JSON |
+
+### Receipt/Print
+
+RCT_LINE (format receipt line), RCT_REVERSE (reverse string), RCT_QTY (format quantity), RCT_AMT (format amount), RCT_FLAG, RCT_BMP (embed bitmap), RCT_BMPS (scaled bitmap), RCT_RASTER (raster image), RCT_BARCODE (barcode), RCT_HTML (embed HTML), RCT_PUMP (gas pump data), RCT_CARD (card data), RCT_EFT (EFT data), PRINT (direct print), LABELPRINT (label), LABELPARAM (label format)
+
+### Dialog/UI
+
+| Sub-command | Syntax | Returns |
+|-------------|--------|---------|
+| MESSAGEDLG | `@TOOLS(MESSAGEDLG,text,timeout,btn1,btn2)` | Button index (1-based) |
+| MESSAGEURGENT | `@TOOLS(MESSAGEURGENT,msg,ts,conn)` | (sends urgent message) |
+| MESSAGESEND | `@TOOLS(MESSAGESEND,to,subj,body,attach,pri)` | (sends message) |
+| POPUP | `@TOOLS(POPUP,name,query)` | Selected value or -1 |
+| SHOWGRID | `@TOOLS(SHOWGRID)` | (shows data grid) |
+| EVENTPOPUP | `@TOOLS(EVENTPOPUP,name)` | (triggers event popup) |
+| VALIDATEFIELD | `@TOOLS(VALIDATEFIELD,field,value,rule)` | Validation result |
+| MOBILEKEYBOARD | `@TOOLS(MOBILEKEYBOARD,1/0)` | (toggles keyboard) |
+
+### Validation/Error
+
+| Sub-command | Syntax | Returns |
+|-------------|--------|---------|
+| CHECKPRM | `@TOOLS(CHECKPRM,fields,values)` | Permission check |
+| RAISEERROR | `@TOOLS(RAISEERROR,type,msg)` | Raises exception (USERLEVEL, NOTINTABLE, INVALIDENTRY, INVALIDDATA) |
+| RIGHTS | `@TOOLS(RIGHTS,...)` | Rights check result |
+| CHECKNUM | `@TOOLS(CHECKNUM,...)` | Numeric validation |
+| SQLLIKE | `@TOOLS(SQLLIKE,field,value[,sep])` | SQL LIKE clause |
+
+### Coupon/Offer System
+
+| Sub-command | Syntax | Description |
+|-------------|--------|-------------|
+| AUTO_START | `@TOOLS(AUTO_START)` | Start automatic coupon engine |
+| COUPON_APPLY | `@TOOLS(COUPON_APPLY)` | Apply pending coupons to transaction |
+| COUPON_DESTROY | `@TOOLS(COUPON_DESTROY)` | Remove all coupons from transaction |
+| COUPON_MATCH | `@TOOLS(COUPON_MATCH,item)` | Match coupons against item (reads CPN_FUNCTION, CPN_ELECTRONIC) |
+| OTC_MATCH | `@TOOLS(OTC_MATCH)` | Over-the-counter coupon match |
+
+Related parameters: CPN_MATCHCODE, CPN_OFFER, CPN_FUNCTION, CPN_ELECTRONIC, CLTCOUPONMISSXML, CLTCOUPONGIVEXML, CLTCOUPONREJECTED, CLTCOUPONISSUED
+
+### Calculation
+
+| Sub-command | Syntax | Description |
+|-------------|--------|-------------|
+| CALCDATE | `@TOOLS(CALCDATE,mode,sql)` | Date calculation from query |
+| CALCNEXT | `@TOOLS(CALCNEXT,sql)` | Next batch/iteration values |
+| DATED_PRICE | `@TOOLS(DATED_PRICE,item,date)` | Item price on date |
+| DATED_COST | `@TOOLS(DATED_COST,item,date)` | Item cost on date |
+| DATED_COUPON | `@TOOLS(DATED_COUPON,item,date)` | Coupon for item on date |
+
+### Meta-Grid
+
+METGRIDPARAMIN (grid input params), METGRIDPARAMOUT (grid output params), METFLD (meta-field), METPOPCHOICES (popup choices), METPOPFILE (popup file source), EXTFLD (extension fields)
+
+### Record Read/Write
+
+RWPRICE (item price), RWVALUE (item value), RWCODE (item code), RWNUPC (numeric UPC)
+
+### Hooks
+
+| Sub-command | Syntax | Returns |
+|-------------|--------|---------|
+| HOOKEXEC | `@TOOLS(HOOKEXEC,name)` | `"1"` if hook found and executed |
+| MODMSGEXEC | `@TOOLS(MODMSGEXEC,msg_id,handler)` | Executes modify-message handler |
+
+### Data/Backup
+
+MAP_BACKUP, REG_BACKUP, COST_ENCODE, BUILD_DELV, BUILD_DIR, BUILD_TREE, INSTALL_REPLACE, INSTALL_USP, BACKUP_USP, CUSTOM_DETECT
+
+### WIC Limits
+
+LIMIT_CLEAR, LIMIT_LOAD, LIMIT_SAVE, LIMIT_TOTAL, LIMIT_ABORT
+
+### Smart Card
+
+SMARTGET, SMARTSET, SMARTHOT, SMARTPROMPT, SMARTABORT, SMARTVOID
+
+### Display
+
+PADDISPLAY (PIN pad text), DISPLAY/DISPLAY2/DISPLAY3 (customer displays), GAS_STATUS
+
+---
+
+## Other Commands
+
+### Report
+
+| Command | Syntax | Description |
+|---------|--------|-------------|
+| @RPTCLR | `@RPTCLR(var)` | Clear report accumulator |
+| @RPTTTL | `@RPTTTL(var[,format])` | Get accumulated total |
+| @RPTSET | `@RPTSET(var,value)` | Set report variable |
+
+### Utility
+
+| Command | Syntax | Description |
+|---------|--------|-------------|
+| @READKEY | `@READKEY(code)` | Check license key (`"1"` if licensed) |
+| @POST | `@POST(params)` | Post async command to another terminal |
+| @IMPORT_SIL | `@IMPORT_SIL(file)` | Include another .sqi file inline |
+| @ATTRIB | `@ATTRIB(params)` | Set script attributes |
+| @DATE | `@DATE(params)` | Date manipulation |
+| @NULL | `@NULL(params)` | Null/empty value handler |
+| @MACSHORT | `@MACSHORT(params)` | Re-invoke preprocessor |
+| @SECURE | `@SECURE(params)` | Permission check |
+
+### Batch/Record Operations
+
+| Command | Syntax | Description |
+|---------|--------|-------------|
+| @UPDATE_BATCH | `@UPDATE_BATCH(JOB=ADD,TAR=table,KEY=cond,SRC=SELECT...)` | Batch update |
+| @CREATE | `@CREATE(params)` | Create database record |
+| @CREATE_INDEX | `@CREATE_INDEX(params)` | Create index |
+| @UPDATE | `@UPDATE(params)` | Update record |
+| @UPDATE_VIEW | `@UPDATE_VIEW(params)` | Update via view |
+| @UPDATE_STACK | `@UPDATE_STACK(params)` | Stack update |
+| @INSERT_HOR | `@INSERT_HOR(params)` | Cross-table insert |
+| @ACTIVATE_HEADER | `@ACTIVATE_HEADER(params)` | Activate header record |
+
+### Print
+
+| Command | Syntax | Description |
+|---------|--------|-------------|
+| @PRINT | `@PRINT(params)` | Print control (ORIENTATION, CENT_SIGN, OUTPUT, FF) |
+| @SUM | `@SUM(scope,group,fields)` | Report summation |
+| @DIV | `@DIV(params)` | Division in reports |
+
+### Wizard UI
+
+| Command | Description |
+|---------|-------------|
+| @WIZDISPLAY | Display wizard form (blocks until closed) |
+| @WIZMENU | Selection menu: `@WIZMENU(key=title,opt1=val1,opt2=val2)` |
+| @WIZXSD | Load XSD schema for wizard layout |
+| @WIZDETAIL | Detail section marker |
+| @WIZDATES | Date range picker |
+| @WIZDATE | Single date picker |
+| @WIZTARGET | Target selector |
+| @WIZTLZ | Tax/totalize controls |
+| @WIZFIL | Filter controls |
+| @WIZEDIT | Edit field |
+| @WIZLBL | Label (display-only text) |
+
+### Window/Messaging
+
+WINMSG, WINMAIL, WINWAIT, MSGTABLE, MSGROW, MSGFILE (supports BINARY flag), MSGSUM, MSGDEL, MSGLOG
+
+### Text Processing
+
+@REPLACE_START(pattern), @REPLACE_STOP
+
+### Data Mapping
+
+@FIELDS_FROM_QUERY, @MAP_FROM_QUERY, @MAP_FROM_VIEW, @MAP_BACKUP
+
+### MIME
+
+@MIMESET (TAR_PATH, TAR_OPT, TAR_FILE)
+
+---
+
+## Date Token Patterns
+
+The `@Dxxx` preprocessor syntax supports inline date formatting. Characters after `@D` are validated as date format tokens. Common patterns include date components like day, month, year in various formats. These are resolved during the preprocessor pass before command dispatch.
+
+---
+
+## Common Mistakes
+
+1. **Using `@` inside CMP branches** instead of `®`. Commands execute unconditionally before the comparison runs.
+2. **Using `@WIZRPL` to set a value** when you mean `@WIZSET`. WIZRPL appends, it does not replace.
+3. **Forgetting innermost-first evaluation**. In `@A(@B(@C()))`, C runs first, then B, then A.
+4. **Comparing numbers as strings**. `@FMT(CMP,9>10,...)` is true because `"9" > "1"` in string comparison. Pad numbers first: `@FMT(CMP,@FMT(!0:4,9)>@FMT(!0:4,10),...)`.
+5. **Missing the empty-branch syntax**. `@FMT(CMP,X=Y,,'®EXEC(MSG=!Fail)')` -- note the double comma for an empty true branch.
+6. **Confusing @WIZINIT and @WIZSET**. WIZINIT is "set default" (no-op if key exists). WIZSET always overwrites. Using WIZSET where you meant WIZINIT will clobber values set by earlier scripts.
+7. **Forgetting PARAMTOLINE/LINETOPARAM around sub-scripts**. When calling `@EXEC(SQI=...)`, the sub-script shares the same parameter store. Save state first if the sub-script might modify your params.
+8. **Not using @FMT(CHR,26) to exit early**. Without an explicit exit, the script continues processing all remaining text as SQL.
