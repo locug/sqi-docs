@@ -77,7 +77,7 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 		})();
 	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="sl-flex social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
 	StarlightThemeProvider.updatePickers();
-</script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><div class="toggle sl-flex astro-doynk5tl">On this page<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </div><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec--command-execution" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC — Command Execution</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#fct--function-code-dispatch" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">FCT — Function Code Dispatch</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#msg--message-display" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">MSG — Message Display</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sqi--execute-script" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SQI — Execute Script</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xch--exchange-commands" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XCH — Exchange Commands</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#other-exec-parameters" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Other @EXEC Parameters</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#exec--empty-call" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@EXEC() — Empty Call</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec-sub-commands-direct-dispatch" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC Sub-commands (Direct Dispatch)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#table--database" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Table / Database</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#display--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Display / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#form-buttons" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Form Buttons</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#logging" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Logging</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#transaction" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Transaction</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#connection--session" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Connection / Session</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#device--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Device / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#payment" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Payment</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#gas-station" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Gas Station</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#third-party-integration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Third-Party Integration</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#tools--utility-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@TOOLS — Utility Commands</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#parameter-parsing" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Parameter Parsing</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xml--json" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XML / JSON</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#receipt--print" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Receipt / Print</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#encoding--security" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Encoding / Security</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#dialog--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Dialog / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#validation--error" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Validation / Error</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#wic-limits" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">WIC Limits</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#calculation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Calculation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#smart-card" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Smart Card</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#grid--metafield" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Grid / MetaField</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#coupon--offer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Coupon / Offer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#gas--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Gas / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#data--file-operations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Data / File Operations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#record-readwrite" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Record Read/Write</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#post--post-to-other-terminal" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@POST — Post to Other Terminal</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#readkey--license-key-check" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@READKEY — License Key Check</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#report-accumulator-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Report Accumulator Commands</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptclrvarname" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTCLR(varname)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptttlexpressionformat" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTTTL(expression,format)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptsetvarnamevalue" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTSET(varname,value)</span> </a>  </li> </ul>  </li> </ul> </div></details></nav></mobile-starlight-toc><script type="module" src="/sqi-docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C181hMzK.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec--command-execution" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC — Command Execution</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#fct--function-code-dispatch" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">FCT — Function Code Dispatch</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#msg--message-display" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">MSG — Message Display</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sqi--execute-script" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SQI — Execute Script</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xch--exchange-commands" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XCH — Exchange Commands</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#other-exec-parameters" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Other @EXEC Parameters</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#exec--empty-call" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@EXEC() — Empty Call</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec-sub-commands-direct-dispatch" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC Sub-commands (Direct Dispatch)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#table--database" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Table / Database</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#display--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Display / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#form-buttons" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Form Buttons</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#logging" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Logging</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#transaction" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Transaction</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#connection--session" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Connection / Session</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#device--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Device / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#payment" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Payment</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#gas-station" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Gas Station</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#third-party-integration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Third-Party Integration</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#tools--utility-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@TOOLS — Utility Commands</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#parameter-parsing" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Parameter Parsing</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xml--json" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XML / JSON</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#receipt--print" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Receipt / Print</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#encoding--security" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Encoding / Security</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#dialog--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Dialog / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#validation--error" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Validation / Error</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#wic-limits" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">WIC Limits</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#calculation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Calculation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#smart-card" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Smart Card</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#grid--metafield" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Grid / MetaField</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#coupon--offer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Coupon / Offer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#gas--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Gas / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#data--file-operations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Data / File Operations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#record-readwrite" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Record Read/Write</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#post--post-to-other-terminal" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@POST — Post to Other Terminal</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#readkey--license-key-check" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@READKEY — License Key Check</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#report-accumulator-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Report Accumulator Commands</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptclrvarname" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTCLR(varname)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptttlexpressionformat" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTTTL(expression,format)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptsetvarnamevalue" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTSET(varname,value)</span> </a>  </li> </ul>  </li> </ul> </nav></starlight-toc><script type="module" src="/sqi-docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.CKWWgpjV.js"></script></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="en" dir="ltr">    <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">@EXEC Operations</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content"> <p>The <code dir="auto">@EXEC()</code> command dispatches POS operations: running functions, displaying messages, executing scripts, controlling peripherals, and managing transactions. The <code dir="auto">@TOOLS()</code> command provides utility functions for parameter parsing, encoding, receipts, and validation.</p>
+</script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><div class="toggle sl-flex astro-doynk5tl">On this page<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </div><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec--command-execution" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC — Command Execution</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#fct--function-code-dispatch" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">FCT — Function Code Dispatch</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#msg--message-display" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">MSG — Message Display</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sqi--execute-script" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SQI — Execute Script</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sql--usp--sqr--sqm--sqt--related-script-types" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SQL / USP / SQR / SQM / SQT — Related Script Types</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xch--exchange-commands" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XCH — Exchange Commands</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#exe--run--external-program-execution" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">EXE / RUN — External Program Execution</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cliexe--clirun--smscliexe-execution" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">CLIEXE / CLIRUN — SmsCli.exe Execution</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#lnk--shell-link" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">LNK — Shell Link</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#host--remote-host-routing" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">HOST — Remote Host Routing</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#entry--set-entry-buffer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ENTRY — Set Entry Buffer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#drl--cash-drawer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">DRL — Cash Drawer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#key--key-injection" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">KEY — Key Injection</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ini--load-ini-configuration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">INI — Load INI Configuration</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#htt--html-template-in-form-window" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">HTT — HTML Template in Form Window</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#hti--html-template-inner-frame" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">HTI — HTML Template Inner Frame</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cgi--cgi-template-execution" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">CGI — CGI Template Execution</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cgs--cgi-script-server-side" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">CGS — CGI Script (Server-Side)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cgp--cgi-print" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">CGP — CGI Print</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#hta--html-application" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">HTA — HTML Application</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xls--excel-export" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XLS — Excel Export</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xaml--xamli--xaml-template-rendering" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XAML / XAMLI — XAML Template Rendering</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#frm--form-management" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">FRM — Form Management</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ssm--sessionmode-switch" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SSM — Session/Mode Switch</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#fct_only--function-code-without-hooks" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">FCT_ONLY — Function Code Without Hooks</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#bye--exit--close-mode" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">BYE — Exit / Close Mode</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#hlp--help-display" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">HLP — Help Display</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#exec--empty-call" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@EXEC() — Empty Call</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#exec-dispatch-order" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@EXEC Dispatch Order</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec-sub-commands-direct-dispatch" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC Sub-commands (Direct Dispatch)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#table--database" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Table / Database</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#display--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Display / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#form-buttons" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Form Buttons</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#logging" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Logging</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#transaction-via-btn" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Transaction (via BTN=)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#connection--session" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Connection / Session</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#device--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Device / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#payment" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Payment</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#gas-station" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Gas Station</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#third-party-integration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Third-Party Integration</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#tools--utility-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@TOOLS — Utility Commands</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#parameter-parsing" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Parameter Parsing</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xml--json" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XML / JSON</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#receipt--print" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Receipt / Print</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#encoding--security" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Encoding / Security</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#dialog--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Dialog / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#validation--error" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Validation / Error</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#calculation--date-lookup" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Calculation / Date Lookup</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#coupon--offer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Coupon / Offer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#record-operations--hooks" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Record Operations / Hooks</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#meta--grid-system" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Meta / Grid System</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#record-readwrite" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Record Read/Write</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#smart-card" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Smart Card</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#wic-limits" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">WIC Limits</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#display--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Display / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#bitmap--barcode-generation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Bitmap / Barcode Generation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#points--loyalty" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Points / Loyalty</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#data--backup-operations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Data / Backup Operations</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#post--post-to-other-terminal" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@POST — Post to Other Terminal</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#readkey--license-key-check" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@READKEY — License Key Check</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#report-accumulator-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Report Accumulator Commands</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptclrvarname" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTCLR(varname)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptttlexpressionformat" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTTTL(expression,format)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptsetvarnamevalue" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTSET(varname,value)</span> </a>  </li> </ul>  </li> </ul> </div></details></nav></mobile-starlight-toc><script type="module" src="/sqi-docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C181hMzK.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec--command-execution" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC — Command Execution</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#fct--function-code-dispatch" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">FCT — Function Code Dispatch</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#msg--message-display" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">MSG — Message Display</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sqi--execute-script" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SQI — Execute Script</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sql--usp--sqr--sqm--sqt--related-script-types" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SQL / USP / SQR / SQM / SQT — Related Script Types</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xch--exchange-commands" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XCH — Exchange Commands</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#exe--run--external-program-execution" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">EXE / RUN — External Program Execution</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cliexe--clirun--smscliexe-execution" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">CLIEXE / CLIRUN — SmsCli.exe Execution</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#lnk--shell-link" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">LNK — Shell Link</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#host--remote-host-routing" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">HOST — Remote Host Routing</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#entry--set-entry-buffer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ENTRY — Set Entry Buffer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#drl--cash-drawer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">DRL — Cash Drawer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#key--key-injection" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">KEY — Key Injection</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ini--load-ini-configuration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">INI — Load INI Configuration</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#htt--html-template-in-form-window" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">HTT — HTML Template in Form Window</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#hti--html-template-inner-frame" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">HTI — HTML Template Inner Frame</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cgi--cgi-template-execution" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">CGI — CGI Template Execution</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cgs--cgi-script-server-side" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">CGS — CGI Script (Server-Side)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cgp--cgi-print" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">CGP — CGI Print</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#hta--html-application" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">HTA — HTML Application</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xls--excel-export" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XLS — Excel Export</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xaml--xamli--xaml-template-rendering" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XAML / XAMLI — XAML Template Rendering</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#frm--form-management" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">FRM — Form Management</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ssm--sessionmode-switch" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SSM — Session/Mode Switch</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#fct_only--function-code-without-hooks" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">FCT_ONLY — Function Code Without Hooks</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#bye--exit--close-mode" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">BYE — Exit / Close Mode</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#hlp--help-display" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">HLP — Help Display</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#exec--empty-call" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@EXEC() — Empty Call</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#exec-dispatch-order" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@EXEC Dispatch Order</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec-sub-commands-direct-dispatch" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC Sub-commands (Direct Dispatch)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#table--database" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Table / Database</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#display--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Display / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#form-buttons" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Form Buttons</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#logging" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Logging</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#transaction-via-btn" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Transaction (via BTN=)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#connection--session" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Connection / Session</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#device--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Device / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#payment" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Payment</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#gas-station" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Gas Station</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#third-party-integration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Third-Party Integration</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#tools--utility-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@TOOLS — Utility Commands</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#parameter-parsing" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Parameter Parsing</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xml--json" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XML / JSON</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#receipt--print" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Receipt / Print</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#encoding--security" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Encoding / Security</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#dialog--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Dialog / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#validation--error" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Validation / Error</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#calculation--date-lookup" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Calculation / Date Lookup</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#coupon--offer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Coupon / Offer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#record-operations--hooks" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Record Operations / Hooks</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#meta--grid-system" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Meta / Grid System</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#record-readwrite" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Record Read/Write</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#smart-card" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Smart Card</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#wic-limits" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">WIC Limits</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#display--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Display / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#bitmap--barcode-generation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Bitmap / Barcode Generation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#points--loyalty" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Points / Loyalty</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#data--backup-operations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Data / Backup Operations</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#post--post-to-other-terminal" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@POST — Post to Other Terminal</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#readkey--license-key-check" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@READKEY — License Key Check</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#report-accumulator-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Report Accumulator Commands</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptclrvarname" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTCLR(varname)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptttlexpressionformat" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTTTL(expression,format)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptsetvarnamevalue" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTSET(varname,value)</span> </a>  </li> </ul>  </li> </ul> </nav></starlight-toc><script type="module" src="/sqi-docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.CKWWgpjV.js"></script></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="en" dir="ltr">    <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">@EXEC Operations</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content"> <p>The <code dir="auto">@EXEC()</code> command dispatches POS operations: running functions, displaying messages, executing scripts, controlling peripherals, and managing transactions. The <code dir="auto">@TOOLS()</code> command provides utility functions for parameter parsing, encoding, receipts, and validation.</p>
 <aside aria-label="Note" class="starlight-aside starlight-aside--note"> <p class="starlight-aside__title" aria-hidden="true"> <svg aria-hidden="true" class="starlight-aside__icon astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 11a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0v-4a1 1 0 0 0-1-1Zm.38-3.92a1 1 0 0 0-.76 0 1 1 0 0 0-.33.21 1.15 1.15 0 0 0-.21.33 1 1 0 0 0 .21 1.09c.097.088.209.16.33.21A1 1 0 0 0 13 8a1.05 1.05 0 0 0-.29-.71 1 1 0 0 0-.33-.21ZM12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16.001A8 8 0 0 1 12 20Z"/></svg> Note </p> <div class="starlight-aside__content"> <p>All <code dir="auto">@EXEC</code> and <code dir="auto">@TOOLS</code> operations are no-ops in the browser REPL. They require the full POS runtime environment. This page documents their syntax and production behavior.</p> </div> </aside>
 <hr>
 <h2 id="exec--command-execution">@EXEC — Command Execution</h2>
@@ -219,12 +219,52 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 <div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(MSG</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">!Payment declined);         </span><span style="--0:#919F9F;--1:#5F636F">-- error dialog</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(MSG</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">~Processing complete);       </span><span style="--0:#919F9F;--1:#5F636F">-- timed notification</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(MSG</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">?</span><span style="--0:#C792EA;--1:#8844AE">Continue</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">with</span><span style="--0:#D6DEEB;--1:#403F53"> void?);       </span><span style="--0:#919F9F;--1:#5F636F">-- interactive query</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(MSG</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">#Debug: step reached);       </span><span style="--0:#919F9F;--1:#5F636F">-- log entry (no display)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(MSG</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">_);                          </span><span style="--0:#919F9F;--1:#5F636F">-- clear message area</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(MSG=!Payment declined);         -- error dialog@EXEC(MSG=~Processing complete);       -- timed notification@EXEC(MSG=?Continue with void?);       -- interactive query@EXEC(MSG=#Debug: step reached);       -- log entry (no display)@EXEC(MSG=_);                          -- clear message area"><div></div></button></div></figure></div>
 <h3 id="sqi--execute-script">SQI — Execute Script</h3>
 <p><strong>Syntax:</strong> <code dir="auto">@EXEC(SQI=filename)</code></p>
-<p>Execute another SQI script file.</p>
-<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(SQI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#82AAFF;--1:#3B61B0">Bank_process</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">sqi</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(SQI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#82AAFF;--1:#3B61B0">trs_pos_validate</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">sqi</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(SQI=Bank_process.sqi);@EXEC(SQI=trs_pos_validate.sqi);"><div></div></button></div></figure></div>
+<p>Execute another SQI script file. If no file extension is provided, <code dir="auto">.sqi</code> is appended automatically. All current params from the calling script are available in the called script.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(SQI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#82AAFF;--1:#3B61B0">Bank_process</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">sqi</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(SQI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#82AAFF;--1:#3B61B0">trs_pos_validate</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">sqi</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(SQI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">RPT_CLT_EOM);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(sqi</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">export_payable,detail</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@wizget(detail),</span><span style="--0:#C792EA;--1:#8844AE">start=</span><span style="--0:#D6DEEB;--1:#403F53">@WIZGET(</span><span style="--0:#C792EA;--1:#8844AE">DATE</span><span style="--0:#D6DEEB;--1:#403F53">),</span><span style="--0:#C792EA;--1:#8844AE">stop=</span><span style="--0:#D6DEEB;--1:#403F53">@WIZGET(</span><span style="--0:#C792EA;--1:#8844AE">DATE</span><span style="--0:#D6DEEB;--1:#403F53">));</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(SQI=Bank_process.sqi);@EXEC(SQI=trs_pos_validate.sqi);@EXEC(SQI=RPT_CLT_EOM);@EXEC(sqi=export_payable,detail=@wizget(detail),start=@WIZGET(DATE),stop=@WIZGET(DATE));"><div></div></button></div></figure></div>
+<h3 id="sql--usp--sqr--sqm--sqt--related-script-types">SQL / USP / SQR / SQM / SQT — Related Script Types</h3>
+<p>The system supports multiple script formats beyond SQI, each with its own file extension and handler:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Extension</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SQL=name</code></td><td><code dir="auto">.sql</code></td><td>SQL script (pure SQL with macro extensions). Path macros like <code dir="auto">@RUN</code> and <code dir="auto">@OFFICE</code> are resolved.</td></tr><tr><td><code dir="auto">USP=name</code></td><td><code dir="auto">.usp</code></td><td>User Stored Procedure script. Looks up in office path if no explicit path. Reads <code dir="auto">OUTPUT</code> param for result target.</td></tr><tr><td><code dir="auto">SQR=name</code></td><td><code dir="auto">.sqr</code></td><td>SQR report script</td></tr><tr><td><code dir="auto">SQM=name</code></td><td><code dir="auto">.sqm</code></td><td>SQM macro script. Path macros resolved.</td></tr><tr><td><code dir="auto">SQT=name</code></td><td><code dir="auto">.sqt</code></td><td>SQT template script. Path macros resolved.</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(</span><span style="--0:#C792EA;--1:#8844AE">SQL=</span><span style="--0:#D6DEEB;--1:#403F53">DEPLOY_LOAD);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(USP</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">update_prices);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(SQM</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">daily_batch);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(SQL=DEPLOY_LOAD);@EXEC(USP=update_prices);@EXEC(SQM=daily_batch);"><div></div></button></div></figure></div>
 <h3 id="xch--exchange-commands">XCH — Exchange Commands</h3>
 <p><strong>Syntax:</strong> <code dir="auto">@EXEC(XCH=command)</code></p>
-<p>Exchange and communication operations. The command string selects the operation type.</p>
+<p>Exchange and communication operations. The command string selects the operation type. Dispatched in two levels: named device/session commands first, then file operations as fallback.</p>
 <h4 id="file-operations">File Operations</h4>
+<p>Uses <code dir="auto">SRC_PATH</code> and <code dir="auto">TAR_PATH</code> wizard params for source and target paths.</p>
 
 
 
@@ -266,7 +306,60 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">DEL</code></td><td>Delete file (uses SRC_PATH param)</td></tr><tr><td><code dir="auto">COPYFILE</code></td><td>Copy file</td></tr><tr><td><code dir="auto">MOVEFILE</code></td><td>Move file</td></tr><tr><td><code dir="auto">MERGE</code></td><td>Merge files</td></tr><tr><td><code dir="auto">ZIPEXE</code></td><td>ZIP compression</td></tr><tr><td><code dir="auto">FTPEXE</code></td><td>FTP transfer</td></tr><tr><td><code dir="auto">RECV</code></td><td>Receive/download (FTP)</td></tr><tr><td><code dir="auto">SENDMAIL</code></td><td>Send email</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">DEL</code></td><td>Delete file at SRC_PATH</td></tr><tr><td><code dir="auto">COPYFILE</code></td><td>Copy SRC_PATH to TAR_PATH (creates target directory)</td></tr><tr><td><code dir="auto">MOVEFILE</code></td><td>Move SRC_PATH to TAR_PATH</td></tr><tr><td><code dir="auto">MOVE</code></td><td>Copy then delete original (safe move)</td></tr><tr><td><code dir="auto">MERGE</code></td><td>Merge source into target</td></tr><tr><td><code dir="auto">ZIPEXE</code></td><td>ZIP compression via external utility</td></tr><tr><td><code dir="auto">ZIPRECV</code></td><td>ZIP receive/extract</td></tr><tr><td><code dir="auto">FTPEXE</code></td><td>FTP transfer (supports SMTP mode with <code dir="auto">PROTOCOL=SMTP</code>)</td></tr><tr><td><code dir="auto">RECV</code></td><td>FTP receive/download</td></tr><tr><td><code dir="auto">SENDMAIL</code></td><td>Send email</td></tr></tbody></table>
+<p><strong>Additional file operation parameters:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SRC_PATH</code></td><td>Source file path</td></tr><tr><td><code dir="auto">TAR_PATH</code></td><td>Target file path</td></tr><tr><td><code dir="auto">TARGET</code></td><td>Target terminal for SQL-based exchange</td></tr><tr><td><code dir="auto">FTPTASK=SEND</code></td><td>FTP task mode</td></tr><tr><td><code dir="auto">PROTOCOL=SMTP</code></td><td>Enable SMTP email mode for FTPEXE</td></tr><tr><td><code dir="auto">SMTPSUBJECT=</code></td><td>Email subject</td></tr><tr><td><code dir="auto">SMTPFROM=</code></td><td>Email sender</td></tr><tr><td><code dir="auto">SMTPSENDTO=</code></td><td>Email recipient</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(XCH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">DEL,SRC_PATH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@RUNtemp\</span><span style="--0:#82AAFF;--1:#3B61B0">export</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">csv</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(XCH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">COPYFILE,SRC_PATH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@RUNdata.bak,TAR_PATH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@RUNbackup\</span><span style="--0:#82AAFF;--1:#3B61B0">data</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">bak</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(XCH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">MOVEFILE,SRC_PATH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@RUNtemp.txt,TAR_PATH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@RUNarchive\</span><span style="--0:#82AAFF;--1:#3B61B0">temp</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">txt</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(XCH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">ZIPEXE,SRC_PATH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@RUNbackup,TAR_PATH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@RUNbackup.zip);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(XCH</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">FTPEXE FTPTASK</span><span style="--0:#C792EA;--1:#8844AE">=SEND</span><span style="--0:#D6DEEB;--1:#403F53"> PROTOCOL</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">SMTP SMTPSUBJECT</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">Receipt SMTPFROM</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">SMS_@STORE@TER SMTPSENDTO</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@wizget(TF1573));</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(XCH=DEL,SRC_PATH=@RUNtemp\export.csv);@EXEC(XCH=COPYFILE,SRC_PATH=@RUNdata.bak,TAR_PATH=@RUNbackup\data.bak);@EXEC(XCH=MOVEFILE,SRC_PATH=@RUNtemp.txt,TAR_PATH=@RUNarchive\temp.txt);@EXEC(XCH=ZIPEXE,SRC_PATH=@RUNbackup,TAR_PATH=@RUNbackup.zip);@EXEC(XCH=FTPEXE FTPTASK=SEND PROTOCOL=SMTP SMTPSUBJECT=Receipt SMTPFROM=SMS_@STORE@TER SMTPSENDTO=@wizget(TF1573));"><div></div></button></div></figure></div>
+<p>If no file command matches, the system falls through to SQL-based exchange, querying the terminal exchange configuration table.</p>
 <h4 id="payment--card">Payment / Card</h4>
 
 
@@ -302,8 +395,53 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 <table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">PAYMSR</code></td><td>Payment magnetic stripe reader read</td></tr><tr><td><code dir="auto">PAYSIGN</code></td><td>Signature capture (uses /PAYOUTPUT=)</td></tr><tr><td><code dir="auto">PAYSMART</code></td><td>Smart card operations (sub-tasks via /PAYTASK=)</td></tr><tr><td><code dir="auto">PAYHANDSHAKE</code></td><td>Payment handshake</td></tr><tr><td><code dir="auto">PAYCOMPLETEAUTO</code></td><td>Auto-complete payment</td></tr><tr><td><code dir="auto">GIFT</code></td><td>Gift card operation</td></tr></tbody></table>
-<p><strong>PAYSMART sub-tasks</strong> (via <code dir="auto">/PAYTASK=</code>):
-<code dir="auto">WICCARD</code>, <code dir="auto">WICPIN</code>, <code dir="auto">CONFIRMPROMPT</code>, <code dir="auto">SETMEM</code>, <code dir="auto">CONFIRM</code>, <code dir="auto">ABORT</code>, <code dir="auto">RESTOREMEM</code></p>
+<p><strong>PAYSMART sub-tasks</strong> (via <code dir="auto">/PAYTASK=</code>):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-task</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">WICCARD</code></td><td>WIC smart card read</td></tr><tr><td><code dir="auto">WICPIN</code></td><td>WIC PIN entry</td></tr><tr><td><code dir="auto">GETMEM</code></td><td>Get smart card memory</td></tr><tr><td><code dir="auto">CONFIRMPROMPT</code></td><td>Confirmation prompt</td></tr><tr><td><code dir="auto">SETMEM</code></td><td>Set smart card memory</td></tr><tr><td><code dir="auto">SETHOT</code></td><td>Set hot card date</td></tr><tr><td><code dir="auto">CONFIRM</code></td><td>Confirm operation</td></tr><tr><td><code dir="auto">ABORT</code></td><td>Abort operation</td></tr><tr><td><code dir="auto">RESTOREMEM</code></td><td>Restore memory</td></tr></tbody></table>
 <h4 id="scanner--peripheral">Scanner / Peripheral</h4>
 
 
@@ -334,8 +472,105 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SCANSIGN</code></td><td>Scan signature</td></tr><tr><td><code dir="auto">SCANCARD</code></td><td>Scan card</td></tr><tr><td><code dir="auto">SCANDOC</code></td><td>Scan document</td></tr><tr><td><code dir="auto">DATAENTRY</code></td><td>Customer data entry</td></tr><tr><td><code dir="auto">MSRSWIPE</code></td><td>Magnetic stripe reader swipe</td></tr></tbody></table>
-<h3 id="other-exec-parameters">Other @EXEC Parameters</h3>
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SCANSIGN</code></td><td>Scan signature</td></tr><tr><td><code dir="auto">SCANCARD</code></td><td>Scan card</td></tr><tr><td><code dir="auto">SCANDOC</code></td><td>Scan document</td></tr><tr><td><code dir="auto">SCANCAPTURE</code></td><td>Barcode scanner capture (two-phase: init + read)</td></tr><tr><td><code dir="auto">SCANCODE</code></td><td>Scan barcode (clears XCH, scans, then re-dispatches with result)</td></tr><tr><td><code dir="auto">DATAENTRY</code></td><td>Customer data entry</td></tr><tr><td><code dir="auto">MSRSWIPE</code></td><td>Magnetic stripe reader swipe</td></tr></tbody></table>
+<h3 id="exe--run--external-program-execution">EXE / RUN — External Program Execution</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(EXE='command')</code> or <code dir="auto">@EXEC(RUN='command')</code></p>
+<p>Launches an external program via <code dir="auto">CreateProcessA</code>. The system sets <code dir="auto">STOREMAN</code> and <code dir="auto">OFFICE</code> environment variables before launching.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Wait Behavior</th><th>Use Case</th></tr></thead><tbody><tr><td><code dir="auto">EXE='cmd'</code></td><td>Blocks until process exits</td><td>Batch scripts, backups, tools that must complete</td></tr><tr><td><code dir="auto">RUN='cmd'</code></td><td>Returns once app is idle</td><td>Launch apps that stay open, async operations</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(EXE</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">CMD.exe /C "RMDIR /S /Q @RUNSamples\temp_custom_detection"</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(EXE</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">BACKUP_DATABASE_2000.BAT @WIZGET(ZIPPATH) @RUN</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(RUN</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">@MACSHORT(RUN)Install\AutoUpd.exe /DOWNLOAD=SAMPLES /SILENT=1</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(EXE=&#x27;CMD.exe /C &#x22;RMDIR /S /Q @RUNSamples\temp_custom_detection&#x22;&#x27;);@EXEC(EXE=&#x27;BACKUP_DATABASE_2000.BAT @WIZGET(ZIPPATH) @RUN&#x27;);@EXEC(RUN=&#x27;@MACSHORT(RUN)Install\AutoUpd.exe /DOWNLOAD=SAMPLES /SILENT=1&#x27;);"><div></div></button></div></figure></div>
+<h3 id="cliexe--clirun--smscliexe-execution">CLIEXE / CLIRUN — SmsCli.exe Execution</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(CLIEXE='args')</code> or <code dir="auto">@EXEC(CLIRUN='args')</code></p>
+<p>Executes commands through <code dir="auto">SmsCli.exe</code> (the CLI companion tool). <code dir="auto">CLIEXE</code> waits for exit; <code dir="auto">CLIRUN</code> returns immediately.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(CLIEXE</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">update self</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(CLIRUN</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">Update sample all</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(CLIRUN</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">batch @wizGet(UPDATE_BATCH)</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(CLIEXE=&#x27;update self&#x27;);@EXEC(CLIRUN=&#x27;Update sample all&#x27;);@EXEC(CLIRUN=&#x27;batch @wizGet(UPDATE_BATCH)&#x27;);"><div></div></button></div></figure></div>
+<h3 id="lnk--shell-link">LNK — Shell Link</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(LNK=target)</code></p>
+<p>Executes a Windows shell link (shortcut/.lnk file).</p>
+<h3 id="host--remote-host-routing">HOST — Remote Host Routing</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(HOST=..., params...)</code></p>
+<p>Routes the EXEC command to a remote host server. Checks <code dir="auto">SMS_SERVERNAME</code> and <code dir="auto">CRIND_SERVERNAME</code> params:</p>
+<ol>
+<li>If the server name matches the local server, dispatches locally</li>
+<li>Otherwise builds an HTTP request with <code dir="auto">LOGIN=</code>, <code dir="auto">PASSWORD=</code>, and <code dir="auto">DN=XML</code> and sends to the remote host</li>
+<li>Parses XML response for <code dir="auto">PARAM/MESSAGE</code> — if present, shows as error dialog</li>
+<li>Otherwise creates a new form and executes the command locally with the remote connection params</li>
+</ol>
+<h3 id="entry--set-entry-buffer">ENTRY — Set Entry Buffer</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(ENTRY=value)</code></p>
+<p>Sets the entry buffer (the “scan line” input field) to a specific value.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(</span><span style="--0:#C792EA;--1:#8844AE">ENTRY=</span><span style="--0:#F78C6C;--1:#AA0982">1234567890123</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(ENTRY=1234567890123);"><div></div></button></div></figure></div>
+<h3 id="drl--cash-drawer">DRL — Cash Drawer</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(DRL=...)</code></p>
+<p>Opens the cash drawer.</p>
+<h3 id="key--key-injection">KEY — Key Injection</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(KEY=keyname)</code></p>
+<p>Injects a key press into a specific form. Reads the <code dir="auto">FRAME</code> param to identify the target form.</p>
+<h3 id="ini--load-ini-configuration">INI — Load INI Configuration</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(INI=section)</code></p>
+<p>Reads an INI file section and applies its settings. The parameter specifies the file and section in <code dir="auto">filename[section]</code> format. Key=value pairs from the section are processed as configuration directives.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(INI</span><span style="--0:#C792EA;--1:#8844AE">=Application</span><span style="--0:#D6DEEB;--1:#403F53">[CLOSE_ALL]);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(INI</span><span style="--0:#C792EA;--1:#8844AE">=Application</span><span style="--0:#D6DEEB;--1:#403F53">[PURGE_ALL]);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(INI</span><span style="--0:#C792EA;--1:#8844AE">=Backup</span><span style="--0:#D6DEEB;--1:#403F53">[HISTORY]);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(INI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">HOST_OFFICE[DEPLOY_BATCH]);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(INI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@RUNXchFtp\</span><span style="--0:#82AAFF;--1:#3B61B0">XchSetup</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">ini</span><span style="--0:#D6DEEB;--1:#403F53">[BACKUP_HISTORY]);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(INI=Application[CLOSE_ALL]);@EXEC(INI=Application[PURGE_ALL]);@EXEC(INI=Backup[HISTORY]);@EXEC(INI=HOST_OFFICE[DEPLOY_BATCH]);@EXEC(INI=@RUNXchFtp\XchSetup.ini[BACKUP_HISTORY]);"><div></div></button></div></figure></div>
+<h3 id="htt--html-template-in-form-window">HTT — HTML Template in Form Window</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(HTT=name)</code></p>
+<p>Renders an HTML template file in a form window. Supports <code dir="auto">PUBLIC\</code> prefix for shared templates. Path macros (<code dir="auto">@RUN</code>, <code dir="auto">@OFFICE</code>) are resolved. If no explicit path, prepends the profile’s <code dir="auto">Cgi\</code> directory.</p>
+<p>Reads <code dir="auto">OUTPUT</code> param to determine output target. If not set, generates an HTML session file. The template can contain SQI macros, database queries, and dynamic content.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(HTT</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">trs_pos_itm_price,FORM</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">PriceInfo,XN</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">SCAN,CN</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">PUBLIC,F01</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#F78C6C;--1:#AA0982">1234</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(HTT</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">trs_profile_mod);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(HTT=trs_pos_itm_price,FORM=PriceInfo,XN=SCAN,CN=PUBLIC,F01=1234);@EXEC(HTT=trs_profile_mod);"><div></div></button></div></figure></div>
+<h3 id="hti--html-template-inner-frame">HTI — HTML Template Inner Frame</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(HTI=name)</code></p>
+<p>Like HTT but renders in the inner body area of an existing form. Reads <code dir="auto">HTI_ID</code> param for targeting specific inner frames.</p>
+<p><code dir="auto">HTI=BODYBLANK</code> blanks the body area of the specified form.</p>
+<h3 id="cgi--cgi-template-execution">CGI — CGI Template Execution</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(CGI=name)</code></p>
+<p>Similar to HTT with additional logic for device-direct (inner-frame) rendering. Defaults <code dir="auto">OUTPUT</code> to <code dir="auto">STRING</code> if not set. Supports device-direct mode where output goes directly to a connected device.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(CGI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">EJ_DIR_LIST);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(CGI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">MAC_BACKUP_REGISTRY);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(CGI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">DBT\TRS_CLT_RES_@TER,STYLE</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">TXT);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(CGI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(</span><span style="--0:#C792EA;--1:#8844AE">PARAM</span><span style="--0:#D6DEEB;--1:#403F53">,,</span><span style="--0:#F78C6C;--1:#AA0982">1</span><span style="--0:#D6DEEB;--1:#403F53">,@WIZGET(VALID_SCRIPT)));</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(CGI=EJ_DIR_LIST);@EXEC(CGI=MAC_BACKUP_REGISTRY);@EXEC(CGI=DBT\TRS_CLT_RES_@TER,STYLE=TXT);@EXEC(CGI=@TOOLS(PARAM,,1,@WIZGET(VALID_SCRIPT)));"><div></div></button></div></figure></div>
+<h3 id="cgs--cgi-script-server-side">CGS — CGI Script (Server-Side)</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(CGS=name)</code></p>
+<p>Server-side CGI script execution. Like CGI but without the inner-frame device-direct logic. Sets default <code dir="auto">OUTPUT</code> to <code dir="auto">STRING</code>.</p>
+<h3 id="cgp--cgi-print">CGP — CGI Print</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(CGP=name)</code></p>
+<p>CGI print operation — sends CGI output directly to the print handler.</p>
+<h3 id="hta--html-application">HTA — HTML Application</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(HTA=name)</code></p>
+<p>Loads an HTML Application template. Uses <code dir="auto">Hta\</code> path prefix instead of <code dir="auto">Cgi\</code>. Otherwise similar to HTT processing.</p>
+<h3 id="xls--excel-export">XLS — Excel Export</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(XLS=name)</code></p>
+<p>Excel/spreadsheet export operation.</p>
+<h3 id="xaml--xamli--xaml-template-rendering">XAML / XAMLI — XAML Template Rendering</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(XAML=name)</code> or <code dir="auto">@EXEC(XAMLI=name)</code></p>
+<p>XAML template rendering for WPF-based UI panels:</p>
+<ul>
+<li><code dir="auto">XAML=name</code> renders XAML in a form window. Handles <code dir="auto">PUBLIC\</code> prefix. Checks for <code dir="auto">.xaml</code> extension.</li>
+<li><code dir="auto">XAMLI=name</code> renders XAML in an inner frame. <code dir="auto">XAMLI=BODYBLANK</code> blanks the body.</li>
+</ul>
+<h3 id="frm--form-management">FRM — Form Management</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(FRM=subcommand)</code></p>
+<p>Manages form creation, hooks, and mode switching.</p>
 
 
 
@@ -373,12 +608,282 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CGI=name</code></td><td>Execute CGI/HTML template</td></tr><tr><td><code dir="auto">HTT=name</code></td><td>Execute HTML template in form window</td></tr><tr><td><code dir="auto">SQT=value</code></td><td>Execute SQT operation</td></tr><tr><td><code dir="auto">INI=section</code></td><td>Load INI configuration section</td></tr><tr><td><code dir="auto">TASK=name</code></td><td>Execute named task</td></tr><tr><td><code dir="auto">BYE=mode</code></td><td>Exit mode (REC, INV, EXIT)</td></tr><tr><td><code dir="auto">CN=PUBLIC</code></td><td>Connection name</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CREATE</code></td><td>Create a new form. Reads <code dir="auto">FORM</code> param for name. Fires <code dir="auto">EVT=LOGIN</code> on connection 0, otherwise fires specified <code dir="auto">EVENT</code>.</td></tr><tr><td><code dir="auto">XCREATE</code></td><td>Like CREATE but for XAML forms. Reads <code dir="auto">Frame</code> param.</td></tr><tr><td><code dir="auto">FMAIN</code></td><td>Show main POS form</td></tr><tr><td><code dir="auto">CLOSEALL</code></td><td>Close all forms</td></tr><tr><td><code dir="auto">CAMERA</code></td><td>Open camera view</td></tr><tr><td><code dir="auto">CAMERA_OFF</code></td><td>Close camera view</td></tr><tr><td><code dir="auto">TOUCH1000</code></td><td>Open touch-1000 form. Reads <code dir="auto">FORMNUMBER</code> param.</td></tr><tr><td><code dir="auto">HOOKAC1</code></td><td>Trigger account hook</td></tr><tr><td><code dir="auto">HOOKCLT</code></td><td>Trigger client hook</td></tr><tr><td><code dir="auto">HOOKREC</code></td><td>Trigger receiving hook</td></tr><tr><td><code dir="auto">HOOKINV</code></td><td>Trigger inventory hook</td></tr><tr><td><code dir="auto">RESUMELAST</code></td><td>Resume last suspended transaction</td></tr><tr><td><code dir="auto">LOGOUT</code></td><td>Log out current user</td></tr></tbody></table>
+<p>If no sub-command matches, iterates all forms to find one matching the name and shows it.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(FRM</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">CAMERA);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(FRM</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">CAMERA_OFF);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(FRM</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">FMAIN);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(FRM</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">CLOSEALL);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(FRM</span><span style="--0:#C792EA;--1:#8844AE">=CREATE</span><span style="--0:#D6DEEB;--1:#403F53">,FORM</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">FCustom,</span><span style="--0:#C792EA;--1:#8844AE">EVENT=</span><span style="--0:#D6DEEB;--1:#403F53">EVT</span><span style="--0:#C792EA;--1:#8844AE">=OPEN</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(FRM=CAMERA);@EXEC(FRM=CAMERA_OFF);@EXEC(FRM=FMAIN);@EXEC(FRM=CLOSEALL);@EXEC(FRM=CREATE,FORM=FCustom,EVENT=EVT=OPEN);"><div></div></button></div></figure></div>
+<h3 id="ssm--sessionmode-switch">SSM — Session/Mode Switch</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(SSM=mask)</code></p>
+<p>Switches the POS to a different operating mode (selling, receiving, inventory). The mask is a multi-character mode string: the first 4 characters identify the mode, characters 5+ contain sub-mode information.</p>
+<p>The system validates that no transaction is in progress (shows error if completing) and that training mode is not active.</p>
+<h3 id="fct_only--function-code-without-hooks">FCT_ONLY — Function Code Without Hooks</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(FCT_ONLY=code)</code></p>
+<p>Like <code dir="auto">FCT</code> but skips hook script dispatch. Useful when you need to execute a function code without triggering any registered SQI hook scripts.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(FCT_ONLY</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#F78C6C;--1:#AA0982">30</span><span style="--0:#D6DEEB;--1:#403F53">);   </span><span style="--0:#919F9F;--1:#5F636F">-- void without hook scripts firing</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(FCT_ONLY=30);   -- void without hook scripts firing"><div></div></button></div></figure></div>
+<h3 id="bye--exit--close-mode">BYE — Exit / Close Mode</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(BYE=mode)</code></p>
+<p>Exits a POS mode, closing connections and cleaning up transactions.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Mode</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">REC</code></td><td>Close all receiving-mode transactions</td></tr><tr><td><code dir="auto">INV</code></td><td>Close all inventory-mode transactions</td></tr><tr><td><code dir="auto">EXIT</code></td><td>Full exit — broadcasts <code dir="auto">BYE=EXIT</code> to other terminals</td></tr><tr><td><code dir="auto">CLOSE</code></td><td>Close a specific form (reads <code dir="auto">FORM</code> param)</td></tr><tr><td><code dir="auto">PARAM</code></td><td>Clear all parameters</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(BYE</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">REC);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(BYE</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">EXIT);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(BYE</span><span style="--0:#C792EA;--1:#8844AE">=CLOSE</span><span style="--0:#D6DEEB;--1:#403F53">,FORM</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">FCustom);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(BYE</span><span style="--0:#C792EA;--1:#8844AE">=PARAM</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(BYE=REC);@EXEC(BYE=EXIT);@EXEC(BYE=CLOSE,FORM=FCustom);@EXEC(BYE=PARAM);"><div></div></button></div></figure></div>
+<h3 id="hlp--help-display">HLP — Help Display</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(HLP=code)</code></p>
+<p>Displays a help page by numeric code.</p>
 <h3 id="exec--empty-call">@EXEC() — Empty Call</h3>
 <p>When called with no arguments, executes using current parameter store values (MSG or other pre-set params).</p>
+<h3 id="exec-dispatch-order">@EXEC Dispatch Order</h3>
+<p>The handler checks sub-command keywords in this exact order (first match wins):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Order</th><th>Keyword</th><th>Category</th></tr></thead><tbody><tr><td>1</td><td><code dir="auto">HOST</code></td><td>Network</td></tr><tr><td>2</td><td><code dir="auto">INI</code></td><td>Config</td></tr><tr><td>3</td><td><code dir="auto">ENTRY</code></td><td>Input</td></tr><tr><td>4</td><td><code dir="auto">SET</code></td><td>Table/DB</td></tr><tr><td>5</td><td><code dir="auto">BTN</code></td><td>UI/Transaction</td></tr><tr><td>6</td><td><code dir="auto">FCT_ONLY</code></td><td>Function</td></tr><tr><td>7</td><td><code dir="auto">FCT</code></td><td>Function</td></tr><tr><td>8</td><td><code dir="auto">DRL</code></td><td>Drawer</td></tr><tr><td>9</td><td><code dir="auto">KEY</code></td><td>Keyboard</td></tr><tr><td>10</td><td><code dir="auto">XCH</code></td><td>Exchange</td></tr><tr><td>11</td><td><code dir="auto">HTI</code></td><td>UI</td></tr><tr><td>12</td><td><code dir="auto">RPT</code></td><td>Report</td></tr><tr><td>13</td><td><code dir="auto">HTT</code></td><td>UI</td></tr><tr><td>14</td><td><code dir="auto">CGI</code></td><td>UI</td></tr><tr><td>15</td><td><code dir="auto">CGS</code></td><td>UI</td></tr><tr><td>16</td><td><code dir="auto">HTA</code></td><td>UI</td></tr><tr><td>17</td><td><code dir="auto">CGP</code></td><td>UI</td></tr><tr><td>18</td><td><code dir="auto">HTM</code></td><td>UI</td></tr><tr><td>19</td><td><code dir="auto">XLS</code></td><td>Export</td></tr><tr><td>20</td><td><code dir="auto">XAML</code></td><td>UI</td></tr><tr><td>21</td><td><code dir="auto">XAMLI</code></td><td>UI</td></tr><tr><td>22</td><td><code dir="auto">FRM</code></td><td>Forms</td></tr><tr><td>23</td><td><code dir="auto">RUN</code></td><td>Exec</td></tr><tr><td>24</td><td><code dir="auto">LNK</code></td><td>Link</td></tr><tr><td>25</td><td><code dir="auto">EXE</code></td><td>Exec</td></tr><tr><td>26</td><td><code dir="auto">CLIEXE</code></td><td>Exec</td></tr><tr><td>27</td><td><code dir="auto">CLIRUN</code></td><td>Exec</td></tr><tr><td>28</td><td><code dir="auto">HLP</code></td><td>Help</td></tr><tr><td>29</td><td><code dir="auto">MSG</code></td><td>Message</td></tr><tr><td>30</td><td><code dir="auto">SQI</code></td><td>Script</td></tr><tr><td>31</td><td><code dir="auto">SQL</code></td><td>Script</td></tr><tr><td>32</td><td><code dir="auto">USP</code></td><td>Script</td></tr><tr><td>33</td><td><code dir="auto">SQR</code></td><td>Report</td></tr><tr><td>34</td><td><code dir="auto">SQM</code></td><td>Script</td></tr><tr><td>35</td><td><code dir="auto">SQT</code></td><td>Script</td></tr><tr><td>36</td><td><code dir="auto">SSM</code></td><td>Session</td></tr><tr><td>37</td><td><code dir="auto">BYE</code></td><td>Exit</td></tr></tbody></table>
+<aside aria-label="Caution" class="starlight-aside starlight-aside--caution"> <p class="starlight-aside__title" aria-hidden="true"> <svg aria-hidden="true" class="starlight-aside__icon astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm10.67 1.47-8.05-14a3 3 0 0 0-5.24 0l-8 14A3 3 0 0 0 3.94 22h16.12a3 3 0 0 0 2.61-4.53Zm-1.73 2a1 1 0 0 1-.88.51H3.94a1 1 0 0 1-.88-.51 1 1 0 0 1 0-1l8-14a1 1 0 0 1 1.78 0l8.05 14a1 1 0 0 1 .05 1.02v-.02ZM12 8a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V9a1 1 0 0 0-1-1Z"/></svg> Caution </p> <div class="starlight-aside__content"> <p>Since dispatch uses first-match, keyword order matters. For example, <code dir="auto">FCT_ONLY</code> is checked before <code dir="auto">FCT</code> so that the <code dir="auto">_ONLY</code> suffix is not lost. Similarly, <code dir="auto">CLIEXE</code> is checked before <code dir="auto">EXE</code>.</p> </div> </aside>
 <hr>
 <h2 id="exec-sub-commands-direct-dispatch">@EXEC Sub-commands (Direct Dispatch)</h2>
-<p>When the first argument is not a <code dir="auto">KEY=VALUE</code> pair, it is treated as a direct sub-command name.</p>
+<p>When the first argument is not a <code dir="auto">KEY=VALUE</code> pair, it is treated as a direct sub-command name. These are dispatched via the <code dir="auto">SET=</code> parameter internally.</p>
 <h3 id="table--database">Table / Database</h3>
 
 
@@ -409,7 +914,8 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">TABLEALL</code></td><td>Reload all tables</td></tr><tr><td><code dir="auto">TABLESYS</code></td><td>Reload system tables</td></tr><tr><td><code dir="auto">TABLEAUX</code></td><td>Reload auxiliary tables</td></tr><tr><td><code dir="auto">TABLERUN</code></td><td>Reload runtime tables</td></tr><tr><td><code dir="auto">MAGICTABLE</code></td><td>Magic table operation</td></tr></tbody></table>
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">TABLEALL</code></td><td>Reload all tables (auxiliary + system + runtime). Also refreshes display if in transaction.</td></tr><tr><td><code dir="auto">TABLESYS</code></td><td>Reload system tables. Refreshes display if in transaction.</td></tr><tr><td><code dir="auto">TABLEAUX</code></td><td>Reload auxiliary (lookup) tables</td></tr><tr><td><code dir="auto">TABLERUN</code></td><td>Reload runtime tables. Closes and reopens the active dataset.</td></tr><tr><td><code dir="auto">MAGICTABLE</code></td><td>Reload the coupon/promotion matching table for the current connection</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(</span><span style="--0:#C792EA;--1:#8844AE">SET=</span><span style="--0:#D6DEEB;--1:#403F53">TABLEALL);    </span><span style="--0:#919F9F;--1:#5F636F">-- reload all tables after config change</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(</span><span style="--0:#C792EA;--1:#8844AE">SET=</span><span style="--0:#D6DEEB;--1:#403F53">TABLESYS);    </span><span style="--0:#919F9F;--1:#5F636F">-- reload system tables after price update</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(SET=TABLEALL);    -- reload all tables after config change@EXEC(SET=TABLESYS);    -- reload system tables after price update"><div></div></button></div></figure></div>
 <h3 id="display--ui">Display / UI</h3>
 
 
@@ -444,7 +950,8 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CAMERA</code></td><td>Camera control (sub: BITMAP, START)</td></tr><tr><td><code dir="auto">PRINTBMP</code></td><td>Print bitmap</td></tr><tr><td><code dir="auto">BODYBLANK</code></td><td>Blank body area</td></tr><tr><td><code dir="auto">TOUCH1000</code></td><td>Touch screen 1000-button mode</td></tr><tr><td><code dir="auto">MODAL</code></td><td>Modal form display</td></tr><tr><td><code dir="auto">NEWFORMIE</code></td><td>New IE form</td></tr></tbody></table>
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CAMERA</code></td><td>Camera control. Sub-commands: <code dir="auto">BITMAP</code> (capture still), <code dir="auto">START</code> (start recording with timestamp), or stop.</td></tr><tr><td><code dir="auto">PRINTBMP</code></td><td>Print bitmap</td></tr><tr><td><code dir="auto">BODYBLANK</code></td><td>Blank body area</td></tr><tr><td><code dir="auto">TOUCH1000</code></td><td>Touch screen 1000-button grid mode</td></tr><tr><td><code dir="auto">MODAL</code></td><td>Modal form display</td></tr><tr><td><code dir="auto">NEWFORMIE</code></td><td>New IE form</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(</span><span style="--0:#C792EA;--1:#8844AE">SET=</span><span style="--0:#D6DEEB;--1:#403F53">CAMERA,CAMERA</span><span style="--0:#C792EA;--1:#8844AE">=START</span><span style="--0:#D6DEEB;--1:#403F53">);    </span><span style="--0:#919F9F;--1:#5F636F">-- start camera recording</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(</span><span style="--0:#C792EA;--1:#8844AE">SET=</span><span style="--0:#D6DEEB;--1:#403F53">CAMERA,CAMERA</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">BITMAP);   </span><span style="--0:#919F9F;--1:#5F636F">-- capture still image</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(SET=CAMERA,CAMERA=START);    -- start camera recording@EXEC(SET=CAMERA,CAMERA=BITMAP);   -- capture still image"><div></div></button></div></figure></div>
 <h3 id="form-buttons">Form Buttons</h3>
 
 
@@ -476,6 +983,12 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 <table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">FBTNHDR</code></td><td>Header button panel</td></tr><tr><td><code dir="auto">FBTNMEN</code></td><td>Menu button panel</td></tr><tr><td><code dir="auto">FBTNSUB</code></td><td>Sub button panel</td></tr><tr><td><code dir="auto">FBTNLUP</code></td><td>Lookup button panel</td></tr><tr><td><code dir="auto">FBTNCUS</code></td><td>Custom button panel</td></tr></tbody></table>
+<p>Button panels can be displayed in three states:</p>
+<ul>
+<li><code dir="auto">STATE=MODAL</code> — modal dialog (blocks input, disables scanner/signature)</li>
+<li><code dir="auto">STATE=VISIBLE</code> / <code dir="auto">STATE=HIDDEN</code> — show or hide the panel</li>
+<li><code dir="auto">FORM=NEWFORMIE</code> — create a new IE browser form for the panel</li>
+</ul>
 <h3 id="logging">Logging</h3>
 
 
@@ -498,8 +1011,9 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">NEWLOG</code></td><td>Create new log file</td></tr><tr><td><code dir="auto">LOGEXEC</code></td><td>Log execution entry</td></tr><tr><td><code dir="auto">LOGURL</code></td><td>Log URL access</td></tr></tbody></table>
-<h3 id="transaction">Transaction</h3>
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">NEWLOG</code></td><td>Create new log file</td></tr><tr><td><code dir="auto">LOGEXEC</code></td><td>Set execution log file path (log mode = execution)</td></tr><tr><td><code dir="auto">LOGURL</code></td><td>Set URL log file path (log mode = URL)</td></tr></tbody></table>
+<h3 id="transaction-via-btn">Transaction (via BTN=)</h3>
+<p>The <code dir="auto">BTN=</code> parameter dispatches transaction and print operations:</p>
 
 
 
@@ -541,7 +1055,12 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">POINT_CREATION</code></td><td>Loyalty point creation</td></tr><tr><td><code dir="auto">OFFERS</code></td><td>Offer processing</td></tr><tr><td><code dir="auto">UNCLIP</code></td><td>Unclip offer</td></tr><tr><td><code dir="auto">CLIPREG</code></td><td>Clip to register</td></tr><tr><td><code dir="auto">SUSPEND</code></td><td>Suspend transaction</td></tr><tr><td><code dir="auto">CLOSE</code></td><td>Close transaction</td></tr><tr><td><code dir="auto">OFFER_CHECK</code></td><td>Check offers</td></tr><tr><td><code dir="auto">COUPON_CHECK</code></td><td>Check coupons</td></tr></tbody></table>
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">PRINT</code></td><td>Print the specified form. Reads <code dir="auto">FORM</code> param. Supports <code dir="auto">STYLE=TXT</code> for text output and <code dir="auto">OUTPUT</code> for file path.</td></tr><tr><td><code dir="auto">POINT_CREATION</code></td><td>Create loyalty points for the current transaction (called twice for primary and secondary customer)</td></tr><tr><td><code dir="auto">OFFERS</code></td><td>Process offers for the transaction</td></tr><tr><td><code dir="auto">UNCLIP</code></td><td>Unclip (detach) an offer from the transaction</td></tr><tr><td><code dir="auto">CLIPREG</code></td><td>Clip an offer and register it to the customer</td></tr><tr><td><code dir="auto">SUSPEND</code></td><td>Suspend the current transaction (checks mode: selling/receiving/inventory)</td></tr><tr><td><code dir="auto">CLOSE</code></td><td>Close a form. If form name is <code dir="auto">FMODMSG</code>, closes the modification message form.</td></tr><tr><td><code dir="auto">OFFER_CHECK</code></td><td>Run offer matching check for current transaction</td></tr><tr><td><code dir="auto">COUPON_CHECK</code></td><td>Run coupon matching check for current transaction</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(BTN</span><span style="--0:#C792EA;--1:#8844AE">=PRINT</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(BTN</span><span style="--0:#C792EA;--1:#8844AE">=PRINT</span><span style="--0:#D6DEEB;--1:#403F53">,FORM</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">FReceipt,STYLE</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">TXT,</span><span style="--0:#C792EA;--1:#8844AE">OUTPUT=</span><span style="--0:#82AAFF;--1:#3B61B0">receipt</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">txt</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(BTN</span><span style="--0:#C792EA;--1:#8844AE">=SUSPEND</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(BTN=PRINT);@EXEC(BTN=PRINT,FORM=FReceipt,STYLE=TXT,OUTPUT=receipt.txt);@EXEC(BTN=SUSPEND);"><div></div></button></div></figure></div>
 <h3 id="connection--session">Connection / Session</h3>
 
 
@@ -568,7 +1087,11 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">STANDBYALL</code></td><td>All connections standby</td></tr><tr><td><code dir="auto">STANDBYDONE</code></td><td>Standby complete</td></tr><tr><td><code dir="auto">SESSIONINFO</code></td><td>Session information</td></tr><tr><td><code dir="auto">MONITOR</code></td><td>Monitor mode</td></tr></tbody></table>
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">STANDBYALL</code></td><td>Signal all connections to standby (always succeeds)</td></tr><tr><td><code dir="auto">STANDBYDONE</code></td><td>Standby complete signal (always succeeds)</td></tr><tr><td><code dir="auto">SESSIONINFO</code></td><td>Get session XML info. Writes to <code dir="auto">OUTPUT</code> param.</td></tr><tr><td><code dir="auto">MONITOR</code></td><td>Start monitor mode (requires monitor device)</td></tr><tr><td><code dir="auto">WEBSOCKET</code></td><td>Set the WebSocket device index and connection index</td></tr></tbody></table>
 <h3 id="device--peripheral">Device / Peripheral</h3>
 
 
@@ -639,7 +1162,7 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">DEVDIRECT</code></td><td>Direct device access</td></tr><tr><td><code dir="auto">PERIPHERAL</code></td><td>Peripheral control</td></tr><tr><td><code dir="auto">MSRSWIPE</code></td><td>Magnetic stripe reader swipe</td></tr><tr><td><code dir="auto">PINENTER</code></td><td>PIN entry</td></tr><tr><td><code dir="auto">PADENTER</code></td><td>PIN pad enter</td></tr><tr><td><code dir="auto">PADUSER</code></td><td>PIN pad user operation</td></tr><tr><td><code dir="auto">SCANSIGN</code></td><td>Scan signature</td></tr><tr><td><code dir="auto">SCANDOC</code></td><td>Scan document</td></tr><tr><td><code dir="auto">SCANCARD</code></td><td>Scan card</td></tr><tr><td><code dir="auto">SCANCAPTURE</code></td><td>Scan capture</td></tr><tr><td><code dir="auto">SCANCODE</code></td><td>Scan barcode</td></tr><tr><td><code dir="auto">MICREJECT</code></td><td>MICR reject</td></tr><tr><td><code dir="auto">DISPENSER</code></td><td>Cash dispenser</td></tr><tr><td><code dir="auto">MOBILEKEYBOARD_ON</code></td><td>Enable mobile keyboard</td></tr><tr><td><code dir="auto">MOBILEKEYBOARD_OFF</code></td><td>Disable mobile keyboard</td></tr></tbody></table>
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">DEVDIRECT</code></td><td>Direct device access (raw command to device)</td></tr><tr><td><code dir="auto">PERIPHERAL</code></td><td>Generic peripheral control</td></tr><tr><td><code dir="auto">MSRSWIPE</code></td><td>Trigger magnetic stripe reader swipe</td></tr><tr><td><code dir="auto">PINENTER</code></td><td>PIN entry on PIN pad</td></tr><tr><td><code dir="auto">PADENTER</code></td><td>Entry on PIN pad</td></tr><tr><td><code dir="auto">PADUSER</code></td><td>PIN pad user operation (reads all params, sends to pad, returns result)</td></tr><tr><td><code dir="auto">SCANSIGN</code></td><td>Capture signature via scanner</td></tr><tr><td><code dir="auto">SCANDOC</code></td><td>Scan document</td></tr><tr><td><code dir="auto">SCANCARD</code></td><td>Scan card image</td></tr><tr><td><code dir="auto">SCANCAPTURE</code></td><td>Barcode scanner capture (two-phase: init + read)</td></tr><tr><td><code dir="auto">SCANCODE</code></td><td>Scan barcode (scans, then re-dispatches with result)</td></tr><tr><td><code dir="auto">MICREJECT</code></td><td>MICR (check reader) reject</td></tr><tr><td><code dir="auto">DISPENSER</code></td><td>Cash dispenser operation (reads all params, sends to dispenser)</td></tr><tr><td><code dir="auto">MOBILEKEYBOARD_ON</code></td><td>Enable mobile/software keyboard</td></tr><tr><td><code dir="auto">MOBILEKEYBOARD_OFF</code></td><td>Disable mobile/software keyboard</td></tr></tbody></table>
 <h3 id="payment">Payment</h3>
 
 
@@ -678,7 +1201,7 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">PAYUTIL</code></td><td>Payment utility</td></tr><tr><td><code dir="auto">PAYCOMPLETEAUTO</code></td><td>Auto-complete payment</td></tr><tr><td><code dir="auto">PAYCOMPLETEEXEC</code></td><td>Execute payment completion</td></tr><tr><td><code dir="auto">PAYRESET</code></td><td>Reset payment</td></tr><tr><td><code dir="auto">PAYUSER</code></td><td>Payment user operation</td></tr><tr><td><code dir="auto">PAYUSP</code></td><td>Payment USP</td></tr><tr><td><code dir="auto">PUMPTRANSCANCEL</code></td><td>Cancel pump transaction</td></tr></tbody></table>
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">PAYUTIL</code></td><td>Payment utility</td></tr><tr><td><code dir="auto">PAYCOMPLETEAUTO</code></td><td>Auto-complete payment</td></tr><tr><td><code dir="auto">PAYCOMPLETEEXEC</code></td><td>Execute payment completion</td></tr><tr><td><code dir="auto">PAYRESET</code></td><td>Reset payment state</td></tr><tr><td><code dir="auto">PAYUSER</code></td><td>Payment user operation (sets <code dir="auto">PAYSESSION</code> and <code dir="auto">PAYDEVIDX</code> params)</td></tr><tr><td><code dir="auto">PAYUSP</code></td><td>Payment USP</td></tr><tr><td><code dir="auto">PUMPTRANSCANCEL</code></td><td>Cancel pump transaction</td></tr></tbody></table>
 <h3 id="gas-station">Gas Station</h3>
 
 
@@ -701,7 +1224,7 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">GASPUMPLOCK</code></td><td>Lock gas pump</td></tr><tr><td><code dir="auto">GASCASHSTACK</code></td><td>Gas cash stacker</td></tr><tr><td><code dir="auto">GASCASHEJECT</code></td><td>Gas cash eject</td></tr></tbody></table>
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">GASPUMPLOCK</code></td><td>Lock gas pump (checks pump status, sets <code dir="auto">GASPUMP</code> param)</td></tr><tr><td><code dir="auto">GASCASHSTACK</code></td><td>Gas cash stacker operation</td></tr><tr><td><code dir="auto">GASCASHEJECT</code></td><td>Gas cash eject operation</td></tr></tbody></table>
 <h3 id="third-party-integration">Third-Party Integration</h3>
 
 
@@ -728,71 +1251,74 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SEICO-UTIL</code></td><td>Seico utility</td></tr><tr><td><code dir="auto">SEICO-POINT</code></td><td>Seico points</td></tr><tr><td><code dir="auto">CATALINA-CUST</code></td><td>Catalina customer</td></tr><tr><td><code dir="auto">WEBSOCKET</code></td><td>WebSocket operation</td></tr></tbody></table>
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SEICO-UTIL</code></td><td>Seico utility</td></tr><tr><td><code dir="auto">SEICO-POINT</code></td><td>Seico points</td></tr><tr><td><code dir="auto">CATALINA-CUST</code></td><td>Catalina customer (uses current entry buffer)</td></tr><tr><td><code dir="auto">WEBSOCKET</code></td><td>WebSocket operation</td></tr></tbody></table>
 <hr>
 <h2 id="tools--utility-commands">@TOOLS — Utility Commands</h2>
-<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(sub_command, args...)</code></p>
-<p>A large utility dispatcher (18,609 bytes) with sub-commands grouped by function.</p>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(sub_command, param2, param3, param4, param5, ...)</code></p>
+<p>The largest single dispatcher in the scripting engine with 132 sub-commands. Parameters are positional (1-based), with the first parameter selecting the sub-command and subsequent parameters passed to the handler. The return value becomes the <code dir="auto">@TOOLS()</code> expression result.</p>
+<p>If no sub-command matches, the raw expression text is returned unchanged — this makes typos silent rather than producing errors.</p>
+<aside aria-label="Tip" class="starlight-aside starlight-aside--tip"> <p class="starlight-aside__title" aria-hidden="true"> <svg aria-hidden="true" class="starlight-aside__icon astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M1.44 8.855v-.001l3.527-3.516c.34-.344.802-.541 1.285-.548h6.649l.947-.947c3.07-3.07 6.207-3.072 7.62-2.868a1.821 1.821 0 0 1 1.557 1.557c.204 1.413.203 4.55-2.868 7.62l-.946.946v6.649a1.845 1.845 0 0 1-.549 1.286l-3.516 3.528a1.844 1.844 0 0 1-3.11-.944l-.858-4.275-4.52-4.52-2.31-.463-1.964-.394A1.847 1.847 0 0 1 .98 10.693a1.843 1.843 0 0 1 .46-1.838Zm5.379 2.017-3.873-.776L6.32 6.733h4.638l-4.14 4.14Zm8.403-5.655c2.459-2.46 4.856-2.463 5.89-2.33.134 1.035.13 3.432-2.329 5.891l-6.71 6.71-3.561-3.56 6.71-6.711Zm-1.318 15.837-.776-3.873 4.14-4.14v4.639l-3.364 3.374Z" clip-rule="evenodd"/><path d="M9.318 18.345a.972.972 0 0 0-1.86-.561c-.482 1.435-1.687 2.204-2.934 2.619a8.22 8.22 0 0 1-1.23.302c.062-.365.157-.79.303-1.229.415-1.247 1.184-2.452 2.62-2.935a.971.971 0 1 0-.62-1.842c-.12.04-.236.084-.35.13-2.02.828-3.012 2.588-3.493 4.033a10.383 10.383 0 0 0-.51 2.845l-.001.016v.063c0 .536.434.972.97.972H2.24a7.21 7.21 0 0 0 .878-.065c.527-.063 1.248-.19 2.02-.447 1.445-.48 3.205-1.472 4.033-3.494a5.828 5.828 0 0 0 .147-.407Z"/></svg> Tip </p> <div class="starlight-aside__content"> <p>Two special sub-commands exist before the main dispatch chain: one delegates directly to <code dir="auto">@EXEC</code> (letting <code dir="auto">@TOOLS</code> proxy an <code dir="auto">@EXEC</code> call while saving/restoring <code dir="auto">OUTPUT</code> and <code dir="auto">STYLE</code> params), and one handles an <code dir="auto">ENTRY</code> key from the wizard params for connection routing.</p> </div> </aside>
+<hr>
 <h3 id="parameter-parsing">Parameter Parsing</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">PARAM,,n,string</code></td><td>Extract Nth parameter from delimited string</td></tr><tr><td><code dir="auto">PARAMTOLINE</code></td><td>Convert params to single line</td></tr><tr><td><code dir="auto">PARAMTONODES</code></td><td>Convert params to XML nodes</td></tr><tr><td><code dir="auto">PARAMTOINPUT</code></td><td>Convert params to input format</td></tr><tr><td><code dir="auto">PARAMTOCOMA</code></td><td>Convert params to CSV</td></tr><tr><td><code dir="auto">PARAMTOURL</code></td><td>Convert params to URL encoding</td></tr><tr><td><code dir="auto">COMATOURL</code></td><td>CSV to URL format</td></tr><tr><td><code dir="auto">COMATOINPUT</code></td><td>CSV to input format</td></tr><tr><td><code dir="auto">PARAMINBRAKET</code></td><td>Extract param in brackets</td></tr><tr><td><code dir="auto">PARAMCOPYVALUE</code></td><td>Copy param value</td></tr><tr><td><code dir="auto">PARAMPURGE</code></td><td>Purge param</td></tr><tr><td><code dir="auto">PARAMSECURE</code></td><td>Secure param (mask sensitive data)</td></tr></tbody></table>
+<p>Commands for extracting, converting, and managing wizard parameters.</p>
+<h4 id="param--extract-delimited-field">PARAM — Extract Delimited Field</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PARAM, delimiter, index, string)</code></p>
+<p>Extracts the Nth element (1-based) from a delimited string. If the delimiter is empty or absent, defaults to comma.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(</span><span style="--0:#C792EA;--1:#8844AE">PARAM</span><span style="--0:#D6DEEB;--1:#403F53">,_,</span><span style="--0:#F78C6C;--1:#AA0982">1</span><span style="--0:#D6DEEB;--1:#403F53">,@WIZGET(</span><span style="--0:#C792EA;--1:#8844AE">FILENAME</span><span style="--0:#D6DEEB;--1:#403F53">))     </span><span style="--0:#919F9F;--1:#5F636F">-- first part of underscore-delimited filename</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(</span><span style="--0:#C792EA;--1:#8844AE">PARAM</span><span style="--0:#D6DEEB;--1:#403F53">,.,</span><span style="--0:#F78C6C;--1:#AA0982">1</span><span style="--0:#D6DEEB;--1:#403F53">,@WIZGET(SQLVERSION))   </span><span style="--0:#919F9F;--1:#5F636F">-- major version number from "3.2.1"</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(</span><span style="--0:#C792EA;--1:#8844AE">PARAM</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">-</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#F78C6C;--1:#AA0982">1</span><span style="--0:#D6DEEB;--1:#403F53">,@TOOLS(DECODE,...))     </span><span style="--0:#919F9F;--1:#5F636F">-- first field after decoding</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(</span><span style="--0:#C792EA;--1:#8844AE">PARAM</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#F78C6C;--1:#AA0982">1</span><span style="--0:#D6DEEB;--1:#403F53">,@WIZGET(PAYTRACK))     </span><span style="--0:#919F9F;--1:#5F636F">-- value before '=' sign</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(</span><span style="--0:#C792EA;--1:#8844AE">PARAM</span><span style="--0:#D6DEEB;--1:#403F53">,,</span><span style="--0:#F78C6C;--1:#AA0982">2</span><span style="--0:#D6DEEB;--1:#403F53">,@WIZGET(VALID_SCRIPT))  </span><span style="--0:#919F9F;--1:#5F636F">-- 2nd comma-delimited param</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(PARAM,_,1,@WIZGET(FILENAME))     -- first part of underscore-delimited filename@TOOLS(PARAM,.,1,@WIZGET(SQLVERSION))   -- major version number from &#x22;3.2.1&#x22;@TOOLS(PARAM,-,1,@TOOLS(DECODE,...))     -- first field after decoding@TOOLS(PARAM,=,1,@WIZGET(PAYTRACK))     -- value before &#x27;=&#x27; sign@TOOLS(PARAM,,2,@WIZGET(VALID_SCRIPT))  -- 2nd comma-delimited param"><div></div></button></div></figure></div>
+<div class="sqi-repl" data-mode="inline" data-initial="@TOOLS(PARAM,_,2,hello_world_test)" data-params> <div class="sqi-repl-description">Extract 2nd underscore-delimited field</div> <input type="text" class="sqi-repl-input" value="@TOOLS(PARAM,_,2,hello_world_test)" placeholder="Type a macro expression..." aria-label="Extract 2nd underscore-delimited field"> <div class="sqi-repl-controls"> <button class="sqi-repl-btn sqi-repl-btn-run" aria-label="Run macro">
+Run
+</button> <button class="sqi-repl-btn sqi-repl-btn-reset" aria-label="Reset to original">
+Reset
+</button> <span class="sqi-repl-hint">Ctrl+Enter to run</span> </div> <div class="sqi-repl-output" role="status" aria-live="polite" hidden></div> <details class="sqi-repl-params" hidden> <summary>Parameter Store</summary> <table><tbody></tbody></table> </details>  </div> <script type="module" src="/sqi-docs/_astro/SqiRepl.astro_astro_type_script_index_0_lang.BSC7W92a.js"></script>
+<div class="sqi-repl" data-mode="inline" data-initial="@TOOLS(PARAM,.,1,3.2.1)" data-params> <div class="sqi-repl-description">Extract major version number</div> <input type="text" class="sqi-repl-input" value="@TOOLS(PARAM,.,1,3.2.1)" placeholder="Type a macro expression..." aria-label="Extract major version number"> <div class="sqi-repl-controls"> <button class="sqi-repl-btn sqi-repl-btn-run" aria-label="Run macro">
+Run
+</button> <button class="sqi-repl-btn sqi-repl-btn-reset" aria-label="Reset to original">
+Reset
+</button> <span class="sqi-repl-hint">Ctrl+Enter to run</span> </div> <div class="sqi-repl-output" role="status" aria-live="polite" hidden></div> <details class="sqi-repl-params" hidden> <summary>Parameter Store</summary> <table><tbody></tbody></table> </details>  </div> 
+<h4 id="paramtoline--serialize-all-params">PARAMTOLINE — Serialize All Params</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PARAMTOLINE)</code></p>
+<p>Converts all current wizard parameters into a single-line string representation. Serializes the entire parameter dictionary. Useful for capturing state before an operation that might modify params.</p>
+<h4 id="loadparamtoline--load-ini-section-as-param-line">LOADPARAMTOLINE — Load INI Section as Param Line</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(LOADPARAMTOLINE, ini_section)</code></p>
+<p>Loads an INI file section and converts it to a single-line param format. The argument specifies <code dir="auto">Filename.ini[SECTION]</code>. Often piped directly into <code dir="auto">@EXEC()</code>:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(@TOOLS(LOADPARAMTOLINE,</span><span style="--0:#82AAFF;--1:#3B61B0">Backup</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">ini</span><span style="--0:#D6DEEB;--1:#403F53">[RESELLER_STOREMAN]));</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(@TOOLS(LOADPARAMTOLINE,</span><span style="--0:#82AAFF;--1:#3B61B0">Backup</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">ini</span><span style="--0:#D6DEEB;--1:#403F53">[RESELLER_OFFICE]));</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(@TOOLS(LOADPARAMTOLINE,Backup.ini[RESELLER_STOREMAN]));@EXEC(@TOOLS(LOADPARAMTOLINE,Backup.ini[RESELLER_OFFICE]));"><div></div></button></div></figure></div>
+<h4 id="paramtonodes--params-to-xml-nodes">PARAMTONODES — Params to XML Nodes</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PARAMTONODES)</code></p>
+<p>Converts wizard params to an XML node-tree structure.</p>
+<h4 id="paramtoinput--params-to-input-format">PARAMTOINPUT — Params to Input Format</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PARAMTOINPUT)</code></p>
+<p>Converts wizard params to input-format (form field assignment format for HTML/CGI forms).</p>
+<h4 id="paramtocoma--params-to-csv">PARAMTOCOMA — Params to CSV</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PARAMTOCOMA)</code></p>
+<p>Converts wizard params to comma-separated value format.</p>
+<h4 id="paramtourl--params-to-url-encoding">PARAMTOURL — Params to URL Encoding</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PARAMTOURL)</code></p>
+<p>Converts wizard params to URL-encoded query string format (key=value&#x26;key2=value2).</p>
+<h4 id="comatourl--csv-to-url-encoding">COMATOURL — CSV to URL Encoding</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(COMATOURL)</code></p>
+<p>Converts a CSV-format string to URL-encoded format.</p>
+<h4 id="comatoinput--csv-to-input-format">COMATOINPUT — CSV to Input Format</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(COMATOINPUT)</code></p>
+<p>Converts a CSV string to input format.</p>
+<h4 id="paraminbraket--extract-bracketed-value">PARAMINBRAKET — Extract Bracketed Value</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PARAMINBRAKET, string)</code></p>
+<p>Extracts a parameter value that appears inside brackets. Used for INI-style <code dir="auto">[SECTION]</code> extraction from path strings.</p>
+<h4 id="paramcopyvalue--copy-parameter">PARAMCOPYVALUE — Copy Parameter</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PARAMCOPYVALUE, source_param, dest_param)</code></p>
+<p>Copies a wizard parameter value from one key to another.</p>
+<h4 id="parampurge--remove-parameter">PARAMPURGE — Remove Parameter</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PARAMPURGE, param_name)</code></p>
+<p>Removes a wizard parameter entirely from the parameter store.</p>
+<h4 id="paramsecure--mask-sensitive-parameters">PARAMSECURE — Mask Sensitive Parameters</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PARAMSECURE, param_list)</code></p>
+<p>Marks wizard parameters as “secure” so their values are masked in logs and displays. Accepts a comma-separated list of parameter names.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(PARAMSECURE,CARD_NUMBER,PIN,CVV);   </span><span style="--0:#919F9F;--1:#5F636F">-- mask sensitive payment fields</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(PARAMSECURE,CARD_NUMBER,PIN,CVV);   -- mask sensitive payment fields"><div></div></button></div></figure></div>
+<hr>
 <h3 id="xml--json">XML / JSON</h3>
+<p>Commands for generating SQL-safe XML values and extracting data from XML/JSON structures.</p>
+<h4 id="xmlsql--sql-safe-xml-value-formatting">XMLSQL — SQL-Safe XML Value Formatting</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(XMLSQL, field_name, value)</code></p>
+<p>Generates SQL-safe formatting for XML query values. Looks up the field type from the field registry and applies type-specific formatting:</p>
 
 
 
@@ -818,217 +1344,204 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">XMLSQL</code></td><td>XML SQL query (types: D=Date, I=Int, N/M=Numeric)</td></tr><tr><td><code dir="auto">REPORT_JSON</code></td><td>Report to JSON conversion</td></tr><tr><td><code dir="auto">XML_VALUE</code></td><td>Extract XML value</td></tr><tr><td><code dir="auto">XML_NODE</code></td><td>Extract XML node</td></tr></tbody></table>
+
+
+
+
+<table><thead><tr><th>Field Type</th><th>Behavior</th></tr></thead><tbody><tr><td><code dir="auto">D</code> (Date)</td><td>Converts to date format, then wraps for SQL</td></tr><tr><td><code dir="auto">I</code> (Integer)</td><td>Passes through as-is (no quoting)</td></tr><tr><td><code dir="auto">N</code> / <code dir="auto">M</code> (Numeric)</td><td>Passes through as-is (no quoting)</td></tr><tr><td>String (default)</td><td>Wraps in SQL quotes with proper escaping</td></tr><tr><td><code dir="auto">ISNULL</code></td><td>Returns empty string</td></tr></tbody></table>
+<p>Special handling exists for field index 1 (primary key).</p>
+<h4 id="report_json--report-to-json">REPORT_JSON — Report to JSON</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(REPORT_JSON, ...)</code></p>
+<p>Converts report data to JSON format.</p>
+<h4 id="xml_value--extract-xml-value">XML_VALUE — Extract XML Value</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(XML_VALUE, xml_string)</code></p>
+<p>Extracts a value from an XML fragment.</p>
+<h4 id="xml_node--extract-xml-node">XML_NODE — Extract XML Node</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(XML_NODE, xml_string)</code></p>
+<p>Extracts a node from an XML fragment.</p>
+<hr>
 <h3 id="receipt--print">Receipt / Print</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">RCT_LINE</code></td><td>Receipt line</td></tr><tr><td><code dir="auto">RCT_REVERSE</code></td><td>Reverse print</td></tr><tr><td><code dir="auto">RCT_QTY</code></td><td>Receipt quantity</td></tr><tr><td><code dir="auto">RCT_AMT</code></td><td>Receipt amount</td></tr><tr><td><code dir="auto">RCT_FLAG</code></td><td>Receipt flag</td></tr><tr><td><code dir="auto">RCT_BMP</code> / <code dir="auto">RCT_BMPS</code></td><td>Receipt bitmap (scaled)</td></tr><tr><td><code dir="auto">RCT_RASTER</code></td><td>Receipt raster image</td></tr><tr><td><code dir="auto">RCT_BARCODE</code></td><td>Receipt barcode</td></tr><tr><td><code dir="auto">RCT_HTML</code></td><td>Receipt HTML</td></tr><tr><td><code dir="auto">RCT_PUMP</code></td><td>Receipt pump data</td></tr><tr><td><code dir="auto">RCT_CARD</code></td><td>Receipt card data</td></tr><tr><td><code dir="auto">RCT_EFT</code></td><td>Receipt EFT data</td></tr><tr><td><code dir="auto">SLP_LINESPACING</code></td><td>Slip line spacing</td></tr><tr><td><code dir="auto">PRINT</code></td><td>Print command</td></tr><tr><td><code dir="auto">LABELPRINT</code></td><td>Label print</td></tr><tr><td><code dir="auto">LABELPARAM</code></td><td>Label parameters</td></tr><tr><td><code dir="auto">BIZERBA_LABEL</code></td><td>Bizerba scale label</td></tr></tbody></table>
+<p>Commands for formatting and printing receipt content.</p>
+<h4 id="rct_line--format-receipt-line">RCT_LINE — Format Receipt Line</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_LINE, text, alignment_code, label)</code></p>
+<p>Formats a receipt line with alignment and padding. Reads the <code dir="auto">RCT_WIDTH</code> wizard param (defaults to 40 columns). Calculates padding based on the width minus the label length.</p>
+<ul>
+<li>Parameter 2: text content</li>
+<li>Parameter 3: alignment/formatting code (e.g., <code dir="auto">%-40s</code>)</li>
+<li>Parameter 4: label/prefix text</li>
+</ul>
+<h4 id="rct_reverse--reverse-string">RCT_REVERSE — Reverse String</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_REVERSE, text)</code></p>
+<p>Reverses a string character-by-character. Used for right-to-left receipt formatting or barcode reversal.</p>
+<h4 id="rct_qty--format-quantity">RCT_QTY — Format Quantity</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_QTY, value)</code></p>
+<p>Formats a quantity value for receipt printing.</p>
+<h4 id="rct_amt--format-amount">RCT_AMT — Format Amount</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_AMT, value)</code></p>
+<p>Formats an amount value for receipt display with currency formatting.</p>
+<h4 id="rct_flag--receipt-flag">RCT_FLAG — Receipt Flag</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_FLAG, ...)</code></p>
+<p>Sets or gets a receipt flag value that controls formatting behavior.</p>
+<h4 id="rct_bmp--rct_bmps--receipt-bitmap">RCT_BMP / RCT_BMPS — Receipt Bitmap</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_BMP, bitmap_data)</code> or <code dir="auto">@TOOLS(RCT_BMPS, bitmap_data)</code></p>
+<p>Embeds a bitmap image into a receipt. <code dir="auto">RCT_BMPS</code> adds scaling support for different printer resolutions.</p>
+<h4 id="rct_raster--raster-image">RCT_RASTER — Raster Image</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_RASTER, image_data)</code></p>
+<p>Converts image data to raster format for receipt printers. Processes the image row-by-row for printer-compatible output.</p>
+<h4 id="rct_barcode--receipt-barcode">RCT_BARCODE — Receipt Barcode</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_BARCODE, barcode_data)</code></p>
+<p>Generates a barcode image for receipt printing. Handles barcode symbology selection and printable output generation.</p>
+<h4 id="rct_html--receipt-html">RCT_HTML — Receipt HTML</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_HTML, html_content)</code></p>
+<p>Embeds HTML content into a receipt (for printers that support HTML rendering).</p>
+<h4 id="rct_pump--gas-pump-receipt-data">RCT_PUMP — Gas Pump Receipt Data</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_PUMP, ...)</code></p>
+<p>Formats gas pump transaction data for receipt output. Multi-parameter handler for fuel sale details.</p>
+<h4 id="rct_card--card-payment-receipt-data">RCT_CARD — Card Payment Receipt Data</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_CARD, ...)</code></p>
+<p>Formats card payment data for receipt output (masked card number, authorization code, etc.).</p>
+<h4 id="rct_eft--eft-receipt-data">RCT_EFT — EFT Receipt Data</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RCT_EFT, ...)</code></p>
+<p>Formats Electronic Funds Transfer data for receipt output.</p>
+<h4 id="slp_linespacing--slip-line-spacing">SLP_LINESPACING — Slip Line Spacing</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SLP_LINESPACING, ...)</code></p>
+<p>Sets slip printer line spacing for multi-part forms.</p>
+<h4 id="cardbin_functions--bin-lookup">CARDBIN_FUNCTIONS — BIN Lookup</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(CARDBIN_FUNCTIONS, ...)</code></p>
+<p>Card BIN (Bank Identification Number) lookup functions for identifying card issuer from the first 6-8 digits.</p>
+<h4 id="print--direct-print">PRINT — Direct Print</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PRINT, ...)</code></p>
+<p>Sends data directly to the printer.</p>
+<h4 id="labelprint--print-label">LABELPRINT — Print Label</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(LABELPRINT, ...)</code></p>
+<p>Prints a label (shelf label, price label, etc.).</p>
+<h4 id="labelparam--set-label-parameters">LABELPARAM — Set Label Parameters</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(LABELPARAM, format_path)</code></p>
+<p>Sets label printing parameters by loading a label format definition file.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(LABELPARAM,@OFFICELbz\@WIZGET(F95));</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(LABELPARAM,@OFFICELbz\@WIZGET(F95));"><div></div></button></div></figure></div>
+<h4 id="bizerba_label--scale-label">BIZERBA_LABEL — Scale Label</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(BIZERBA_LABEL, ...)</code></p>
+<p>Generates a label for Bizerba commercial scales (meat/deli department scales with built-in label printers).</p>
+<hr>
 <h3 id="encoding--security">Encoding / Security</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">ENCODE</code> / <code dir="auto">DECODE</code></td><td>String encode/decode</td></tr><tr><td><code dir="auto">ENCODE_PARAM</code></td><td>Encode parameter</td></tr><tr><td><code dir="auto">DECODE_DATA</code></td><td>Decode data</td></tr><tr><td><code dir="auto">ENCODE64</code> / <code dir="auto">DECODE64</code></td><td>Base64 encode/decode</td></tr><tr><td><code dir="auto">FILE64</code></td><td>File to/from Base64</td></tr><tr><td><code dir="auto">SECUREKEY</code></td><td>Secure key</td></tr><tr><td><code dir="auto">SETSECURE</code></td><td>Set secure data</td></tr><tr><td><code dir="auto">SECUREDATA</code></td><td>Secure data operations</td></tr><tr><td><code dir="auto">SECUREEXEC</code></td><td>Secure file execution</td></tr><tr><td><code dir="auto">SECURELOGIN</code></td><td>Secure login</td></tr><tr><td><code dir="auto">CERTIFICATE</code></td><td>Certificate operations</td></tr><tr><td><code dir="auto">HASHDATA</code></td><td>Hash data</td></tr><tr><td><code dir="auto">HASHDATA_PARAM</code></td><td>Hash data with params</td></tr><tr><td><code dir="auto">HMAC_SHA1</code></td><td>HMAC-SHA1</td></tr><tr><td><code dir="auto">HMAC_SHA256</code></td><td>HMAC-SHA256</td></tr><tr><td><code dir="auto">SETKEY</code></td><td>Set encryption key</td></tr><tr><td><code dir="auto">MINUTETOKENCHECK</code></td><td>Minute-based token check</td></tr></tbody></table>
+<p>Commands for encryption, hashing, Base64, tokens, and certificate operations. The system supports multiple encoding modes internally (mode 1 = basic, mode 3 = stronger, mode 5 = Base64).</p>
+<h4 id="encode--encode-string">ENCODE — Encode String</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(ENCODE, data)</code> or <code dir="auto">@TOOLS(ENCODE, data, wizard_key)</code></p>
+<p>Encodes/encrypts a string using basic encoding (mode 1). If the third parameter is provided, it is used as a wizard parameter key to look up the data to encode.</p>
+<h4 id="decode--decode-string">DECODE — Decode String</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(DECODE, data)</code> or <code dir="auto">@TOOLS(DECODE, data, output_key)</code></p>
+<p>Decodes/decrypts a string using basic decoding (mode 1). If the third parameter is provided, stores the decoded result into that wizard parameter.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(DECODE,@WIZGET(LIVEENTRY))                          </span><span style="--0:#919F9F;--1:#5F636F">-- decode a scanned QR code</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(</span><span style="--0:#C792EA;--1:#8844AE">PARAM</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">-</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#F78C6C;--1:#AA0982">1</span><span style="--0:#D6DEEB;--1:#403F53">,@TOOLS(DECODE,@WIZGET(LIVEENTRY)))        </span><span style="--0:#919F9F;--1:#5F636F">-- decode then split on hyphen</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(DECODE,@WIZGET(LIVEENTRY))                          -- decode a scanned QR code@TOOLS(PARAM,-,1,@TOOLS(DECODE,@WIZGET(LIVEENTRY)))        -- decode then split on hyphen"><div></div></button></div></figure></div>
+<h4 id="encode_param--encode-parameter-in-place">ENCODE_PARAM — Encode Parameter In-Place</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(ENCODE_PARAM, param_name)</code></p>
+<p>Encodes a wizard parameter value in-place using stronger encoding (mode 3). Reads the parameter, encodes it, and returns the encoded value.</p>
+<h4 id="decode_data--decode-with-strong-mode">DECODE_DATA — Decode with Strong Mode</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(DECODE_DATA, data)</code> or <code dir="auto">@TOOLS(DECODE_DATA, data, output_key)</code></p>
+<p>Decodes data using the stronger mode (mode 3, matching <code dir="auto">ENCODE_PARAM</code>). If the third parameter is provided, stores the result into that wizard parameter.</p>
+<h4 id="encode64--base64-encode">ENCODE64 — Base64 Encode</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(ENCODE64, data)</code></p>
+<p>Base64-encodes a string.</p>
+<h4 id="decode64--base64-decode">DECODE64 — Base64 Decode</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(DECODE64, data)</code></p>
+<p>Base64-decodes a string.</p>
+<h4 id="file64--file-to-base64">FILE64 — File to Base64</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(FILE64, filepath)</code></p>
+<p>Reads a file and Base64-encodes its contents. Opens the file as a binary stream, reads chunks in a loop, and builds the Base64 string incrementally. Useful for embedding file contents in XML or JSON payloads.</p>
+<h4 id="securekey--set-named-encryption-key">SECUREKEY — Set Named Encryption Key</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SECUREKEY, key_name, key_data)</code></p>
+<p>Sets a named encryption key for later use by <code dir="auto">ENCODE</code>/<code dir="auto">DECODE</code> operations.</p>
+<h4 id="setkey--set-current-encryption-key">SETKEY — Set Current Encryption Key</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SETKEY, key_data)</code></p>
+<p>Sets the current encryption key for subsequent <code dir="auto">ENCODE</code>/<code dir="auto">DECODE</code> operations (unnamed, session-scoped).</p>
+<h4 id="setsecure--set-secure-context-data">SETSECURE — Set Secure Context Data</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SETSECURE, secure_data)</code></p>
+<p>Sets secure data into the security context.</p>
+<h4 id="securedata--secure-data-operations">SECUREDATA — Secure Data Operations</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SECUREDATA, operation, data)</code></p>
+<p>Performs secure data operations — reading and writing encrypted data blobs.</p>
+<h4 id="secureexec--execute-sql-in-secure-context">SECUREEXEC — Execute SQL in Secure Context</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SECUREEXEC, script_name, sql_file_path)</code></p>
+<p>Executes a SQL script file in a secure context. This is one of the most commonly used <code dir="auto">@TOOLS</code> sub-commands in production <code dir="auto">.sqi</code> files. Internally it:</p>
+<ol>
+<li>Saves current <code dir="auto">OUTPUT</code> and <code dir="auto">STYLE</code> wizard params</li>
+<li>Sets <code dir="auto">OUTPUT</code> to the SQL file path</li>
+<li>Sets the script name as the execution target</li>
+<li>Calls the <code dir="auto">@EXEC</code> handler with a forced secure style</li>
+<li>Restores the original <code dir="auto">OUTPUT</code> and <code dir="auto">STYLE</code></li>
+</ol>
+<p>This is essentially “@EXEC with forced OUTPUT redirect and secure STYLE” — the output goes to a specific SQL file using a controlled execution style.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(SECUREEXEC,EJ_DIR_LIST,DBT\@WIZGET(TMPFILE).</span><span style="--0:#C792EA;--1:#8844AE">sql</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(SECUREEXEC,EJ_LIST_TRS_TMP,DBT\@WIZGET(TMPFILE).</span><span style="--0:#C792EA;--1:#8844AE">sql</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(SECUREEXEC,TASK_SCH,DBT\@WIZGET(TASK_SCH).</span><span style="--0:#C792EA;--1:#8844AE">sql</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(SECUREEXEC,CUB_WAT_SCH,DBT\@WIZGET(TMPFILE).</span><span style="--0:#C792EA;--1:#8844AE">sql</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(SECUREEXEC,trs_exp_ap_post_all,DBT\EXP_TMP@TER.SQI);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(SECUREEXEC,EJ_DIR_LIST,DBT\@WIZGET(TMPFILE).sql);@TOOLS(SECUREEXEC,EJ_LIST_TRS_TMP,DBT\@WIZGET(TMPFILE).sql);@TOOLS(SECUREEXEC,TASK_SCH,DBT\@WIZGET(TASK_SCH).sql);@TOOLS(SECUREEXEC,CUB_WAT_SCH,DBT\@WIZGET(TMPFILE).sql);@TOOLS(SECUREEXEC,trs_exp_ap_post_all,DBT\EXP_TMP@TER.SQI);"><div></div></button></div></figure></div>
+<h4 id="securelogin--secure-login">SECURELOGIN — Secure Login</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SECURELOGIN, username, password)</code></p>
+<p>Performs a secure login validation. Builds a credential string internally and validates against the authentication system.</p>
+<h4 id="certificate--certificate-operations">CERTIFICATE — Certificate Operations</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(CERTIFICATE, ...)</code></p>
+<p>Certificate operations (RSA/X.509 related).</p>
+<h4 id="hashdata--hash-string">HASHDATA — Hash String</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(HASHDATA, data)</code></p>
+<p>Hashes a string and returns the hash value.</p>
+<h4 id="hashdata_param--hash-parameter-value">HASHDATA_PARAM — Hash Parameter Value</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(HASHDATA_PARAM, param_name)</code></p>
+<p>Hashes the value of a wizard parameter. Reads the param, hashes it, returns the hash.</p>
+<h4 id="minutetokenstring--generate-time-based-token">MINUTETOKENSTRING — Generate Time-Based Token</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(MINUTETOKENSTRING, param_name, minutes)</code></p>
+<p>Generates a time-based token string. Reads the parameter value, uses the minutes value as the time window. Used for creating time-limited security tokens.</p>
+<h4 id="minutetokencheck--validate-time-based-token">MINUTETOKENCHECK — Validate Time-Based Token</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(MINUTETOKENCHECK, token_param, compare_param, minutes, tolerance)</code></p>
+<p>Validates a time-based token against a stored value within a time tolerance window. Multi-parameter check that ensures the token was generated within the allowed window.</p>
+<h4 id="hmac_sha1--hmac-sha1">HMAC_SHA1 — HMAC-SHA1</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(HMAC_SHA1, data, key)</code> or <code dir="auto">@TOOLS(HMAC_SHA1, data, key, BASE64)</code></p>
+<p>Computes HMAC-SHA1. If the fourth parameter is <code dir="auto">BASE64</code>, the output is Base64-encoded.</p>
+<h4 id="hmac_sha256--hmac-sha256">HMAC_SHA256 — HMAC-SHA256</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(HMAC_SHA256, data, key)</code> or <code dir="auto">@TOOLS(HMAC_SHA256, data, key, BASE64)</code></p>
+<p>Computes HMAC-SHA256. Same <code dir="auto">BASE64</code> flag support as <code dir="auto">HMAC_SHA1</code>.</p>
+<hr>
 <h3 id="dialog--ui">Dialog / UI</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">MESSAGEDLG,'text',,buttons</code></td><td>Message dialog with button options</td></tr><tr><td><code dir="auto">MESSAGEURGENT</code></td><td>Urgent message</td></tr><tr><td><code dir="auto">MESSAGESEND</code></td><td>Send message</td></tr><tr><td><code dir="auto">POPUP</code></td><td>Popup dialog</td></tr><tr><td><code dir="auto">SHOWGRID</code></td><td>Show grid/table</td></tr><tr><td><code dir="auto">EVENTPOPUP</code></td><td>Event-triggered popup</td></tr><tr><td><code dir="auto">EVENTHINT</code></td><td>Event hint</td></tr><tr><td><code dir="auto">POPUPDEFAULT</code></td><td>Popup with default selection</td></tr><tr><td><code dir="auto">MOBILEKEYBOARD</code></td><td>Mobile keyboard</td></tr><tr><td><code dir="auto">VALIDATEFIELD</code></td><td>Field validation</td></tr></tbody></table>
+<p>Commands for displaying dialogs, popups, and interacting with the operator.</p>
+<h4 id="messagedlg--modal-message-dialog">MESSAGEDLG — Modal Message Dialog</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(MESSAGEDLG, message, timeout, button1, button2, ...)</code></p>
+<p><strong>Returns:</strong> Button index (1-based) that was clicked.</p>
+<p>Displays a modal message dialog with configurable buttons and an optional timeout in seconds. The return value indicates which button was pressed, making it useful in <code dir="auto">@FMT(CMP,...)</code> conditions.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(MESSAGEDLG,PRESS OK </span><span style="--0:#C792EA;--1:#8844AE">WHEN</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">TO</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">END</span><span style="--0:#D6DEEB;--1:#403F53">,,OK)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(MESSAGEDLG,PRESS OK </span><span style="--0:#C792EA;--1:#8844AE">WHEN</span><span style="--0:#D6DEEB;--1:#403F53"> READY,,OK)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(MESSAGEDLG,Please put item </span><span style="--0:#C792EA;--1:#8844AE">on</span><span style="--0:#D6DEEB;--1:#403F53"> scale,</span><span style="--0:#F78C6C;--1:#AA0982">20</span><span style="--0:#D6DEEB;--1:#403F53">,OK,Cancel)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F">-- Returns "1" for OK, "2" for Cancel</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F">-- Use with CMP to branch on user choice:</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@FMT(CMP,@TOOLS(MESSAGEDLG,Please put item </span><span style="--0:#C792EA;--1:#8844AE">on</span><span style="--0:#D6DEEB;--1:#403F53"> scale,</span><span style="--0:#F78C6C;--1:#AA0982">20</span><span style="--0:#D6DEEB;--1:#403F53">,OK,Cancel)</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#F78C6C;--1:#AA0982">2</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">ESC</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(MESSAGEDLG,PRESS OK WHEN TO END,,OK)@TOOLS(MESSAGEDLG,PRESS OK WHEN READY,,OK)@TOOLS(MESSAGEDLG,Please put item on scale,20,OK,Cancel)-- Returns &#x22;1&#x22; for OK, &#x22;2&#x22; for Cancel-- Use with CMP to branch on user choice:@FMT(CMP,@TOOLS(MESSAGEDLG,Please put item on scale,20,OK,Cancel)=2,&#x27;ESC&#x27;);"><div></div></button></div></figure></div>
+<h4 id="messageurgent--send-urgent-message">MESSAGEURGENT — Send Urgent Message</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(MESSAGEURGENT, message, timestamp, target_connection)</code></p>
+<p>Sends an urgent message to a specific terminal. The message record includes the terminal ID, store ID, operator ID, and a date/time stamp. Posted with priority=1 through the message queue system.</p>
+<h4 id="messagesend--send-message">MESSAGESEND — Send Message</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(MESSAGESEND, recipient, subject, body, attachment, priority)</code></p>
+<p>Sends a message to another user or terminal with full envelope fields.</p>
+<h4 id="popup--selection-popup">POPUP — Selection Popup</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(POPUP, popup_name, query)</code></p>
+<p><strong>Returns:</strong> Selected value, or <code dir="auto">-1</code> on cancel.</p>
+<p>Shows a popup selection dialog. The second parameter is the popup configuration name, and the third is the data source query. The dialog waits for the operator to select a value.</p>
+<h4 id="showgrid--display-data-grid">SHOWGRID — Display Data Grid</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SHOWGRID)</code></p>
+<p>Shows a data grid view using the current context (no parameters needed — uses the active data set).</p>
+<h4 id="eventpopup--event-triggered-popup">EVENTPOPUP — Event-Triggered Popup</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(EVENTPOPUP, event_name)</code></p>
+<p>Triggers a popup dialog associated with a named event.</p>
+<h4 id="eventhint--event-hint">EVENTHINT — Event Hint</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(EVENTHINT, hint_name)</code></p>
+<p>Shows an event-triggered hint or tooltip.</p>
+<h4 id="popupdefault--popup-with-default">POPUPDEFAULT — Popup with Default</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(POPUPDEFAULT, ...)</code></p>
+<p>Shows a popup selection dialog with a pre-selected default value.</p>
+<h4 id="validatefield--field-validation">VALIDATEFIELD — Field Validation</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(VALIDATEFIELD, field_name, value, validation_rule)</code></p>
+<p><strong>Returns:</strong> Formatted validation result string.</p>
+<p>Validates a field value against a rule. The result includes the validated value, field name, and validation status.</p>
+<h4 id="mobilekeyboard--toggle-mobile-keyboard">MOBILEKEYBOARD — Toggle Mobile Keyboard</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(MOBILEKEYBOARD, on_off)</code></p>
+<p>Toggles mobile keyboard visibility. Pass <code dir="auto">1</code> to enable, anything else to disable.</p>
+<hr>
 <h3 id="validation--error">Validation / Error</h3>
+<p>Commands for permission checking, error raising, and input validation.</p>
+<h4 id="checkprm--check-permissions">CHECKPRM — Check Permissions</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(CHECKPRM, field_list, values_param)</code></p>
+<p>Checks permissions or parameters against stored values. Reads permission values from the wizard params, splits the field list by comma, and validates each field.</p>
+<h4 id="raiseerror--raise-typed-error">RAISEERROR — Raise Typed Error</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RAISEERROR, error_type, message)</code></p>
+<p>Raises a typed error exception that unwinds the call stack. Error types:</p>
 
 
 
@@ -1058,234 +1571,186 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CHECKPRM</code></td><td>Check permission</td></tr><tr><td><code dir="auto">RAISEERROR</code></td><td>Raise error (sub-types below)</td></tr><tr><td><code dir="auto">RIGHTS</code></td><td>Check rights/permissions</td></tr><tr><td><code dir="auto">CHECKNUM</code></td><td>Check numeric value</td></tr><tr><td><code dir="auto">SQLLIKE</code></td><td>SQL LIKE pattern matching</td></tr></tbody></table>
-<p><strong>RAISEERROR sub-types:</strong> <code dir="auto">USERLEVEL</code>, <code dir="auto">NOTINTABLE</code>, <code dir="auto">INVALIDENTRY</code>, <code dir="auto">INVALIDDATA</code></p>
-<h3 id="wic-limits">WIC Limits</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">LIMIT_CLEAR</code></td><td>Clear WIC limits for state</td></tr><tr><td><code dir="auto">LIMIT_LOAD</code></td><td>Load WIC limits</td></tr><tr><td><code dir="auto">LIMIT_SAVE</code></td><td>Save WIC limits</td></tr><tr><td><code dir="auto">LIMIT_TOTAL</code></td><td>Total WIC limits</td></tr><tr><td><code dir="auto">LIMIT_ABORT</code></td><td>Abort WIC limit operation</td></tr></tbody></table>
-<h3 id="calculation">Calculation</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CALCDATE</code></td><td>Calculate date expression</td></tr><tr><td><code dir="auto">DATED_PRICE</code></td><td>Dated price lookup</td></tr><tr><td><code dir="auto">DATED_COST</code></td><td>Dated cost lookup</td></tr><tr><td><code dir="auto">DATED_COUPON</code></td><td>Dated coupon lookup</td></tr></tbody></table>
-<h3 id="smart-card">Smart Card</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SMARTGET</code> / <code dir="auto">SMARTSET</code> / <code dir="auto">SMARTHOT</code></td><td>Smart card read/write/hot</td></tr><tr><td><code dir="auto">SMARTABORT</code> / <code dir="auto">SMARTVOID</code></td><td>Smart card cancel/void</td></tr><tr><td><code dir="auto">CUSTOM_DETECT</code></td><td>Custom card detection</td></tr></tbody></table>
-<h3 id="grid--metafield">Grid / MetaField</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">METGRIDPARAMIN</code></td><td>Meta grid parameter input</td></tr><tr><td><code dir="auto">METGRIDPARAMOUT</code></td><td>Meta grid parameter output</td></tr><tr><td><code dir="auto">METFLD</code></td><td>Meta field access</td></tr><tr><td><code dir="auto">METPOPCHOICES</code></td><td>Meta popup choices</td></tr><tr><td><code dir="auto">EXTFLD</code></td><td>Extension field</td></tr></tbody></table>
+<table><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">USERLEVEL</code></td><td>User level too low for the requested operation</td></tr><tr><td><code dir="auto">NOTINTABLE</code></td><td>Item not found in the lookup table</td></tr><tr><td><code dir="auto">INVALIDENTRY</code></td><td>Invalid entry provided</td></tr><tr><td><code dir="auto">INVALIDDATA</code></td><td>Invalid data format or content</td></tr><tr><td><em>(any other)</em></td><td>Generic error</td></tr></tbody></table>
+<p>All types raise a runtime exception, halting the current script execution.</p>
+<h4 id="rights--check-user-rights">RIGHTS — Check User Rights</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RIGHTS, ...)</code></p>
+<p><strong>Returns:</strong> Rights check result.</p>
+<p>Performs a comprehensive rights check against the user profile and feature matrix.</p>
+<h4 id="checknum--validate-numeric">CHECKNUM — Validate Numeric</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(CHECKNUM, ...)</code></p>
+<p>Validates that a value is a valid number.</p>
+<h4 id="sqllike--generate-like-clauses">SQLLIKE — Generate LIKE Clauses</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SQLLIKE, field, value)</code> or <code dir="auto">@TOOLS(SQLLIKE, field, value, separator)</code></p>
+<p><strong>Returns:</strong> SQL WHERE clause with LIKE predicates.</p>
+<p>Generates SQL LIKE clauses. Without a separator, produces a simple <code dir="auto">field LIKE '%value%'</code>. With a separator, splits the value and generates <code dir="auto">(field LIKE '%part1%' OR field LIKE '%part2%' ...)</code> for each part. Useful for multi-word search.</p>
+<hr>
+<h3 id="calculation--date-lookup">Calculation / Date Lookup</h3>
+<p>Commands for date-based calculations and time-sensitive price/cost lookups.</p>
+<h4 id="calcdate--date-calculation">CALCDATE — Date Calculation</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(CALCDATE, mode, sql_query)</code></p>
+<p>Calculates dates based on a SQL query. The mode parameter (first 4 characters) determines the calculation type.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(CALCDATE,PRI,</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">SELECT * FROM @WIZGET(PRICE_CALCULATE) WHERE F01 IN (@WIZGET(SUBQUERY))</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(CALCDATE,PRI,</span><span style="--0:#C792EA;--1:#8844AE">SELECT</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">*</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">FROM</span><span style="--0:#D6DEEB;--1:#403F53"> TMP_LABBAT_@STORE@TER@DBHOT(CNCURRENT));</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(CALCDATE,PRI,&#x22;SELECT * FROM @WIZGET(PRICE_CALCULATE) WHERE F01 IN (@WIZGET(SUBQUERY))&#x22;);@TOOLS(CALCDATE,PRI,SELECT * FROM TMP_LABBAT_@STORE@TER@DBHOT(CNCURRENT));"><div></div></button></div></figure></div>
+<h4 id="calcnext--next-batch-calculation">CALCNEXT — Next Batch Calculation</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(CALCNEXT, sql_query)</code></p>
+<p>Calculates next batch/iteration values from a SQL query. Used heavily for batch processing loops.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(CALCNEXT,</span><span style="--0:#C792EA;--1:#8844AE">SELECT</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">*</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">FROM</span><span style="--0:#D6DEEB;--1:#403F53"> @WIZGET(CALCULATE_TABLE) </span><span style="--0:#C792EA;--1:#8844AE">WHERE</span><span style="--0:#D6DEEB;--1:#403F53"> F902</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">@WIZGET(BATCH)</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(CALCNEXT,SELECT * FROM @WIZGET(CALCULATE_TABLE) WHERE F902=&#x27;@WIZGET(BATCH)&#x27;);"><div></div></button></div></figure></div>
+<h4 id="dated_price--price-on-date">DATED_PRICE — Price on Date</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(DATED_PRICE, item_code, date)</code></p>
+<p>Looks up the price of an item on a specific date.</p>
+<h4 id="dated_cost--cost-on-date">DATED_COST — Cost on Date</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(DATED_COST, item_code, date)</code></p>
+<p>Looks up the cost of an item on a specific date.</p>
+<h4 id="dated_coupon--coupon-on-date">DATED_COUPON — Coupon on Date</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(DATED_COUPON, item_code, date)</code></p>
+<p>Looks up a coupon for an item on a specific date.</p>
+<hr>
 <h3 id="coupon--offer">Coupon / Offer</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">AUTO_START</code></td><td>Auto-start coupon</td></tr><tr><td><code dir="auto">COUPON_APPLY</code></td><td>Apply coupon</td></tr><tr><td><code dir="auto">COUPON_DESTROY</code></td><td>Destroy coupon</td></tr><tr><td><code dir="auto">COUPON_MATCH</code></td><td>Coupon matching</td></tr><tr><td><code dir="auto">OTC_MATCH</code></td><td>OTC matching</td></tr></tbody></table>
-<h3 id="gas--peripheral">Gas / Peripheral</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">GAS_STATUS</code></td><td>Gas pump status</td></tr><tr><td><code dir="auto">PADDISPLAY</code></td><td>PIN pad display (sub: DISPLAY, DISPLAY2, DISPLAY3)</td></tr><tr><td><code dir="auto">MICR_DECODE</code></td><td>MICR check decode</td></tr><tr><td><code dir="auto">BMPGEN</code></td><td>Bitmap generation (sub: NATIVE, PACKBITS)</td></tr><tr><td><code dir="auto">BMP_BARCODE</code></td><td>Barcode bitmap</td></tr></tbody></table>
-<h3 id="data--file-operations">Data / File Operations</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">HOOKEXEC</code></td><td>Hook execution</td></tr><tr><td><code dir="auto">MODMSGEXEC</code></td><td>Modify message execution</td></tr><tr><td><code dir="auto">MAP_BACKUP</code></td><td>Map backup</td></tr><tr><td><code dir="auto">REG_BACKUP</code></td><td>Register backup</td></tr><tr><td><code dir="auto">COST_ENCODE</code></td><td>Cost encoding</td></tr><tr><td><code dir="auto">BUILD_DELV</code></td><td>Build delivery</td></tr><tr><td><code dir="auto">BUILD_DIR</code></td><td>Build directory</td></tr><tr><td><code dir="auto">BUILD_TREE</code></td><td>Build directory tree</td></tr><tr><td><code dir="auto">INSTALL_REPLACE</code></td><td>Install replacement</td></tr><tr><td><code dir="auto">INSTALL_USP</code> / <code dir="auto">BACKUP_USP</code></td><td>USP install/backup</td></tr></tbody></table>
+<p>Commands for the automatic coupon engine, coupon matching, and offer management.</p>
+<h4 id="auto_start--start-coupon-engine">AUTO_START — Start Coupon Engine</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(AUTO_START)</code></p>
+<p>Starts the automatic coupon engine on the current transaction buffer.</p>
+<h4 id="coupon_apply--apply-coupons">COUPON_APPLY — Apply Coupons</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(COUPON_APPLY)</code></p>
+<p>Applies all pending coupons to the current transaction.</p>
+<h4 id="coupon_destroy--remove-coupons">COUPON_DESTROY — Remove Coupons</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(COUPON_DESTROY)</code></p>
+<p>Destroys/removes all coupons from the current transaction.</p>
+<h4 id="coupon_match--match-coupon-to-item">COUPON_MATCH — Match Coupon to Item</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(COUPON_MATCH, item_code)</code></p>
+<p>Matches coupons against a transaction item. Uses wizard params for configuration:</p>
+<ul>
+<li><code dir="auto">CPN_FUNCTION</code> — coupon function code (falls back to default from transaction state if absent)</li>
+<li><code dir="auto">CPN_ELECTRONIC</code> — set to <code dir="auto">1</code> for electronic coupon matching</li>
+</ul>
+<p>The matching engine evaluates the coupon against the item, then processes the match result through a multi-step state machine (states 1 through 3) before completion.</p>
+<h4 id="otc_match--over-the-counter-match">OTC_MATCH — Over-The-Counter Match</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(OTC_MATCH)</code></p>
+<p>Over-the-counter coupon matching against the current transaction.</p>
+<hr>
+<h3 id="record-operations--hooks">Record Operations / Hooks</h3>
+<p>Commands for executing hooks, intercepting messages, and secure script execution.</p>
+<h4 id="hookexec--execute-named-hook">HOOKEXEC — Execute Named Hook</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(HOOKEXEC, hook_name)</code></p>
+<p><strong>Returns:</strong> <code dir="auto">"1"</code> if the hook was found and executed, empty string otherwise.</p>
+<p>Executes a named hook. Uses a two-phase lookup:</p>
+<ol>
+<li>Checks the transaction-state hook table for the current connection</li>
+<li>If not found, checks the general hook/event dispatcher</li>
+</ol>
+<p>When called with no parameters, returns the current hook execution status as a numeric string. The hook system is how SQI scripts register callbacks for transaction events.</p>
+<h4 id="modmsgexec--modify-message-handler">MODMSGEXEC — Modify Message Handler</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(MODMSGEXEC, message_id, handler_name)</code></p>
+<p>Executes a “modify message” handler. The dispatcher iterates through registered handlers, matching against the message ID and executing matching handlers. This is the system for intercepting and modifying data during processing — for example, modifying item descriptions, prices, or flags during transaction entry.</p>
+<hr>
+<h3 id="meta--grid-system">Meta / Grid System</h3>
+<p>Commands for the generic data entry framework. Grid definitions specify columns, types, and validation rules.</p>
+<h4 id="metgridparamin--grid-input-parameters">METGRIDPARAMIN — Grid Input Parameters</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(METGRIDPARAMIN, grid_name)</code></p>
+<p><strong>Returns:</strong> Comma-separated parameter string for grid input.</p>
+<p>Reads metadata grid parameters for INPUT mode. Opens the grid component, populates it from the data source, then iterates all columns:</p>
+<ul>
+<li><strong>CurUser column:</strong> automatically inserts <code dir="auto">@CurUser="connection_user_name"</code></li>
+<li><strong>Visible columns (type 1 or 3):</strong> reads column name and value from wizard params, formats as <code dir="auto">,@ColumnName="value"</code></li>
+</ul>
+<p>The result is a serialized parameter string suitable for use in SQL queries.</p>
+<h4 id="metgridparamout--grid-output-parameters">METGRIDPARAMOUT — Grid Output Parameters</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(METGRIDPARAMOUT, grid_name)</code></p>
+<p><strong>Returns:</strong> Comma-separated parameter string for grid output.</p>
+<p>Similar to <code dir="auto">METGRIDPARAMIN</code> but for OUTPUT mode. Iterates columns looking for type 2 (output-only) columns and formats their values for assignment.</p>
+<h4 id="metfld--meta-field-access">METFLD — Meta Field Access</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(METFLD, field_name, table_name, format, context)</code></p>
+<p>Accesses a meta-field definition. Resolves field names from the metadata system, including looking up field numbers, data types, display formats, and table associations.</p>
+<h4 id="metpopchoices--meta-popup-choices">METPOPCHOICES — Meta Popup Choices</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(METPOPCHOICES, field_name)</code></p>
+<p><strong>Returns:</strong> Comma-separated list of valid choices for the field.</p>
+<p>Gets the popup choice list for a meta-field from its field definition.</p>
+<h4 id="metpopfile--meta-popup-file-source">METPOPFILE — Meta Popup File Source</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(METPOPFILE, field_name)</code></p>
+<p><strong>Returns:</strong> File path for popup data source.</p>
+<p>Gets the file-based popup data source path for a meta-field.</p>
+<h4 id="extfld--extension-field">EXTFLD — Extension Field</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(EXTFLD, ...)</code></p>
+<p>Accesses extension fields — custom fields added beyond the standard field set.</p>
+<hr>
 <h3 id="record-readwrite">Record Read/Write</h3>
+<p>Commands for inline item data lookups within scripts. These use a two-phase pattern: first check if the item is already loaded in memory, and if not, load it from the database before reading.</p>
+<h4 id="rwprice--read-item-price">RWPRICE — Read Item Price</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RWPRICE, item_code)</code></p>
+<p><strong>Returns:</strong> Price value.</p>
+<h4 id="rwvalue--read-item-value">RWVALUE — Read Item Value</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RWVALUE, item_code)</code></p>
+<p><strong>Returns:</strong> Item value.</p>
+<h4 id="rwcode--read-item-code">RWCODE — Read Item Code</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RWCODE, item_code)</code></p>
+<p><strong>Returns:</strong> Item code/UPC.</p>
+<h4 id="rwnupc--read-numeric-upc">RWNUPC — Read Numeric UPC</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(RWNUPC, item_code)</code></p>
+<p><strong>Returns:</strong> Numeric UPC (all formats).</p>
+<hr>
+<h3 id="smart-card">Smart Card</h3>
+<p>Commands for smart card read/write operations.</p>
+<h4 id="smartget--read-smart-card">SMARTGET — Read Smart Card</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SMARTGET, ...)</code></p>
+<p>Reads data from a smart card.</p>
+<h4 id="smartset--write-smart-card">SMARTSET — Write Smart Card</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SMARTSET, ...)</code></p>
+<p>Writes data to a smart card.</p>
+<h4 id="smarthot--hot-swap-smart-card">SMARTHOT — Hot-Swap Smart Card</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SMARTHOT, ...)</code></p>
+<p>Hot-swap smart card operation (swap card without interrupting session).</p>
+<h4 id="smartprompt--prompt-for-smart-card">SMARTPROMPT — Prompt for Smart Card</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SMARTPROMPT, ...)</code></p>
+<p>Prompts the user for a smart card action.</p>
+<h4 id="smartabort--abort-smart-card-transaction">SMARTABORT — Abort Smart Card Transaction</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SMARTABORT, abort_code, card_id)</code></p>
+<p>Aborts a smart card transaction.</p>
+<h4 id="smartvoid--void-smart-card-transaction">SMARTVOID — Void Smart Card Transaction</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(SMARTVOID, ...)</code></p>
+<p>Voids a smart card transaction.</p>
+<hr>
+<h3 id="wic-limits">WIC Limits</h3>
+<p>Commands for managing Women, Infants, and Children (WIC) benefit limits.</p>
+<h4 id="limit_clear--clear-limits">LIMIT_CLEAR — Clear Limits</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(LIMIT_CLEAR, mode)</code></p>
+<p>Clears WIC benefit limits. If mode is <code dir="auto">MEMORY</code>, clears only in-memory limits; otherwise clears persistent limits.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(LIMIT_CLEAR,MEMORY);   </span><span style="--0:#919F9F;--1:#5F636F">-- clear in-memory only</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(LIMIT_CLEAR);           </span><span style="--0:#919F9F;--1:#5F636F">-- clear persistent limits</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(LIMIT_CLEAR,MEMORY);   -- clear in-memory only@TOOLS(LIMIT_CLEAR);           -- clear persistent limits"><div></div></button></div></figure></div>
+<h4 id="limit_load--load-limits">LIMIT_LOAD — Load Limits</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(LIMIT_LOAD, ...)</code></p>
+<p>Loads WIC limits from the database.</p>
+<h4 id="limit_save--save-limits">LIMIT_SAVE — Save Limits</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(LIMIT_SAVE, ...)</code></p>
+<p>Saves WIC limits to the database.</p>
+<h4 id="limit_total--total-limits">LIMIT_TOTAL — Total Limits</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(LIMIT_TOTAL, ...)</code></p>
+<p>Totals WIC limits for the current transaction.</p>
+<h4 id="limit_abort--abort-limit-operation">LIMIT_ABORT — Abort Limit Operation</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(LIMIT_ABORT, ...)</code></p>
+<p>Aborts a WIC limit transaction.</p>
+<hr>
+<h3 id="display--peripheral">Display / Peripheral</h3>
+<p>Commands for PIN pad displays, customer-facing displays, and peripheral interaction.</p>
+<h4 id="paddisplay--pin-pad-display">PADDISPLAY — PIN Pad Display</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(PADDISPLAY, command, message1, message2)</code></p>
+<p>Sends text to the PIN pad display. Builds a command string with encoded messages:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">command /DspMsg='message1_encoded' /DspMsg2='message2_encoded'</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="command /DspMsg=&#x27;message1_encoded&#x27; /DspMsg2=&#x27;message2_encoded&#x27;"><div></div></button></div></figure></div>
+<p>Supports sub-commands <code dir="auto">DISPLAY</code>, <code dir="auto">DISPLAY2</code>, <code dir="auto">DISPLAY3</code> for multi-line displays on the customer-facing PIN pad.</p>
+<h4 id="gas_status--gas-pump-status">GAS_STATUS — Gas Pump Status</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(GAS_STATUS, ...)</code></p>
+<p>Queries gas pump status for fuel dispenser integration.</p>
+<h4 id="micr_decode--check-reader-decode">MICR_DECODE — Check Reader Decode</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(MICR_DECODE, micr_data)</code></p>
+<p>Decodes MICR (Magnetic Ink Character Recognition) data from a check reader. Loads the raw MICR data, then decodes the routing number, account number, and check number.</p>
+<h4 id="custom_detect--detect-custom-hardware">CUSTOM_DETECT — Detect Custom Hardware</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(CUSTOM_DETECT)</code></p>
+<p>Detects custom hardware/peripherals. Used to check for connected custom devices before operations that depend on them.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(CUSTOM_DETECT);   </span><span style="--0:#919F9F;--1:#5F636F">-- check what's connected before backup</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(CUSTOM_DETECT);   -- check what&#x27;s connected before backup"><div></div></button></div></figure></div>
+<hr>
+<h3 id="bitmap--barcode-generation">Bitmap / Barcode Generation</h3>
+<p>Commands for generating images for display or printing.</p>
+<h4 id="bmpgen--generate-bitmap">BMPGEN — Generate Bitmap</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(BMPGEN, sub_mode, ...)</code></p>
+<p>Generates bitmap images. Sub-modes:</p>
 
 
 
@@ -1303,15 +1768,60 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 
 
 
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">RWPRICE</code></td><td>Read/write price</td></tr><tr><td><code dir="auto">RWVALUE</code></td><td>Read/write value</td></tr><tr><td><code dir="auto">RWCODE</code></td><td>Read/write code</td></tr><tr><td><code dir="auto">RWNUPC</code></td><td>Read/write UPC</td></tr></tbody></table>
+<table><thead><tr><th>Mode</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">NATIVE</code></td><td>Raw bitmap format</td></tr><tr><td><code dir="auto">PACKBITS</code></td><td>PackBits-compressed bitmap (common in receipt printers)</td></tr></tbody></table>
+<h4 id="bmp_barcode--generate-barcode-bitmap">BMP_BARCODE — Generate Barcode Bitmap</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(BMP_BARCODE, barcode_data, barcode_type)</code></p>
+<p>Generates a barcode as a bitmap image for display or printing.</p>
+<h4 id="grid_smsupc--upc-grid-formatting">GRID_SMSUPC — UPC Grid Formatting</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(GRID_SMSUPC, table_alias, format_codes)</code></p>
+<p>Generates SQL function calls for UPC formatting in grid queries. Format code characters control the output:</p>
+<ul>
+<li><code dir="auto">2</code>: Generates <code dir="auto">,DBO.FN_SMSUPC(alias)</code> with standard format</li>
+<li><code dir="auto">3</code>: Generates <code dir="auto">,DBO.FN_SMSUPC(alias)</code> with alternate format</li>
+</ul>
+<p>Used for generating SQL SELECT statements that include formatted UPC codes.</p>
+<hr>
+<h3 id="points--loyalty">Points / Loyalty</h3>
+<p>Commands for loyalty program management.</p>
+<h4 id="point_offset--loyalty-field-offset">POINT_OFFSET — Loyalty Field Offset</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(POINT_OFFSET, field_name)</code></p>
+<p><strong>Returns:</strong> Numeric offset for the field in the loyalty points data structure.</p>
+<p>Looks up a field’s position in the loyalty points structure by name.</p>
+<h4 id="point_program--loyalty-program-info">POINT_PROGRAM — Loyalty Program Info</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(POINT_PROGRAM, program_id)</code></p>
+<p><strong>Returns:</strong> Program name/description.</p>
+<p>Gets information about a loyalty program by its numeric ID.</p>
+<hr>
+<h3 id="data--backup-operations">Data / Backup Operations</h3>
+<p>Commands for data backup, cost encoding, directory building, and installation.</p>
+<h4 id="map_backup--table-backup">MAP_BACKUP — Table Backup</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(MAP_BACKUP, table_name, load_script, backup_name)</code></p>
+<p>Creates a backup of a named data map/table.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(MAP_BACKUP,TASK_TAB,</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">Load\Task_Load.sql</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,TASK);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(MAP_BACKUP,PROFILE_TAB,</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">Load\Profile_Load.sql</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#C792EA;--1:#8844AE">PROFILE</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@TOOLS(MAP_BACKUP,DSS_TAB,</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">Load\DSS_Load.sql</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,DSS);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@TOOLS(MAP_BACKUP,TASK_TAB,&#x27;Load\Task_Load.sql&#x27;,TASK);@TOOLS(MAP_BACKUP,PROFILE_TAB,&#x27;Load\Profile_Load.sql&#x27;,PROFILE);@TOOLS(MAP_BACKUP,DSS_TAB,&#x27;Load\DSS_Load.sql&#x27;,DSS);"><div></div></button></div></figure></div>
+<h4 id="reg_backup--register-backup">REG_BACKUP — Register Backup</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(REG_BACKUP)</code></p>
+<p>Creates a register backup of the current terminal state.</p>
+<h4 id="cost_encode--encode-cost">COST_ENCODE — Encode Cost</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(COST_ENCODE, ...)</code></p>
+<p>Encodes cost data using letter substitution codes. Used to obfuscate cost values for display on shelf labels (a common retail practice where cost is printed in a letter code like “MAKEPROFIT” = 1234567890).</p>
+<h4 id="build_delv--build-delivery-package">BUILD_DELV — Build Delivery Package</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(BUILD_DELV, ...)</code></p>
+<p>Builds a delivery package for data distribution.</p>
+<h4 id="build_dir--build-directory-listing">BUILD_DIR — Build Directory Listing</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(BUILD_DIR, ...)</code></p>
+<p>Builds a directory listing.</p>
+<h4 id="build_tree--build-directory-tree">BUILD_TREE — Build Directory Tree</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(BUILD_TREE, ...)</code></p>
+<p>Builds a full directory tree structure.</p>
+<h4 id="install_replace--replace-installed-component">INSTALL_REPLACE — Replace Installed Component</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(INSTALL_REPLACE, ...)</code></p>
+<p>Replaces an installed component file during updates.</p>
+<h4 id="install_usp--install-usp-package">INSTALL_USP — Install USP Package</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(INSTALL_USP, ...)</code></p>
+<p>Installs a USP (User Stored Procedure) package.</p>
+<h4 id="backup_usp--backup-usp-package">BACKUP_USP — Backup USP Package</h4>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(BACKUP_USP, ...)</code></p>
+<p>Backs up a USP package before replacement.</p>
 <hr>
 <h2 id="post--post-to-other-terminal">@POST — Post to Other Terminal</h2>
 <p><strong>Syntax:</strong> <code dir="auto">@POST(FCT=code, CN=connection)</code></p>
