@@ -1,0 +1,1343 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>@EXEC Operations | SQI Scripting Guide</title><link rel="canonical" href="https://locug.github.io/sqi-docs/reference/exec/"/><link rel="sitemap" href="/sqi-docs/sitemap-index.xml"/><link rel="shortcut icon" href="/sqi-docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.5.5"/><meta name="generator" content="Starlight v0.31.1"/><meta property="og:title" content="@EXEC Operations"/><meta property="og:type" content="article"/><meta property="og:url" content="https://locug.github.io/sqi-docs/reference/exec/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Complete reference for @EXEC sub-commands, @TOOLS utility operations, @POST, @READKEY, and report accumulators"/><meta property="og:site_name" content="SQI Scripting Guide"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Complete reference for @EXEC sub-commands, @TOOLS utility operations, @POST, @READKEY, and report accumulators"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg> <svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg> <svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> </template><link rel="stylesheet" href="/sqi-docs/_astro/print.BJ0teN4y.css" media="print"><link rel="stylesheet" href="/sqi-docs/_astro/index.DkxuATM_.css">
+<style>:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}
+.card:where(.astro-v5tidmuc){--sl-card-border: var(--sl-color-purple);--sl-card-bg: var(--sl-color-purple-low);border:1px solid var(--sl-color-gray-5);background-color:var(--sl-color-black);padding:clamp(1rem,calc(.125rem + 3vw),2.5rem);flex-direction:column;gap:clamp(.5rem,calc(.125rem + 1vw),1rem)}.card:where(.astro-v5tidmuc):nth-child(4n+1){--sl-card-border: var(--sl-color-orange);--sl-card-bg: var(--sl-color-orange-low)}.card:where(.astro-v5tidmuc):nth-child(4n+3){--sl-card-border: var(--sl-color-green);--sl-card-bg: var(--sl-color-green-low)}.card:where(.astro-v5tidmuc):nth-child(4n+4){--sl-card-border: var(--sl-color-red);--sl-card-bg: var(--sl-color-red-low)}.card:where(.astro-v5tidmuc):nth-child(4n+5){--sl-card-border: var(--sl-color-blue);--sl-card-bg: var(--sl-color-blue-low)}.title:where(.astro-v5tidmuc){font-weight:600;font-size:var(--sl-text-h4);color:var(--sl-color-white);line-height:var(--sl-line-height-headings);gap:1rem;align-items:center}.card:where(.astro-v5tidmuc) .icon:where(.astro-v5tidmuc){border:1px solid var(--sl-card-border);background-color:var(--sl-card-bg);padding:.2em;border-radius:.25rem}.card:where(.astro-v5tidmuc) .body:where(.astro-v5tidmuc){margin:0;font-size:clamp(var(--sl-text-sm),calc(.5rem + 1vw),var(--sl-text-body))}
+.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}
+svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}
+.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}
+.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}
+</style><script type="module" src="/sqi-docs/_astro/page.7qqag-5g.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Skip to content</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header sl-flex astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/sqi-docs/" class="site-title sl-flex astro-m46x6ez3">  <span class="astro-m46x6ez3" translate="no"> SQI Scripting Guide </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Search&#34;}"> <button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg>  <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Search</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Search" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Cancel </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/sqi-docs/_astro/Search.astro_astro_type_script_index_0_lang.BsEa3Guk.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Main"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg>  </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="13q9ia1" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/sqi-docs/" aria-current="false" class="large astro-3ii7xxms"> <span class="astro-3ii7xxms">Home</span>  </a> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Tutorial: How It Works</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/01-how-it-works/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">How SQI Scripting Works</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/02-the-pipeline/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">The Processing Pipeline</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/03-text-is-everything/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Text Is Everything</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/04-innermost-first/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Innermost First Evaluation</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/05-branch-delimiter/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">The Branch Delimiter</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/06-registered-symbols/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Registered Symbols &amp; Variables</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Patterns</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/01-parameter-store/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Parameter Store</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/02-conditional-branching/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Conditional Branching</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/03-string-operations/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: String Operations</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/04-database-lookups/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Database Lookups</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/05-external-execution/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: External Execution</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/06-date-formatting/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Date Formatting</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/07-existence-checks/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Existence Checks</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/08-accumulation/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Accumulation</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/09-message-display/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Message Display</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/10-report-totals/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Report Totals</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Reference</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/sqi-docs/reference/commands/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Command Reference</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/reference/dbhot/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">@dbHot Dispatch Modes</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/reference/exec/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">@EXEC Operations</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/reference/fmt/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">@FMT Sub-commands</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/reference/preprocessor/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Preprocessor Variables</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/sandbox/" aria-current="false" class="large astro-3ii7xxms"> <span class="astro-3ii7xxms">Sandbox</span>  </a> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="sl-flex social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><div class="toggle sl-flex astro-doynk5tl">On this page<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </div><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec--command-execution" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC — Command Execution</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#fct--function-code-dispatch" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">FCT — Function Code Dispatch</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#msg--message-display" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">MSG — Message Display</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sqi--execute-script" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SQI — Execute Script</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xch--exchange-commands" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XCH — Exchange Commands</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#other-exec-parameters" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Other @EXEC Parameters</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#exec--empty-call" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@EXEC() — Empty Call</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec-sub-commands-direct-dispatch" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC Sub-commands (Direct Dispatch)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#table--database" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Table / Database</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#display--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Display / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#form-buttons" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Form Buttons</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#logging" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Logging</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#transaction" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Transaction</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#connection--session" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Connection / Session</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#device--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Device / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#payment" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Payment</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#gas-station" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Gas Station</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#third-party-integration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Third-Party Integration</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#tools--utility-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@TOOLS — Utility Commands</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#parameter-parsing" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Parameter Parsing</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xml--json" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XML / JSON</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#receipt--print" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Receipt / Print</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#encoding--security" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Encoding / Security</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#dialog--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Dialog / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#validation--error" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Validation / Error</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#wic-limits" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">WIC Limits</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#calculation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Calculation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#smart-card" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Smart Card</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#grid--metafield" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Grid / MetaField</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#coupon--offer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Coupon / Offer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#gas--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Gas / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#data--file-operations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Data / File Operations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#record-readwrite" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Record Read/Write</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#post--post-to-other-terminal" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@POST — Post to Other Terminal</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#readkey--license-key-check" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@READKEY — License Key Check</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#report-accumulator-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Report Accumulator Commands</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptclrvarname" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTCLR(varname)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptttlexpressionformat" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTTTL(expression,format)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptsetvarnamevalue" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTSET(varname,value)</span> </a>  </li> </ul>  </li> </ul> </div></details></nav></mobile-starlight-toc><script type="module" src="/sqi-docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C181hMzK.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec--command-execution" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC — Command Execution</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#fct--function-code-dispatch" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">FCT — Function Code Dispatch</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#msg--message-display" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">MSG — Message Display</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sqi--execute-script" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SQI — Execute Script</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xch--exchange-commands" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XCH — Exchange Commands</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#other-exec-parameters" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Other @EXEC Parameters</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#exec--empty-call" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@EXEC() — Empty Call</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#exec-sub-commands-direct-dispatch" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@EXEC Sub-commands (Direct Dispatch)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#table--database" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Table / Database</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#display--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Display / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#form-buttons" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Form Buttons</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#logging" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Logging</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#transaction" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Transaction</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#connection--session" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Connection / Session</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#device--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Device / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#payment" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Payment</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#gas-station" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Gas Station</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#third-party-integration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Third-Party Integration</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#tools--utility-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@TOOLS — Utility Commands</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#parameter-parsing" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Parameter Parsing</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#xml--json" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">XML / JSON</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#receipt--print" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Receipt / Print</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#encoding--security" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Encoding / Security</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#dialog--ui" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Dialog / UI</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#validation--error" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Validation / Error</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#wic-limits" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">WIC Limits</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#calculation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Calculation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#smart-card" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Smart Card</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#grid--metafield" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Grid / MetaField</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#coupon--offer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Coupon / Offer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#gas--peripheral" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Gas / Peripheral</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#data--file-operations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Data / File Operations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#record-readwrite" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Record Read/Write</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#post--post-to-other-terminal" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@POST — Post to Other Terminal</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#readkey--license-key-check" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">@READKEY — License Key Check</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#report-accumulator-commands" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Report Accumulator Commands</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptclrvarname" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTCLR(varname)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptttlexpressionformat" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTTTL(expression,format)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rptsetvarnamevalue" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">@RPTSET(varname,value)</span> </a>  </li> </ul>  </li> </ul> </nav></starlight-toc><script type="module" src="/sqi-docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.CKWWgpjV.js"></script></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="en" dir="ltr">    <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">@EXEC Operations</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content"> <p>The <code dir="auto">@EXEC()</code> command dispatches POS operations: running functions, displaying messages, executing scripts, controlling peripherals, and managing transactions. The <code dir="auto">@TOOLS()</code> command provides utility functions for parameter parsing, encoding, receipts, and validation.</p>
+<aside aria-label="Note" class="starlight-aside starlight-aside--note"> <p class="starlight-aside__title" aria-hidden="true"> <svg aria-hidden="true" class="starlight-aside__icon astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 11a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0v-4a1 1 0 0 0-1-1Zm.38-3.92a1 1 0 0 0-.76 0 1 1 0 0 0-.33.21 1.15 1.15 0 0 0-.21.33 1 1 0 0 0 .21 1.09c.097.088.209.16.33.21A1 1 0 0 0 13 8a1.05 1.05 0 0 0-.29-.71 1 1 0 0 0-.33-.21ZM12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16.001A8 8 0 0 1 12 20Z"/></svg> Note </p> <div class="starlight-aside__content"> <p>All <code dir="auto">@EXEC</code> and <code dir="auto">@TOOLS</code> operations are no-ops in the browser REPL. They require the full POS runtime environment. This page documents their syntax and production behavior.</p> </div> </aside>
+<hr>
+<h2 id="exec--command-execution">@EXEC — Command Execution</h2>
+<h3 id="fct--function-code-dispatch">FCT — Function Code Dispatch</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(FCT=code)</code></p>
+<p>Executes a POS function by numeric code. The system checks for registered SQI hook scripts that run on specific function+event combinations.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Code</th><th>Description</th></tr></thead><tbody><tr><td>30</td><td>Void/cancel transaction</td></tr><tr><td>104</td><td>Function key</td></tr><tr><td>119</td><td>WIC tender</td></tr><tr><td>200-270</td><td>Payment functions (tender types)</td></tr><tr><td>307</td><td>Process entry (item lookup)</td></tr><tr><td>330</td><td>Header operation</td></tr><tr><td>350</td><td>Display during processing</td></tr><tr><td>380</td><td>Open transaction by number</td></tr><tr><td>385</td><td>Transaction close</td></tr><tr><td>710</td><td>Third-party payment initiation</td></tr><tr><td>720</td><td>Subtotal</td></tr><tr><td>725</td><td>Print sub-total</td></tr><tr><td>727</td><td>Payment complete</td></tr><tr><td>730</td><td>Print receipt</td></tr><tr><td>740</td><td>Payment finalize</td></tr></tbody></table>
+<div class="expressive-code"><link rel="stylesheet" href="/sqi-docs/_astro/ec.tm3va.css"><script type="module" src="/sqi-docs/_astro/ec.8zarh.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(FCT</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#F78C6C;--1:#AA0982">720</span><span style="--0:#D6DEEB;--1:#403F53">);   </span><span style="--0:#919F9F;--1:#5F636F">-- trigger subtotal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(FCT</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#F78C6C;--1:#AA0982">730</span><span style="--0:#D6DEEB;--1:#403F53">);   </span><span style="--0:#919F9F;--1:#5F636F">-- print receipt</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(FCT</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#F78C6C;--1:#AA0982">307</span><span style="--0:#D6DEEB;--1:#403F53">);   </span><span style="--0:#919F9F;--1:#5F636F">-- process entry / item lookup</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(FCT=720);   -- trigger subtotal@EXEC(FCT=730);   -- print receipt@EXEC(FCT=307);   -- process entry / item lookup"><div></div></button></div></figure></div>
+<h3 id="msg--message-display">MSG — Message Display</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(MSG=text)</code></p>
+<p>The first character of the message text controls the display behavior:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Prefix</th><th>Behavior</th></tr></thead><tbody><tr><td><code dir="auto">!</code></td><td><strong>Error</strong> — blocking dialog, requires acknowledgment</td></tr><tr><td><code dir="auto">~</code></td><td><strong>Timed info</strong> — non-blocking notification, records timestamp</td></tr><tr><td><code dir="auto">?</code></td><td><strong>Query</strong> — interactive dialog, reads MSG_TYPE/MSG_TAG params</td></tr><tr><td><code dir="auto">#</code></td><td><strong>Log</strong> — writes to script log (debug only, no display)</td></tr><tr><td><code dir="auto">+</code></td><td><strong>Extended</strong> — formatted popup with MSG_URL, MSG_LVL, MSG_ID</td></tr><tr><td><code dir="auto">^</code></td><td><strong>Sound</strong> — plays WAV file via Windows PlaySoundA</td></tr><tr><td><code dir="auto">*</code></td><td><strong>External display</strong> — sends to external display device</td></tr><tr><td><code dir="auto">_</code></td><td><strong>Clear</strong> — clears message area</td></tr><tr><td><em>(space)</em></td><td><strong>Clear</strong> — clears message area</td></tr><tr><td><em>(plain)</em></td><td><strong>Standard</strong> — displays text in message area</td></tr><tr><td><em>(empty)</em></td><td><strong>Clear</strong> — clears message display</td></tr><tr><td><code dir="auto">text?</code></td><td><strong>Trailing query</strong> — text ending with <code dir="auto">?</code> is treated as query</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(MSG</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">!Payment declined);         </span><span style="--0:#919F9F;--1:#5F636F">-- error dialog</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(MSG</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">~Processing complete);       </span><span style="--0:#919F9F;--1:#5F636F">-- timed notification</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(MSG</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">?</span><span style="--0:#C792EA;--1:#8844AE">Continue</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">with</span><span style="--0:#D6DEEB;--1:#403F53"> void?);       </span><span style="--0:#919F9F;--1:#5F636F">-- interactive query</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(MSG</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">#Debug: step reached);       </span><span style="--0:#919F9F;--1:#5F636F">-- log entry (no display)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(MSG</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">_);                          </span><span style="--0:#919F9F;--1:#5F636F">-- clear message area</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(MSG=!Payment declined);         -- error dialog@EXEC(MSG=~Processing complete);       -- timed notification@EXEC(MSG=?Continue with void?);       -- interactive query@EXEC(MSG=#Debug: step reached);       -- log entry (no display)@EXEC(MSG=_);                          -- clear message area"><div></div></button></div></figure></div>
+<h3 id="sqi--execute-script">SQI — Execute Script</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(SQI=filename)</code></p>
+<p>Execute another SQI script file.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(SQI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#82AAFF;--1:#3B61B0">Bank_process</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">sqi</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@EXEC(SQI</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#82AAFF;--1:#3B61B0">trs_pos_validate</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">sqi</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@EXEC(SQI=Bank_process.sqi);@EXEC(SQI=trs_pos_validate.sqi);"><div></div></button></div></figure></div>
+<h3 id="xch--exchange-commands">XCH — Exchange Commands</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@EXEC(XCH=command)</code></p>
+<p>Exchange and communication operations. The command string selects the operation type.</p>
+<h4 id="file-operations">File Operations</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">DEL</code></td><td>Delete file (uses SRC_PATH param)</td></tr><tr><td><code dir="auto">COPYFILE</code></td><td>Copy file</td></tr><tr><td><code dir="auto">MOVEFILE</code></td><td>Move file</td></tr><tr><td><code dir="auto">MERGE</code></td><td>Merge files</td></tr><tr><td><code dir="auto">ZIPEXE</code></td><td>ZIP compression</td></tr><tr><td><code dir="auto">FTPEXE</code></td><td>FTP transfer</td></tr><tr><td><code dir="auto">RECV</code></td><td>Receive/download (FTP)</td></tr><tr><td><code dir="auto">SENDMAIL</code></td><td>Send email</td></tr></tbody></table>
+<h4 id="payment--card">Payment / Card</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">PAYMSR</code></td><td>Payment magnetic stripe reader read</td></tr><tr><td><code dir="auto">PAYSIGN</code></td><td>Signature capture (uses /PAYOUTPUT=)</td></tr><tr><td><code dir="auto">PAYSMART</code></td><td>Smart card operations (sub-tasks via /PAYTASK=)</td></tr><tr><td><code dir="auto">PAYHANDSHAKE</code></td><td>Payment handshake</td></tr><tr><td><code dir="auto">PAYCOMPLETEAUTO</code></td><td>Auto-complete payment</td></tr><tr><td><code dir="auto">GIFT</code></td><td>Gift card operation</td></tr></tbody></table>
+<p><strong>PAYSMART sub-tasks</strong> (via <code dir="auto">/PAYTASK=</code>):
+<code dir="auto">WICCARD</code>, <code dir="auto">WICPIN</code>, <code dir="auto">CONFIRMPROMPT</code>, <code dir="auto">SETMEM</code>, <code dir="auto">CONFIRM</code>, <code dir="auto">ABORT</code>, <code dir="auto">RESTOREMEM</code></p>
+<h4 id="scanner--peripheral">Scanner / Peripheral</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SCANSIGN</code></td><td>Scan signature</td></tr><tr><td><code dir="auto">SCANCARD</code></td><td>Scan card</td></tr><tr><td><code dir="auto">SCANDOC</code></td><td>Scan document</td></tr><tr><td><code dir="auto">DATAENTRY</code></td><td>Customer data entry</td></tr><tr><td><code dir="auto">MSRSWIPE</code></td><td>Magnetic stripe reader swipe</td></tr></tbody></table>
+<h3 id="other-exec-parameters">Other @EXEC Parameters</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CGI=name</code></td><td>Execute CGI/HTML template</td></tr><tr><td><code dir="auto">HTT=name</code></td><td>Execute HTML template in form window</td></tr><tr><td><code dir="auto">SQT=value</code></td><td>Execute SQT operation</td></tr><tr><td><code dir="auto">INI=section</code></td><td>Load INI configuration section</td></tr><tr><td><code dir="auto">TASK=name</code></td><td>Execute named task</td></tr><tr><td><code dir="auto">BYE=mode</code></td><td>Exit mode (REC, INV, EXIT)</td></tr><tr><td><code dir="auto">CN=PUBLIC</code></td><td>Connection name</td></tr></tbody></table>
+<h3 id="exec--empty-call">@EXEC() — Empty Call</h3>
+<p>When called with no arguments, executes using current parameter store values (MSG or other pre-set params).</p>
+<hr>
+<h2 id="exec-sub-commands-direct-dispatch">@EXEC Sub-commands (Direct Dispatch)</h2>
+<p>When the first argument is not a <code dir="auto">KEY=VALUE</code> pair, it is treated as a direct sub-command name.</p>
+<h3 id="table--database">Table / Database</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">TABLEALL</code></td><td>Reload all tables</td></tr><tr><td><code dir="auto">TABLESYS</code></td><td>Reload system tables</td></tr><tr><td><code dir="auto">TABLEAUX</code></td><td>Reload auxiliary tables</td></tr><tr><td><code dir="auto">TABLERUN</code></td><td>Reload runtime tables</td></tr><tr><td><code dir="auto">MAGICTABLE</code></td><td>Magic table operation</td></tr></tbody></table>
+<h3 id="display--ui">Display / UI</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CAMERA</code></td><td>Camera control (sub: BITMAP, START)</td></tr><tr><td><code dir="auto">PRINTBMP</code></td><td>Print bitmap</td></tr><tr><td><code dir="auto">BODYBLANK</code></td><td>Blank body area</td></tr><tr><td><code dir="auto">TOUCH1000</code></td><td>Touch screen 1000-button mode</td></tr><tr><td><code dir="auto">MODAL</code></td><td>Modal form display</td></tr><tr><td><code dir="auto">NEWFORMIE</code></td><td>New IE form</td></tr></tbody></table>
+<h3 id="form-buttons">Form Buttons</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">FBTNHDR</code></td><td>Header button panel</td></tr><tr><td><code dir="auto">FBTNMEN</code></td><td>Menu button panel</td></tr><tr><td><code dir="auto">FBTNSUB</code></td><td>Sub button panel</td></tr><tr><td><code dir="auto">FBTNLUP</code></td><td>Lookup button panel</td></tr><tr><td><code dir="auto">FBTNCUS</code></td><td>Custom button panel</td></tr></tbody></table>
+<h3 id="logging">Logging</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">NEWLOG</code></td><td>Create new log file</td></tr><tr><td><code dir="auto">LOGEXEC</code></td><td>Log execution entry</td></tr><tr><td><code dir="auto">LOGURL</code></td><td>Log URL access</td></tr></tbody></table>
+<h3 id="transaction">Transaction</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">POINT_CREATION</code></td><td>Loyalty point creation</td></tr><tr><td><code dir="auto">OFFERS</code></td><td>Offer processing</td></tr><tr><td><code dir="auto">UNCLIP</code></td><td>Unclip offer</td></tr><tr><td><code dir="auto">CLIPREG</code></td><td>Clip to register</td></tr><tr><td><code dir="auto">SUSPEND</code></td><td>Suspend transaction</td></tr><tr><td><code dir="auto">CLOSE</code></td><td>Close transaction</td></tr><tr><td><code dir="auto">OFFER_CHECK</code></td><td>Check offers</td></tr><tr><td><code dir="auto">COUPON_CHECK</code></td><td>Check coupons</td></tr></tbody></table>
+<h3 id="connection--session">Connection / Session</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">STANDBYALL</code></td><td>All connections standby</td></tr><tr><td><code dir="auto">STANDBYDONE</code></td><td>Standby complete</td></tr><tr><td><code dir="auto">SESSIONINFO</code></td><td>Session information</td></tr><tr><td><code dir="auto">MONITOR</code></td><td>Monitor mode</td></tr></tbody></table>
+<h3 id="device--peripheral">Device / Peripheral</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">DEVDIRECT</code></td><td>Direct device access</td></tr><tr><td><code dir="auto">PERIPHERAL</code></td><td>Peripheral control</td></tr><tr><td><code dir="auto">MSRSWIPE</code></td><td>Magnetic stripe reader swipe</td></tr><tr><td><code dir="auto">PINENTER</code></td><td>PIN entry</td></tr><tr><td><code dir="auto">PADENTER</code></td><td>PIN pad enter</td></tr><tr><td><code dir="auto">PADUSER</code></td><td>PIN pad user operation</td></tr><tr><td><code dir="auto">SCANSIGN</code></td><td>Scan signature</td></tr><tr><td><code dir="auto">SCANDOC</code></td><td>Scan document</td></tr><tr><td><code dir="auto">SCANCARD</code></td><td>Scan card</td></tr><tr><td><code dir="auto">SCANCAPTURE</code></td><td>Scan capture</td></tr><tr><td><code dir="auto">SCANCODE</code></td><td>Scan barcode</td></tr><tr><td><code dir="auto">MICREJECT</code></td><td>MICR reject</td></tr><tr><td><code dir="auto">DISPENSER</code></td><td>Cash dispenser</td></tr><tr><td><code dir="auto">MOBILEKEYBOARD_ON</code></td><td>Enable mobile keyboard</td></tr><tr><td><code dir="auto">MOBILEKEYBOARD_OFF</code></td><td>Disable mobile keyboard</td></tr></tbody></table>
+<h3 id="payment">Payment</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">PAYUTIL</code></td><td>Payment utility</td></tr><tr><td><code dir="auto">PAYCOMPLETEAUTO</code></td><td>Auto-complete payment</td></tr><tr><td><code dir="auto">PAYCOMPLETEEXEC</code></td><td>Execute payment completion</td></tr><tr><td><code dir="auto">PAYRESET</code></td><td>Reset payment</td></tr><tr><td><code dir="auto">PAYUSER</code></td><td>Payment user operation</td></tr><tr><td><code dir="auto">PAYUSP</code></td><td>Payment USP</td></tr><tr><td><code dir="auto">PUMPTRANSCANCEL</code></td><td>Cancel pump transaction</td></tr></tbody></table>
+<h3 id="gas-station">Gas Station</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">GASPUMPLOCK</code></td><td>Lock gas pump</td></tr><tr><td><code dir="auto">GASCASHSTACK</code></td><td>Gas cash stacker</td></tr><tr><td><code dir="auto">GASCASHEJECT</code></td><td>Gas cash eject</td></tr></tbody></table>
+<h3 id="third-party-integration">Third-Party Integration</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SEICO-UTIL</code></td><td>Seico utility</td></tr><tr><td><code dir="auto">SEICO-POINT</code></td><td>Seico points</td></tr><tr><td><code dir="auto">CATALINA-CUST</code></td><td>Catalina customer</td></tr><tr><td><code dir="auto">WEBSOCKET</code></td><td>WebSocket operation</td></tr></tbody></table>
+<hr>
+<h2 id="tools--utility-commands">@TOOLS — Utility Commands</h2>
+<p><strong>Syntax:</strong> <code dir="auto">@TOOLS(sub_command, args...)</code></p>
+<p>A large utility dispatcher (18,609 bytes) with sub-commands grouped by function.</p>
+<h3 id="parameter-parsing">Parameter Parsing</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">PARAM,,n,string</code></td><td>Extract Nth parameter from delimited string</td></tr><tr><td><code dir="auto">PARAMTOLINE</code></td><td>Convert params to single line</td></tr><tr><td><code dir="auto">PARAMTONODES</code></td><td>Convert params to XML nodes</td></tr><tr><td><code dir="auto">PARAMTOINPUT</code></td><td>Convert params to input format</td></tr><tr><td><code dir="auto">PARAMTOCOMA</code></td><td>Convert params to CSV</td></tr><tr><td><code dir="auto">PARAMTOURL</code></td><td>Convert params to URL encoding</td></tr><tr><td><code dir="auto">COMATOURL</code></td><td>CSV to URL format</td></tr><tr><td><code dir="auto">COMATOINPUT</code></td><td>CSV to input format</td></tr><tr><td><code dir="auto">PARAMINBRAKET</code></td><td>Extract param in brackets</td></tr><tr><td><code dir="auto">PARAMCOPYVALUE</code></td><td>Copy param value</td></tr><tr><td><code dir="auto">PARAMPURGE</code></td><td>Purge param</td></tr><tr><td><code dir="auto">PARAMSECURE</code></td><td>Secure param (mask sensitive data)</td></tr></tbody></table>
+<h3 id="xml--json">XML / JSON</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">XMLSQL</code></td><td>XML SQL query (types: D=Date, I=Int, N/M=Numeric)</td></tr><tr><td><code dir="auto">REPORT_JSON</code></td><td>Report to JSON conversion</td></tr><tr><td><code dir="auto">XML_VALUE</code></td><td>Extract XML value</td></tr><tr><td><code dir="auto">XML_NODE</code></td><td>Extract XML node</td></tr></tbody></table>
+<h3 id="receipt--print">Receipt / Print</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">RCT_LINE</code></td><td>Receipt line</td></tr><tr><td><code dir="auto">RCT_REVERSE</code></td><td>Reverse print</td></tr><tr><td><code dir="auto">RCT_QTY</code></td><td>Receipt quantity</td></tr><tr><td><code dir="auto">RCT_AMT</code></td><td>Receipt amount</td></tr><tr><td><code dir="auto">RCT_FLAG</code></td><td>Receipt flag</td></tr><tr><td><code dir="auto">RCT_BMP</code> / <code dir="auto">RCT_BMPS</code></td><td>Receipt bitmap (scaled)</td></tr><tr><td><code dir="auto">RCT_RASTER</code></td><td>Receipt raster image</td></tr><tr><td><code dir="auto">RCT_BARCODE</code></td><td>Receipt barcode</td></tr><tr><td><code dir="auto">RCT_HTML</code></td><td>Receipt HTML</td></tr><tr><td><code dir="auto">RCT_PUMP</code></td><td>Receipt pump data</td></tr><tr><td><code dir="auto">RCT_CARD</code></td><td>Receipt card data</td></tr><tr><td><code dir="auto">RCT_EFT</code></td><td>Receipt EFT data</td></tr><tr><td><code dir="auto">SLP_LINESPACING</code></td><td>Slip line spacing</td></tr><tr><td><code dir="auto">PRINT</code></td><td>Print command</td></tr><tr><td><code dir="auto">LABELPRINT</code></td><td>Label print</td></tr><tr><td><code dir="auto">LABELPARAM</code></td><td>Label parameters</td></tr><tr><td><code dir="auto">BIZERBA_LABEL</code></td><td>Bizerba scale label</td></tr></tbody></table>
+<h3 id="encoding--security">Encoding / Security</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">ENCODE</code> / <code dir="auto">DECODE</code></td><td>String encode/decode</td></tr><tr><td><code dir="auto">ENCODE_PARAM</code></td><td>Encode parameter</td></tr><tr><td><code dir="auto">DECODE_DATA</code></td><td>Decode data</td></tr><tr><td><code dir="auto">ENCODE64</code> / <code dir="auto">DECODE64</code></td><td>Base64 encode/decode</td></tr><tr><td><code dir="auto">FILE64</code></td><td>File to/from Base64</td></tr><tr><td><code dir="auto">SECUREKEY</code></td><td>Secure key</td></tr><tr><td><code dir="auto">SETSECURE</code></td><td>Set secure data</td></tr><tr><td><code dir="auto">SECUREDATA</code></td><td>Secure data operations</td></tr><tr><td><code dir="auto">SECUREEXEC</code></td><td>Secure file execution</td></tr><tr><td><code dir="auto">SECURELOGIN</code></td><td>Secure login</td></tr><tr><td><code dir="auto">CERTIFICATE</code></td><td>Certificate operations</td></tr><tr><td><code dir="auto">HASHDATA</code></td><td>Hash data</td></tr><tr><td><code dir="auto">HASHDATA_PARAM</code></td><td>Hash data with params</td></tr><tr><td><code dir="auto">HMAC_SHA1</code></td><td>HMAC-SHA1</td></tr><tr><td><code dir="auto">HMAC_SHA256</code></td><td>HMAC-SHA256</td></tr><tr><td><code dir="auto">SETKEY</code></td><td>Set encryption key</td></tr><tr><td><code dir="auto">MINUTETOKENCHECK</code></td><td>Minute-based token check</td></tr></tbody></table>
+<h3 id="dialog--ui">Dialog / UI</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">MESSAGEDLG,'text',,buttons</code></td><td>Message dialog with button options</td></tr><tr><td><code dir="auto">MESSAGEURGENT</code></td><td>Urgent message</td></tr><tr><td><code dir="auto">MESSAGESEND</code></td><td>Send message</td></tr><tr><td><code dir="auto">POPUP</code></td><td>Popup dialog</td></tr><tr><td><code dir="auto">SHOWGRID</code></td><td>Show grid/table</td></tr><tr><td><code dir="auto">EVENTPOPUP</code></td><td>Event-triggered popup</td></tr><tr><td><code dir="auto">EVENTHINT</code></td><td>Event hint</td></tr><tr><td><code dir="auto">POPUPDEFAULT</code></td><td>Popup with default selection</td></tr><tr><td><code dir="auto">MOBILEKEYBOARD</code></td><td>Mobile keyboard</td></tr><tr><td><code dir="auto">VALIDATEFIELD</code></td><td>Field validation</td></tr></tbody></table>
+<h3 id="validation--error">Validation / Error</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CHECKPRM</code></td><td>Check permission</td></tr><tr><td><code dir="auto">RAISEERROR</code></td><td>Raise error (sub-types below)</td></tr><tr><td><code dir="auto">RIGHTS</code></td><td>Check rights/permissions</td></tr><tr><td><code dir="auto">CHECKNUM</code></td><td>Check numeric value</td></tr><tr><td><code dir="auto">SQLLIKE</code></td><td>SQL LIKE pattern matching</td></tr></tbody></table>
+<p><strong>RAISEERROR sub-types:</strong> <code dir="auto">USERLEVEL</code>, <code dir="auto">NOTINTABLE</code>, <code dir="auto">INVALIDENTRY</code>, <code dir="auto">INVALIDDATA</code></p>
+<h3 id="wic-limits">WIC Limits</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">LIMIT_CLEAR</code></td><td>Clear WIC limits for state</td></tr><tr><td><code dir="auto">LIMIT_LOAD</code></td><td>Load WIC limits</td></tr><tr><td><code dir="auto">LIMIT_SAVE</code></td><td>Save WIC limits</td></tr><tr><td><code dir="auto">LIMIT_TOTAL</code></td><td>Total WIC limits</td></tr><tr><td><code dir="auto">LIMIT_ABORT</code></td><td>Abort WIC limit operation</td></tr></tbody></table>
+<h3 id="calculation">Calculation</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CALCDATE</code></td><td>Calculate date expression</td></tr><tr><td><code dir="auto">DATED_PRICE</code></td><td>Dated price lookup</td></tr><tr><td><code dir="auto">DATED_COST</code></td><td>Dated cost lookup</td></tr><tr><td><code dir="auto">DATED_COUPON</code></td><td>Dated coupon lookup</td></tr></tbody></table>
+<h3 id="smart-card">Smart Card</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SMARTGET</code> / <code dir="auto">SMARTSET</code> / <code dir="auto">SMARTHOT</code></td><td>Smart card read/write/hot</td></tr><tr><td><code dir="auto">SMARTABORT</code> / <code dir="auto">SMARTVOID</code></td><td>Smart card cancel/void</td></tr><tr><td><code dir="auto">CUSTOM_DETECT</code></td><td>Custom card detection</td></tr></tbody></table>
+<h3 id="grid--metafield">Grid / MetaField</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">METGRIDPARAMIN</code></td><td>Meta grid parameter input</td></tr><tr><td><code dir="auto">METGRIDPARAMOUT</code></td><td>Meta grid parameter output</td></tr><tr><td><code dir="auto">METFLD</code></td><td>Meta field access</td></tr><tr><td><code dir="auto">METPOPCHOICES</code></td><td>Meta popup choices</td></tr><tr><td><code dir="auto">EXTFLD</code></td><td>Extension field</td></tr></tbody></table>
+<h3 id="coupon--offer">Coupon / Offer</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">AUTO_START</code></td><td>Auto-start coupon</td></tr><tr><td><code dir="auto">COUPON_APPLY</code></td><td>Apply coupon</td></tr><tr><td><code dir="auto">COUPON_DESTROY</code></td><td>Destroy coupon</td></tr><tr><td><code dir="auto">COUPON_MATCH</code></td><td>Coupon matching</td></tr><tr><td><code dir="auto">OTC_MATCH</code></td><td>OTC matching</td></tr></tbody></table>
+<h3 id="gas--peripheral">Gas / Peripheral</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">GAS_STATUS</code></td><td>Gas pump status</td></tr><tr><td><code dir="auto">PADDISPLAY</code></td><td>PIN pad display (sub: DISPLAY, DISPLAY2, DISPLAY3)</td></tr><tr><td><code dir="auto">MICR_DECODE</code></td><td>MICR check decode</td></tr><tr><td><code dir="auto">BMPGEN</code></td><td>Bitmap generation (sub: NATIVE, PACKBITS)</td></tr><tr><td><code dir="auto">BMP_BARCODE</code></td><td>Barcode bitmap</td></tr></tbody></table>
+<h3 id="data--file-operations">Data / File Operations</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">HOOKEXEC</code></td><td>Hook execution</td></tr><tr><td><code dir="auto">MODMSGEXEC</code></td><td>Modify message execution</td></tr><tr><td><code dir="auto">MAP_BACKUP</code></td><td>Map backup</td></tr><tr><td><code dir="auto">REG_BACKUP</code></td><td>Register backup</td></tr><tr><td><code dir="auto">COST_ENCODE</code></td><td>Cost encoding</td></tr><tr><td><code dir="auto">BUILD_DELV</code></td><td>Build delivery</td></tr><tr><td><code dir="auto">BUILD_DIR</code></td><td>Build directory</td></tr><tr><td><code dir="auto">BUILD_TREE</code></td><td>Build directory tree</td></tr><tr><td><code dir="auto">INSTALL_REPLACE</code></td><td>Install replacement</td></tr><tr><td><code dir="auto">INSTALL_USP</code> / <code dir="auto">BACKUP_USP</code></td><td>USP install/backup</td></tr></tbody></table>
+<h3 id="record-readwrite">Record Read/Write</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">RWPRICE</code></td><td>Read/write price</td></tr><tr><td><code dir="auto">RWVALUE</code></td><td>Read/write value</td></tr><tr><td><code dir="auto">RWCODE</code></td><td>Read/write code</td></tr><tr><td><code dir="auto">RWNUPC</code></td><td>Read/write UPC</td></tr></tbody></table>
+<hr>
+<h2 id="post--post-to-other-terminal">@POST — Post to Other Terminal</h2>
+<p><strong>Syntax:</strong> <code dir="auto">@POST(FCT=code, CN=connection)</code></p>
+<p>Posts a command asynchronously to another terminal/connection. Uses a circular buffer (200 slots) and a Windows message for IPC.</p>
+<p><strong>Behavior:</strong></p>
+<ol>
+<li>If parameter starts with <code dir="auto">"POST=1,"</code>: strips prefix, uses normal priority</li>
+<li>Otherwise: uses priority posting</li>
+<li>Acquires mutex with 20-second timeout</li>
+<li>Stores command in circular buffer</li>
+<li>Posts Windows message to trigger processing</li>
+<li>Releases mutex</li>
+</ol>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@POST(FCT</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#F78C6C;--1:#AA0982">730</span><span style="--0:#D6DEEB;--1:#403F53">,CN</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">@CNC);   </span><span style="--0:#919F9F;--1:#5F636F">-- post "print receipt" to current connection</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@POST(FCT=730,CN=@CNC);   -- post &#x22;print receipt&#x22; to current connection"><div></div></button></div></figure></div>
+<hr>
+<h2 id="readkey--license-key-check">@READKEY — License Key Check</h2>
+<p><strong>Syntax:</strong> <code dir="auto">@READKEY(position)</code> — returns <code dir="auto">"1"</code> if feature at position is licensed</p>
+<p>Reads a specific bit/position from the license key bitmap.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@FMT(CMP,@READKEY(</span><span style="--0:#F78C6C;--1:#AA0982">193</span><span style="--0:#D6DEEB;--1:#403F53">)</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#F78C6C;--1:#AA0982">1</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">feature enabled</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">feature disabled</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@FMT(CMP,@READKEY(193)=1,&#x27;feature enabled&#x27;,&#x27;feature disabled&#x27;);"><div></div></button></div></figure></div>
+<hr>
+<h2 id="report-accumulator-commands">Report Accumulator Commands</h2>
+<h3 id="rptclrvarname">@RPTCLR(varname)</h3>
+<p>Clear/reset a named report accumulator. Supports comma-separated list for clearing multiple accumulators.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@RPTCLR(WTX);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@RPTCLR(P1);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@RPTCLR(WTX);@RPTCLR(P1);"><div></div></button></div></figure></div>
+<h3 id="rptttlexpressionformat">@RPTTTL(expression,format)</h3>
+<p>Read and format a report accumulator value. Supports arithmetic expressions.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@RPTTTL(WTX,#:</span><span style="--0:#F78C6C;--1:#AA0982">2</span><span style="--0:#D6DEEB;--1:#403F53">)          </span><span style="--0:#919F9F;--1:#5F636F">-- formatted total with 2 decimals</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@RPTTTL(P1,#)             </span><span style="--0:#919F9F;--1:#5F636F">-- integer total</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@RPTTTL(WTX</span><span style="--0:#7FDBCA;--1:#096E72">-</span><span style="--0:#D6DEEB;--1:#403F53">DISC,#:</span><span style="--0:#F78C6C;--1:#AA0982">2</span><span style="--0:#D6DEEB;--1:#403F53">)     </span><span style="--0:#919F9F;--1:#5F636F">-- subtraction</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@RPTTTL(expr,,</span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53">T1)        </span><span style="--0:#919F9F;--1:#5F636F">-- store result in variable T1</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@RPTTTL(WTX,#:2)          -- formatted total with 2 decimals@RPTTTL(P1,#)             -- integer total@RPTTTL(WTX-DISC,#:2)     -- subtraction@RPTTTL(expr,,=T1)        -- store result in variable T1"><div></div></button></div></figure></div>
+<h3 id="rptsetvarnamevalue">@RPTSET(varname,value)</h3>
+<p>Set a report variable value. Supports <code dir="auto">BINARY</code> flag for binary data.</p> </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/sqi-docs/reference/dbhot/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>  <span class="astro-u2l5gyhi"> Previous <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">@dbHot Dispatch Modes</span> </span> </a> <a href="/sqi-docs/reference/fmt/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-u2l5gyhi"> Next <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">@FMT Sub-commands</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

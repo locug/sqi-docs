@@ -1,0 +1,1587 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>@dbHot Dispatch Modes | SQI Scripting Guide</title><link rel="canonical" href="https://locug.github.io/sqi-docs/reference/dbhot/"/><link rel="sitemap" href="/sqi-docs/sitemap-index.xml"/><link rel="shortcut icon" href="/sqi-docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.5.5"/><meta name="generator" content="Starlight v0.31.1"/><meta property="og:title" content="@dbHot Dispatch Modes"/><meta property="og:type" content="article"/><meta property="og:url" content="https://locug.github.io/sqi-docs/reference/dbhot/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Complete reference for all 82 @dbHot modes: datasets, INI files, hot memory, device info, and system state"/><meta property="og:site_name" content="SQI Scripting Guide"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Complete reference for all 82 @dbHot modes: datasets, INI files, hot memory, device info, and system state"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg> <svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg> <svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> </template><link rel="stylesheet" href="/sqi-docs/_astro/print.BJ0teN4y.css" media="print"><link rel="stylesheet" href="/sqi-docs/_astro/index.DkxuATM_.css">
+<style>:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}
+.card:where(.astro-v5tidmuc){--sl-card-border: var(--sl-color-purple);--sl-card-bg: var(--sl-color-purple-low);border:1px solid var(--sl-color-gray-5);background-color:var(--sl-color-black);padding:clamp(1rem,calc(.125rem + 3vw),2.5rem);flex-direction:column;gap:clamp(.5rem,calc(.125rem + 1vw),1rem)}.card:where(.astro-v5tidmuc):nth-child(4n+1){--sl-card-border: var(--sl-color-orange);--sl-card-bg: var(--sl-color-orange-low)}.card:where(.astro-v5tidmuc):nth-child(4n+3){--sl-card-border: var(--sl-color-green);--sl-card-bg: var(--sl-color-green-low)}.card:where(.astro-v5tidmuc):nth-child(4n+4){--sl-card-border: var(--sl-color-red);--sl-card-bg: var(--sl-color-red-low)}.card:where(.astro-v5tidmuc):nth-child(4n+5){--sl-card-border: var(--sl-color-blue);--sl-card-bg: var(--sl-color-blue-low)}.title:where(.astro-v5tidmuc){font-weight:600;font-size:var(--sl-text-h4);color:var(--sl-color-white);line-height:var(--sl-line-height-headings);gap:1rem;align-items:center}.card:where(.astro-v5tidmuc) .icon:where(.astro-v5tidmuc){border:1px solid var(--sl-card-border);background-color:var(--sl-card-bg);padding:.2em;border-radius:.25rem}.card:where(.astro-v5tidmuc) .body:where(.astro-v5tidmuc){margin:0;font-size:clamp(var(--sl-text-sm),calc(.5rem + 1vw),var(--sl-text-body))}
+.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}
+svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}
+.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}
+.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}
+</style><script type="module" src="/sqi-docs/_astro/page.7qqag-5g.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Skip to content</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header sl-flex astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/sqi-docs/" class="site-title sl-flex astro-m46x6ez3">  <span class="astro-m46x6ez3" translate="no"> SQI Scripting Guide </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Search&#34;}"> <button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg>  <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Search</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Search" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Cancel </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/sqi-docs/_astro/Search.astro_astro_type_script_index_0_lang.BsEa3Guk.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Main"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg>  </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="13q9ia1" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/sqi-docs/" aria-current="false" class="large astro-3ii7xxms"> <span class="astro-3ii7xxms">Home</span>  </a> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Tutorial: How It Works</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/01-how-it-works/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">How SQI Scripting Works</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/02-the-pipeline/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">The Processing Pipeline</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/03-text-is-everything/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Text Is Everything</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/04-innermost-first/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Innermost First Evaluation</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/05-branch-delimiter/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">The Branch Delimiter</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/tutorial/06-registered-symbols/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Registered Symbols &amp; Variables</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Patterns</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/01-parameter-store/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Parameter Store</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/02-conditional-branching/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Conditional Branching</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/03-string-operations/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: String Operations</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/04-database-lookups/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Database Lookups</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/05-external-execution/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: External Execution</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/06-date-formatting/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Date Formatting</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/07-existence-checks/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Existence Checks</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/08-accumulation/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Accumulation</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/09-message-display/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Message Display</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/patterns/10-report-totals/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pattern: Report Totals</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Reference</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/sqi-docs/reference/commands/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Command Reference</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/reference/dbhot/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">@dbHot Dispatch Modes</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/reference/exec/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">@EXEC Operations</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/reference/fmt/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">@FMT Sub-commands</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/reference/preprocessor/" aria-current="false" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Preprocessor Variables</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <a href="/sqi-docs/sandbox/" aria-current="false" class="large astro-3ii7xxms"> <span class="astro-3ii7xxms">Sandbox</span>  </a> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="sl-flex social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><div class="toggle sl-flex astro-doynk5tl">On this page<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </div><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#dataset-access-modes-11-16" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Dataset Access (modes 11-16)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#table-record-fallback" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Table Record Fallback</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#total--find-modes-17-18-23-24-28" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Total / Find Modes (17-18, 23-24, 28)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sal_ttl_find" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SAL_TTL_FIND</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#hot-memory-65-hot_mem" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Hot Memory (65: HOT_MEM)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#transaction-state" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Transaction State</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#transaction-state-set" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Transaction State (set)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#user--session-state" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">User / Session State</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#client-clt-variables" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Client (CLT) Variables</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#coupon--offer-variables" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Coupon / Offer Variables</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#discount--totals-variables" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Discount / Totals Variables</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#other-clt-variables" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Other CLT Variables</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#invoice--receiving-state" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Invoice / Receiving State</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#local-store-values" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Local Store Values</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#report-queries" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Report Queries</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#hot-wizard-73-hot_wiz" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Hot Wizard (73: HOT_WIZ)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#ini-file-access-41-ini" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">INI File Access (41: INI)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#configuration-76-config" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Configuration (76: CONFIG)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#device-access-77-device" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Device Access (77: DEVICE)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#peripheral-status-79-peripheral" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Peripheral Status (79: PERIPHERAL)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#file-operations-42-findfirst" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">File Operations (42: FINDFIRST)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#clock--session-26-clk" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Clock / Session (26: CLK)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#register-operations-6-reg-46-48-var-57-reggen-64-regset" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Register Operations (6: REG, 46-48: VAR*, 57: REGGEN, 64: REGSET)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#reg--readwrite-register-fields" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">REG — Read/Write Register Fields</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#varset--varget--varreset" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">VARSET / VARGET / VARRESET</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#reggen--sequence-numbers" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">REGGEN — Sequence Numbers</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#regset--create-register-field" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">REGSET — Create Register Field</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#hot-index-21-hot_idx" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Hot Index (21: HOT_IDX)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#recalculate-29-recalculate" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Recalculate (29: RECALCULATE)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#mssql-operations-78-mssql" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">MSSQL Operations (78: MSSQL)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#connection--system-info" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Connection / System Info</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#user--permission" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">User / Permission</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#registration--license-31-39-register_" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Registration / License (31-39: REGISTER_*)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#offer--coupon-9-offer" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Offer / Coupon (9: OFFER)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#other-modes" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Other Modes</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#complete-mode-table" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Complete Mode Table</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc><script type="module" src="/sqi-docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C181hMzK.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#dataset-access-modes-11-16" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Dataset Access (modes 11-16)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#table-record-fallback" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Table Record Fallback</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#total--find-modes-17-18-23-24-28" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Total / Find Modes (17-18, 23-24, 28)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sal_ttl_find" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SAL_TTL_FIND</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#hot-memory-65-hot_mem" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Hot Memory (65: HOT_MEM)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#transaction-state" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Transaction State</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#transaction-state-set" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Transaction State (set)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#user--session-state" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">User / Session State</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#client-clt-variables" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Client (CLT) Variables</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#coupon--offer-variables" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Coupon / Offer Variables</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#discount--totals-variables" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Discount / Totals Variables</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#other-clt-variables" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Other CLT Variables</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#invoice--receiving-state" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Invoice / Receiving State</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#local-store-values" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Local Store Values</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#report-queries" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Report Queries</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#hot-wizard-73-hot_wiz" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Hot Wizard (73: HOT_WIZ)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#ini-file-access-41-ini" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">INI File Access (41: INI)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#configuration-76-config" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Configuration (76: CONFIG)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#device-access-77-device" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Device Access (77: DEVICE)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#peripheral-status-79-peripheral" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Peripheral Status (79: PERIPHERAL)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#file-operations-42-findfirst" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">File Operations (42: FINDFIRST)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#clock--session-26-clk" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Clock / Session (26: CLK)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#register-operations-6-reg-46-48-var-57-reggen-64-regset" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Register Operations (6: REG, 46-48: VAR*, 57: REGGEN, 64: REGSET)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#reg--readwrite-register-fields" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">REG — Read/Write Register Fields</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#varset--varget--varreset" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">VARSET / VARGET / VARRESET</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#reggen--sequence-numbers" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">REGGEN — Sequence Numbers</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#regset--create-register-field" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">REGSET — Create Register Field</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#hot-index-21-hot_idx" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Hot Index (21: HOT_IDX)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#recalculate-29-recalculate" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Recalculate (29: RECALCULATE)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#mssql-operations-78-mssql" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">MSSQL Operations (78: MSSQL)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#connection--system-info" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Connection / System Info</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#user--permission" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">User / Permission</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#registration--license-31-39-register_" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Registration / License (31-39: REGISTER_*)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#offer--coupon-9-offer" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Offer / Coupon (9: OFFER)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#other-modes" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Other Modes</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#complete-mode-table" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Complete Mode Table</span> </a>  </li> </ul> </nav></starlight-toc><script type="module" src="/sqi-docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.CKWWgpjV.js"></script></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="en" dir="ltr">    <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">@dbHot Dispatch Modes</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content"> <p>The <code dir="auto">@dbHot()</code> command is the primary database and system state access command. It dispatches to <strong>82 named modes</strong> based on its first argument, providing access to datasets, INI files, in-memory state, device info, configuration, and more.</p>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(MODE, arg1 [, arg2 [, arg3 [, arg4]]])</code></p>
+<aside aria-label="Note" class="starlight-aside starlight-aside--note"> <p class="starlight-aside__title" aria-hidden="true"> <svg aria-hidden="true" class="starlight-aside__icon astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 11a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0v-4a1 1 0 0 0-1-1Zm.38-3.92a1 1 0 0 0-.76 0 1 1 0 0 0-.33.21 1.15 1.15 0 0 0-.21.33 1 1 0 0 0 .21 1.09c.097.088.209.16.33.21A1 1 0 0 0 13 8a1.05 1.05 0 0 0-.29-.71 1 1 0 0 0-.33-.21ZM12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16.001A8 8 0 0 1 12 20Z"/></svg> Note </p> <div class="starlight-aside__content"> <p>All <code dir="auto">@dbHot</code> modes return empty strings or mock data in the browser REPL. This page documents what each mode does in the production POS environment.</p> </div> </aside>
+<hr>
+<h2 id="dataset-access-modes-11-16">Dataset Access (modes 11-16)</h2>
+<p>These modes read fields from the currently active dataset records. They all use the same generic field reader with the appropriate dataset pointer.</p>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(DATASET, field [, format])</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Code</th><th>Mode</th><th>Dataset</th><th>Description</th></tr></thead><tbody><tr><td>11</td><td><code dir="auto">SAL_REG</code></td><td>Sale register</td><td>Line items in current sale</td></tr><tr><td>12</td><td><code dir="auto">SAL_HDR</code></td><td>Sale header</td><td>Current sale header record</td></tr><tr><td>13</td><td><code dir="auto">REC_REG</code></td><td>Receiving register</td><td>Receiving line items</td></tr><tr><td>14</td><td><code dir="auto">REC_HDR</code></td><td>Receiving header</td><td>Current receiving header</td></tr><tr><td>15</td><td><code dir="auto">INV_REG</code></td><td>Inventory register</td><td>Inventory line items</td></tr><tr><td>16</td><td><code dir="auto">INV_HDR</code></td><td>Inventory header</td><td>Current inventory header</td></tr></tbody></table>
+<p><strong>Format specifiers:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Format</th><th>Meaning</th><th>Example</th></tr></thead><tbody><tr><td><code dir="auto">#</code></td><td>Numeric (integer)</td><td><code dir="auto">@dbHot(SAL_HDR,F1032,#)</code></td></tr><tr><td><code dir="auto">#:2</code></td><td>2 decimal places</td><td><code dir="auto">@dbHot(SAL_REG,F65,#:2)</code></td></tr><tr><td><code dir="auto">!0:4</code></td><td>Zero-padded to width 4</td><td><code dir="auto">@dbHot(SAL_HDR,F1032,!0:6)</code></td></tr></tbody></table>
+<div class="expressive-code"><link rel="stylesheet" href="/sqi-docs/_astro/ec.tm3va.css"><script type="module" src="/sqi-docs/_astro/ec.8zarh.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(SAL_HDR,F1032,#)    </span><span style="--0:#919F9F;--1:#5F636F">-- transaction number (numeric)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(SAL_HDR,F1067)      </span><span style="--0:#919F9F;--1:#5F636F">-- transaction status (CLOSE, OPEN)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(SAL_HDR,F1068)      </span><span style="--0:#919F9F;--1:#5F636F">-- transaction type (SALE, REFUND)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(SAL_REG,F65,#:</span><span style="--0:#F78C6C;--1:#AA0982">2</span><span style="--0:#D6DEEB;--1:#403F53">)    </span><span style="--0:#919F9F;--1:#5F636F">-- line item amount, 2 decimals</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(SAL_HDR,F1032,#)    -- transaction number (numeric)@dbHot(SAL_HDR,F1067)      -- transaction status (CLOSE, OPEN)@dbHot(SAL_HDR,F1068)      -- transaction type (SALE, REFUND)@dbHot(SAL_REG,F65,#:2)    -- line item amount, 2 decimals"><div></div></button></div></figure></div>
+<h3 id="table-record-fallback">Table Record Fallback</h3>
+<p>If the mode name is not in the dispatch table but matches a registered table name, <code dir="auto">@dbHot</code> reads from that table directly. This is how <code dir="auto">@dbHot(POS_TAB,field)</code> works.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(POS_TAB,F83)   </span><span style="--0:#919F9F;--1:#5F636F">-- open item flag from POS item table</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(POS_TAB,F83)   -- open item flag from POS item table"><div></div></button></div></figure></div>
+<p>The sub-command <code dir="auto">EXTSET</code> writes to the table instead of reading:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(POS_TAB,EXTSET,field,</span><span style="--0:#C792EA;--1:#8844AE">value</span><span style="--0:#D6DEEB;--1:#403F53">)</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(POS_TAB,EXTSET,field,value)"><div></div></button></div></figure></div>
+<hr>
+<h2 id="total--find-modes-17-18-23-24-28">Total / Find Modes (17-18, 23-24, 28)</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Code</th><th>Mode</th><th>Description</th></tr></thead><tbody><tr><td>17</td><td><code dir="auto">REC_TTL</code></td><td>Receiving totals (sub-commands: RECALC, SUMONLY, READALL)</td></tr><tr><td>18</td><td><code dir="auto">SAL_TTL</code></td><td>Sale totals</td></tr><tr><td>23</td><td><code dir="auto">SAL_TTL_FIND</code></td><td>Find sale total by code</td></tr><tr><td>24</td><td><code dir="auto">SAL_REG_FIND</code></td><td>Find sale register entry</td></tr><tr><td>28</td><td><code dir="auto">REC_TTL_FIND</code></td><td>Find receiving total by code</td></tr></tbody></table>
+<h3 id="sal_ttl_find">SAL_TTL_FIND</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(SAL_TTL_FIND, code, field [, format [, reportvar]])</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Arg</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">code</code></td><td>Total code (integer: 22, 26, 30, 34, 90, 92, etc.)</td></tr><tr><td><code dir="auto">field</code></td><td>Field name (F65 = amount, F1039 = description)</td></tr><tr><td><code dir="auto">format</code></td><td>Optional format spec</td></tr><tr><td><code dir="auto">reportvar</code></td><td>Optional report accumulator variable name</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(SAL_TTL_FIND,</span><span style="--0:#F78C6C;--1:#AA0982">22</span><span style="--0:#D6DEEB;--1:#403F53">,F65,,WTX)   </span><span style="--0:#919F9F;--1:#5F636F">-- total code 22 amount, add to WTX accumulator</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(SAL_TTL_FIND,</span><span style="--0:#F78C6C;--1:#AA0982">92</span><span style="--0:#D6DEEB;--1:#403F53">,F65,#:</span><span style="--0:#F78C6C;--1:#AA0982">2</span><span style="--0:#D6DEEB;--1:#403F53">)    </span><span style="--0:#919F9F;--1:#5F636F">-- total code 92, formatted to 2 decimals</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(SAL_TTL_FIND,22,F65,,WTX)   -- total code 22 amount, add to WTX accumulator@dbHot(SAL_TTL_FIND,92,F65,#:2)    -- total code 92, formatted to 2 decimals"><div></div></button></div></figure></div>
+<hr>
+<h2 id="hot-memory-65-hot_mem">Hot Memory (65: HOT_MEM)</h2>
+<p>In-memory POS state access. Reads from a large variable resolver with 48+ named fields.</p>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(HOT_MEM, variable_name)</code></p>
+<h3 id="transaction-state">Transaction State</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">FUNCTION</code></td><td>Current POS function code</td></tr><tr><td><code dir="auto">TRSMODE</code></td><td>Transaction mode</td></tr><tr><td><code dir="auto">TRSSTATE</code></td><td>Transaction state</td></tr><tr><td><code dir="auto">TRSSTEP</code></td><td>Transaction step (2 = started)</td></tr><tr><td><code dir="auto">TRSPROMPT</code></td><td>Transaction prompt</td></tr><tr><td><code dir="auto">RECEIPTSTATUS</code></td><td>Receipt present status</td></tr></tbody></table>
+<h3 id="transaction-state-set">Transaction State (set)</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">TRSRECEIPTCOPY(n)</code></td><td>Set receipt copy count</td></tr><tr><td><code dir="auto">TRSINVOICECOPY(n)</code></td><td>Set invoice copy count</td></tr></tbody></table>
+<h3 id="user--session-state">User / Session State</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">LASTMSG</code></td><td>Last displayed message</td></tr><tr><td><code dir="auto">LASTDISPLAYMODE</code></td><td>Current display mode</td></tr><tr><td><code dir="auto">PRICELEVELBASE</code></td><td>Base price level</td></tr><tr><td><code dir="auto">HOOKINNERDEVICE</code></td><td>Inner device for hooks</td></tr><tr><td><code dir="auto">HOOKEXEC</code></td><td>Hook execution flag</td></tr><tr><td><code dir="auto">XCHPADCASHBACK</code></td><td>Cashback amount</td></tr></tbody></table>
+<h3 id="client-clt-variables">Client (CLT) Variables</h3>
+<p>These are the most commonly accessed variables, covering the current transaction state:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CLTVOIDKEY</code></td><td>Void key state</td></tr><tr><td><code dir="auto">CLTRETURNKEY</code></td><td>Return key state</td></tr><tr><td><code dir="auto">CLTRETURNMODE</code></td><td>Return mode</td></tr><tr><td><code dir="auto">CLTRETURNRENT</code></td><td>Rental return flag</td></tr><tr><td><code dir="auto">CLTSAVEAMOUNT</code></td><td>Save amount (currency)</td></tr><tr><td><code dir="auto">CLTENTRYPRICE</code></td><td>Entry price string</td></tr><tr><td><code dir="auto">CLTENTRYUNIT</code></td><td>Entry unit string</td></tr><tr><td><code dir="auto">CLTENTRYCODE</code></td><td>Entry barcode/code</td></tr><tr><td><code dir="auto">CLTENTRYWEIGHTUNIT</code></td><td>Weight unit</td></tr><tr><td><code dir="auto">CLTPROMPTMEM</code></td><td>Prompt memory state</td></tr><tr><td><code dir="auto">CLTENTRYNUMBER</code></td><td>Current entry line number</td></tr><tr><td><code dir="auto">CLTENTRYDATE</code></td><td>Entry date</td></tr><tr><td><code dir="auto">CLTENTRYQTY</code></td><td>Entry quantity</td></tr><tr><td><code dir="auto">CLTLIVEWEIGHT</code></td><td>Live weight from scale</td></tr></tbody></table>
+<h3 id="coupon--offer-variables">Coupon / Offer Variables</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CLTCOUPONMISSXML</code></td><td>Coupon miss XML data</td></tr><tr><td><code dir="auto">CLTCOUPONGIVEXML</code></td><td>Coupon give XML data</td></tr><tr><td><code dir="auto">CLTOFFERMISSXML</code></td><td>Offer miss XML data</td></tr><tr><td><code dir="auto">CLTOFFERGIVEXML</code></td><td>Offer give XML data</td></tr><tr><td><code dir="auto">CLTOFFERCLIPXML</code></td><td>Offer clip XML data</td></tr><tr><td><code dir="auto">CLTCOUPONREJECTEDTTL</code></td><td>Coupon rejected total</td></tr><tr><td><code dir="auto">CLTCOUPONREJECTED</code></td><td>Coupon rejected flag</td></tr><tr><td><code dir="auto">CLTCOUPONISSUED</code></td><td>Coupon issued flag</td></tr><tr><td><code dir="auto">CPN_MATCHCODE</code></td><td>Coupon match code</td></tr><tr><td><code dir="auto">CPN_OFFER</code></td><td>Coupon offer data</td></tr></tbody></table>
+<h3 id="discount--totals-variables">Discount / Totals Variables</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CLTDISCOUNTMARKDOWN</code></td><td>Discount markdown amount</td></tr><tr><td><code dir="auto">CLTDISCOUNTCOMPARISON</code></td><td>Discount comparison value</td></tr><tr><td><code dir="auto">CLTDISCOUNTPASSIVE</code></td><td>Passive discount total</td></tr><tr><td><code dir="auto">CLTMODIFYPRICE</code></td><td>Modified price</td></tr><tr><td><code dir="auto">CLTDISCOUNTREG</code></td><td>Discount register total</td></tr><tr><td><code dir="auto">CLTDISCOUNTGROSS</code></td><td>Gross discount</td></tr><tr><td><code dir="auto">CLTCOUPONGROSS</code></td><td>Coupon gross value</td></tr><tr><td><code dir="auto">CLTCOUPONREG</code></td><td>Coupon register total</td></tr><tr><td><code dir="auto">CLTTOTALPAID</code></td><td>Total paid</td></tr><tr><td><code dir="auto">CLTDISCOUNTTOTAL</code></td><td>Total discount</td></tr><tr><td><code dir="auto">CLTDISCOUNTTOTALIZER</code></td><td>Discount totalizer (CSV)</td></tr></tbody></table>
+<h3 id="other-clt-variables">Other CLT Variables</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CLTPOINT</code></td><td>Loyalty points</td></tr><tr><td><code dir="auto">CLTPOINTREG</code></td><td>Points register total</td></tr><tr><td><code dir="auto">CLTOVERLIMIT</code></td><td>Over-limit flag</td></tr><tr><td><code dir="auto">CLTTRAINING</code></td><td>Training mode flag</td></tr><tr><td><code dir="auto">CLTPRICEPACKAGE</code></td><td>Price package flag</td></tr><tr><td><code dir="auto">CLTWICONLY</code></td><td>WIC-only flag</td></tr><tr><td><code dir="auto">CLTWICSALE</code></td><td>WIC sale flag</td></tr><tr><td><code dir="auto">CLTLIMITLINES</code></td><td>Line limit</td></tr><tr><td><code dir="auto">CLTDONECOUPONLINK</code></td><td>Done coupon link</td></tr><tr><td><code dir="auto">CLTTOTALENVFEE</code></td><td>Total environmental fee</td></tr><tr><td><code dir="auto">CLTRECORD</code></td><td>Record number</td></tr><tr><td><code dir="auto">FSTAMP</code></td><td>Fiscal stamp</td></tr><tr><td><code dir="auto">CLTSILNAME</code></td><td>Current SIL (script) name</td></tr></tbody></table>
+<h3 id="invoice--receiving-state">Invoice / Receiving State</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">INVLOCALDATE</code></td><td>Invoice local date</td></tr><tr><td><code dir="auto">INVFILTERF04</code> / <code dir="auto">INVFILTERF27</code></td><td>Invoice filters</td></tr><tr><td><code dir="auto">INVSTATECAP</code></td><td>Invoice state caption</td></tr><tr><td><code dir="auto">RECLASTORDERDATE</code></td><td>Last receiving order date</td></tr><tr><td><code dir="auto">RECPROMPTMEM</code></td><td>Receiving prompt memory</td></tr></tbody></table>
+<h3 id="local-store-values">Local Store Values</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">CLTLOCALSTORE</code></td><td>Client local store</td></tr><tr><td><code dir="auto">MANLOCALSTORE</code></td><td>Manager local store</td></tr><tr><td><code dir="auto">AC1LOCALSTORE</code></td><td>AC1 local store</td></tr><tr><td><code dir="auto">RECLOCALSTORE</code></td><td>Receiving local store</td></tr><tr><td><code dir="auto">INVLOCALSTORE</code></td><td>Inventory local store</td></tr><tr><td><code dir="auto">TRSLOCALSTORE</code></td><td>Transaction local store</td></tr></tbody></table>
+<p>These use automatic fallback: if the terminal’s TRS mode is unset, reads from main dataset; otherwise reads from the terminal-specific field.</p>
+<h3 id="report-queries">Report Queries</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">RPT_QUERY(sql)</code></td><td>Set report query (up to 7 detail levels)</td></tr><tr><td><code dir="auto">RPT_DETAILn(sql)</code></td><td>Set specific report detail query</td></tr></tbody></table>
+<hr>
+<h2 id="hot-wizard-73-hot_wiz">Hot Wizard (73: HOT_WIZ)</h2>
+<p>Parameter passing between scripts. Uses a separate store from the main WIZGET/WIZSET store.</p>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(HOT_WIZ, sub_command, key [, value])</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Syntax</th><th>Behavior</th></tr></thead><tbody><tr><td><code dir="auto">GET</code></td><td><code dir="auto">@dbHot(HOT_WIZ,GET,key)</code></td><td>Read value by key</td></tr><tr><td><code dir="auto">CLR</code></td><td><code dir="auto">@dbHot(HOT_WIZ,CLR,key)</code></td><td>Remove key</td></tr><tr><td><code dir="auto">ISBLANK</code></td><td><code dir="auto">@dbHot(HOT_WIZ,ISBLANK,key)</code></td><td>”1” if empty/missing, “0” if has value</td></tr><tr><td><code dir="auto">RPLS</code></td><td><code dir="auto">@dbHot(HOT_WIZ,RPLS,key,value)</code></td><td>String replace (mode 0)</td></tr><tr><td><code dir="auto">RPLR</code></td><td><code dir="auto">@dbHot(HOT_WIZ,RPLR,key,value)</code></td><td>Raw replace (mode 1)</td></tr><tr><td><code dir="auto">RPLF</code></td><td><code dir="auto">@dbHot(HOT_WIZ,RPLF,key,value)</code></td><td>Float replace (mode 2)</td></tr><tr><td><code dir="auto">RPLT</code></td><td><code dir="auto">@dbHot(HOT_WIZ,RPLT,key,value)</code></td><td>Mode variant</td></tr><tr><td><code dir="auto">PARAMTOLINE</code></td><td><code dir="auto">@dbHot(HOT_WIZ,PARAMTOLINE,prefix)</code></td><td>Serialize all params to string</td></tr><tr><td><code dir="auto">LINETOPARAM</code></td><td><code dir="auto">@dbHot(HOT_WIZ,LINETOPARAM,key)</code></td><td>Deserialize string back to params</td></tr><tr><td><code dir="auto">RESET</code></td><td><code dir="auto">@dbHot(HOT_WIZ,RESET[,prefix])</code></td><td>Reset matching entries</td></tr></tbody></table>
+<p><strong>Save/restore pattern</strong> for sub-script execution:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@DBHOT(HOT_WIZ,PARAMTOLINE,PARAMSAV);  </span><span style="--0:#919F9F;--1:#5F636F">-- save all params</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@WIZRESET;                               </span><span style="--0:#919F9F;--1:#5F636F">-- clear for sub-script</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F">-- ... run sub-script ...</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@WIZRESET;                               </span><span style="--0:#919F9F;--1:#5F636F">-- clear sub-script's params</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@DBHOT(HOT_WIZ,LINETOPARAM,PARAMSAV);  </span><span style="--0:#919F9F;--1:#5F636F">-- restore saved params</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@DBHOT(HOT_WIZ,CLR,PARAMSAV);          </span><span style="--0:#919F9F;--1:#5F636F">-- clean up</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@DBHOT(HOT_WIZ,PARAMTOLINE,PARAMSAV);  -- save all params@WIZRESET;                               -- clear for sub-script-- ... run sub-script ...@WIZRESET;                               -- clear sub-script&#x27;s params@DBHOT(HOT_WIZ,LINETOPARAM,PARAMSAV);  -- restore saved params@DBHOT(HOT_WIZ,CLR,PARAMSAV);          -- clean up"><div></div></button></div></figure></div>
+<hr>
+<h2 id="ini-file-access-41-ini">INI File Access (41: INI)</h2>
+<p>Read values from Windows INI files.</p>
+<p><strong>Syntax variants:</strong></p>
+<ul>
+<li><code dir="auto">@dbHot(INI,section,key)</code> — reads from default INI path</li>
+<li><code dir="auto">@dbHot(INI,filename,section,key)</code> — reads from specific file</li>
+</ul>
+<p><strong>Special sections:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Section</th><th>Source</th></tr></thead><tbody><tr><td><code dir="auto">STARTUP</code></td><td>Startup configuration</td></tr><tr><td><code dir="auto">SETUP</code></td><td>Setup.ini</td></tr><tr><td><code dir="auto">SYSTEM</code></td><td>System.ini</td></tr><tr><td>Other</td><td>Generic INI key read</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(INI,STARTUP,REDIRMAIL)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(INI,..\XCHPAY\</span><span style="--0:#82AAFF;--1:#3B61B0">ApiWinEps</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">INI</span><span style="--0:#D6DEEB;--1:#403F53">,BANK,CVV)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(INI,</span><span style="--0:#C792EA;--1:#8844AE">SYSTEM</span><span style="--0:#D6DEEB;--1:#403F53">,CLIENT,ReceiptOn)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(INI,</span><span style="--0:#82AAFF;--1:#3B61B0">Bank_WinEps_eWic</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">ini</span><span style="--0:#D6DEEB;--1:#403F53">,AL,DISALLOW_WP_MAPPING)</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(INI,STARTUP,REDIRMAIL)@dbHot(INI,..\XCHPAY\ApiWinEps.INI,BANK,CVV)@dbHot(INI,SYSTEM,CLIENT,ReceiptOn)@dbHot(INI,Bank_WinEps_eWic.ini,AL,DISALLOW_WP_MAPPING)"><div></div></button></div></figure></div>
+<hr>
+<h2 id="configuration-76-config">Configuration (76: CONFIG)</h2>
+<p>Read system configuration values.</p>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(CONFIG,key)</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Key</th><th>Returns</th></tr></thead><tbody><tr><td><code dir="auto">VERSION</code></td><td>Application version</td></tr><tr><td><code dir="auto">TERMINAL901FILES</code></td><td>Terminal 901 files path</td></tr><tr><td><code dir="auto">RUNDIR</code></td><td>Run directory</td></tr><tr><td><code dir="auto">LOCALDIR</code></td><td>Local directory</td></tr><tr><td><code dir="auto">OFFICEDIR</code></td><td>Office directory</td></tr><tr><td><code dir="auto">RUNDIRNAME</code></td><td>Extracted directory name</td></tr><tr><td><code dir="auto">KEYNUMBER</code></td><td>License key number</td></tr><tr><td><code dir="auto">KEYVALIDDATE</code></td><td>License key valid date</td></tr><tr><td><code dir="auto">KEYCONTRACT</code></td><td>License contract</td></tr><tr><td><code dir="auto">KEYSTRING</code></td><td>Raw license key string</td></tr><tr><td><code dir="auto">PURGEDAYS</code></td><td>Data purge days</td></tr><tr><td><code dir="auto">CLTCALCULATET65</code></td><td>Client calculation flag</td></tr><tr><td><code dir="auto">S#...</code> prefix</td><td>Setup config lookup</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(CONFIG,</span><span style="--0:#C792EA;--1:#8844AE">VERSION</span><span style="--0:#D6DEEB;--1:#403F53">)   </span><span style="--0:#919F9F;--1:#5F636F">-- "V4"</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(CONFIG,VERSION)   -- &#x22;V4&#x22;"><div></div></button></div></figure></div>
+<hr>
+<h2 id="device-access-77-device">Device Access (77: DEVICE)</h2>
+<p>Read device information for the current terminal.</p>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(DEVICE [, sub_command [, args...]])</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Returns</th></tr></thead><tbody><tr><td><em>(empty)</em></td><td>Current device position (“chec”, “scot”, etc.)</td></tr><tr><td><code dir="auto">DEVIDX</code></td><td>Device index</td></tr><tr><td><code dir="auto">DEVXCH</code></td><td>Device exchange</td></tr><tr><td><code dir="auto">DEVCAP</code></td><td>Device capabilities</td></tr><tr><td><code dir="auto">CONSTANT(type,code)</code></td><td>Device constant</td></tr><tr><td><code dir="auto">FINDDEVXCH</code></td><td>Find device by exchange</td></tr><tr><td><code dir="auto">FINDDEVCAP</code></td><td>Find device by capability</td></tr><tr><td><code dir="auto">INDEX(key)</code></td><td>Device index lookup</td></tr><tr><td><code dir="auto">NAME(key)</code></td><td>Device name</td></tr></tbody></table>
+<hr>
+<h2 id="peripheral-status-79-peripheral">Peripheral Status (79: PERIPHERAL)</h2>
+<p>Read peripheral device status.</p>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(PERIPHERAL, type, subtype, key)</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Key</th><th>Returns</th></tr></thead><tbody><tr><td><code dir="auto">COVEROPEN</code></td><td>Cover open status (0/1)</td></tr><tr><td><code dir="auto">LOWPAPER</code></td><td>Low paper status</td></tr><tr><td><code dir="auto">NOPAPER</code></td><td>No paper status</td></tr><tr><td><code dir="auto">OFFLINE</code></td><td>Offline status</td></tr><tr><td>Other</td><td>Reads from setup INI</td></tr></tbody></table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(PERIPHERAL,PRINTER,DOCUMENT,FlipChk)   </span><span style="--0:#919F9F;--1:#5F636F">-- "1" if flip check supported</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(PERIPHERAL,PRINTER,DOCUMENT,FlipChk)   -- &#x22;1&#x22; if flip check supported"><div></div></button></div></figure></div>
+<hr>
+<h2 id="file-operations-42-findfirst">File Operations (42: FINDFIRST)</h2>
+<p>Check if files matching a pattern exist.</p>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(FINDFIRST, pattern [, index])</code></p>
+<p>Returns filename if found, empty if not. Optional index advances through results.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(FINDFIRST,@WIZGET(DN)</span><span style="--0:#82AAFF;--1:#3B61B0">_card_credit</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">sqi</span><span style="--0:#D6DEEB;--1:#403F53">)   </span><span style="--0:#919F9F;--1:#5F636F">-- non-empty if script exists</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(FINDFIRST,DBT\ScanSign_@STORE@TER.bmp)   </span><span style="--0:#919F9F;--1:#5F636F">-- check for signature file</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(FINDFIRST,@WIZGET(DN)_card_credit.sqi)   -- non-empty if script exists@dbHot(FINDFIRST,DBT\ScanSign_@STORE@TER.bmp)   -- check for signature file"><div></div></button></div></figure></div>
+<hr>
+<h2 id="clock--session-26-clk">Clock / Session (26: CLK)</h2>
+<p>Read session and clock information per terminal.</p>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(CLK, field, session_type)</code></p>
+<p>Session types: <code dir="auto">CONSOLE</code>, <code dir="auto">TERMINAL(n)</code>, or numeric terminal ID.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Field</th><th>Returns</th></tr></thead><tbody><tr><td><code dir="auto">NUMBER</code></td><td>Terminal number</td></tr><tr><td><code dir="auto">CODEREF</code></td><td>User code reference</td></tr><tr><td><code dir="auto">USERNUM</code></td><td>User number</td></tr><tr><td><code dir="auto">USERCODE</code></td><td>User code</td></tr><tr><td><code dir="auto">USERLEVEL</code></td><td>Permission level</td></tr><tr><td><code dir="auto">LEVELFIELD</code></td><td>Permission field</td></tr><tr><td><code dir="auto">FILTER</code></td><td>User filter</td></tr><tr><td><code dir="auto">LANGUAGE</code></td><td>Language code</td></tr><tr><td><code dir="auto">PROFILE</code></td><td>User profile</td></tr><tr><td><code dir="auto">OUTPUT</code></td><td>Output device</td></tr><tr><td><code dir="auto">DEVICENAME</code> / <code dir="auto">DEVICE</code></td><td>Device name</td></tr><tr><td><code dir="auto">DEVIDX</code> / <code dir="auto">DEVXCH</code> / <code dir="auto">DEVCAP</code></td><td>Device indices</td></tr><tr><td><code dir="auto">STORE</code></td><td>Store code</td></tr><tr><td><code dir="auto">CUSTOMER</code></td><td>Customer code</td></tr><tr><td><code dir="auto">LOGINTIME</code></td><td>Login timestamp</td></tr><tr><td><code dir="auto">USERDRAWER</code></td><td>User drawer</td></tr><tr><td><code dir="auto">GASPUMP</code></td><td>Gas pump index</td></tr></tbody></table>
+<hr>
+<h2 id="register-operations-6-reg-46-48-var-57-reggen-64-regset">Register Operations (6: REG, 46-48: VAR*, 57: REGGEN, 64: REGSET)</h2>
+<h3 id="reg--readwrite-register-fields">REG — Read/Write Register Fields</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(REG,fieldname)                  </span><span style="--0:#919F9F;--1:#5F636F">-- read field</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(REG,</span><span style="--0:#C792EA;--1:#8844AE">DELETE</span><span style="--0:#D6DEEB;--1:#403F53">,fieldname)           </span><span style="--0:#919F9F;--1:#5F636F">-- delete field</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(REG,</span><span style="--0:#C792EA;--1:#8844AE">SET</span><span style="--0:#D6DEEB;--1:#403F53">,#fieldname,</span><span style="--0:#C792EA;--1:#8844AE">value</span><span style="--0:#D6DEEB;--1:#403F53">)       </span><span style="--0:#919F9F;--1:#5F636F">-- set field (# prefix for array mode)</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(REG,fieldname)                  -- read field@dbHot(REG,DELETE,fieldname)           -- delete field@dbHot(REG,SET,#fieldname,value)       -- set field (# prefix for array mode)"><div></div></button></div></figure></div>
+<p>Format specs: <code dir="auto">$#:</code> for string, <code dir="auto">FLT</code> for float, default for raw.</p>
+<h3 id="varset--varget--varreset">VARSET / VARGET / VARRESET</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(VARSET,</span><span style="--0:#C792EA;--1:#8844AE">name</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#C792EA;--1:#8844AE">value</span><span style="--0:#D6DEEB;--1:#403F53">)      </span><span style="--0:#919F9F;--1:#5F636F">-- set variable</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(VARGET,</span><span style="--0:#C792EA;--1:#8844AE">name</span><span style="--0:#D6DEEB;--1:#403F53">,format)     </span><span style="--0:#919F9F;--1:#5F636F">-- get variable</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(VARRESET,</span><span style="--0:#C792EA;--1:#8844AE">name</span><span style="--0:#D6DEEB;--1:#403F53">)          </span><span style="--0:#919F9F;--1:#5F636F">-- delete variable</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(VARSET,name,value)      -- set variable@dbHot(VARGET,name,format)     -- get variable@dbHot(VARRESET,name)          -- delete variable"><div></div></button></div></figure></div>
+<p>Use <code dir="auto">#</code> prefix for array mode.</p>
+<h3 id="reggen--sequence-numbers">REGGEN — Sequence Numbers</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(REGGEN, counter_name, params)</code></p>
+<p>Reads/increments Windows registry counter at <code dir="auto">HKLM\SOFTWARE\Store Management\Counters\</code>. Returns padded 8-digit sequence number.</p>
+<h3 id="regset--create-register-field">REGSET — Create Register Field</h3>
+<p><strong>Syntax:</strong> <code dir="auto">@dbHot(REGSET, fieldname, type, size)</code> — returns “ERROR” on failure</p>
+<hr>
+<h2 id="hot-index-21-hot_idx">Hot Index (21: HOT_IDX)</h2>
+<p>Read from hot index (current item in the transaction).</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">@dbHot(HOT_IDX,F01)   </span><span style="--0:#919F9F;--1:#5F636F">-- current item code</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="@dbHot(HOT_IDX,F01)   -- current item code"><div></div></button></div></figure></div>
+<p>Sub-commands: <code dir="auto">WIZGET</code>, <code dir="auto">VALUE</code>, <code dir="auto">PARAMS</code>.</p>
+<hr>
+<h2 id="recalculate-29-recalculate">Recalculate (29: RECALCULATE)</h2>
+<p>Force recalculation of totals.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">SALAMT</code></td><td>Sale amount</td></tr><tr><td><code dir="auto">SALQTY</code></td><td>Sale quantity</td></tr><tr><td><code dir="auto">SALHDR</code></td><td>Sale header</td></tr><tr><td><code dir="auto">RECREG</code></td><td>Receiving register</td></tr></tbody></table>
+<hr>
+<h2 id="mssql-operations-78-mssql">MSSQL Operations (78: MSSQL)</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Behavior</th></tr></thead><tbody><tr><td><code dir="auto">STARTTRANSACTION</code></td><td>Begin SQL transaction</td></tr><tr><td><code dir="auto">COMMIT</code></td><td>Commit transaction</td></tr><tr><td><code dir="auto">ROLLBACK</code></td><td>Rollback transaction</td></tr><tr><td><code dir="auto">VERSION</code></td><td>Get database version</td></tr></tbody></table>
+<hr>
+<h2 id="connection--system-info">Connection / System Info</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Code</th><th>Mode</th><th>Description</th></tr></thead><tbody><tr><td>7</td><td><code dir="auto">HOT_URL</code></td><td>Connection URL</td></tr><tr><td>8</td><td><code dir="auto">CURRENT</code></td><td>Current register values (sub: GET/SET for SCRIPT, DEVPOS, DEVMAP, etc.)</td></tr><tr><td>25</td><td><code dir="auto">NET_OFFICE</code></td><td>Network office path</td></tr><tr><td>27</td><td><code dir="auto">SUBQUERY</code></td><td>Sub-query execution</td></tr><tr><td>51</td><td><code dir="auto">COMPUTER</code></td><td>Computer name / hostname</td></tr><tr><td>52</td><td><code dir="auto">REDIRMSG</code></td><td>Redirect message path</td></tr><tr><td>53</td><td><code dir="auto">REDIRMAIL</code></td><td>Redirect mail path</td></tr><tr><td>56</td><td><code dir="auto">LANGUAGE</code></td><td>Current language</td></tr><tr><td>60</td><td><code dir="auto">CNCURRENT</code></td><td>Current connection number</td></tr><tr><td>63</td><td><code dir="auto">CNTABLE</code></td><td>Active sessions (XML)</td></tr><tr><td>74</td><td><code dir="auto">CNCURRENT_SET</code></td><td>Set current connection</td></tr><tr><td>75</td><td><code dir="auto">APPLICATION</code></td><td>Application identifier</td></tr></tbody></table>
+<hr>
+<h2 id="user--permission">User / Permission</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Code</th><th>Mode</th><th>Description</th></tr></thead><tbody><tr><td>54</td><td><code dir="auto">USERLEVEL</code></td><td>User permission level</td></tr><tr><td>55</td><td><code dir="auto">LEVELFIELD</code></td><td>Permission field lookup</td></tr></tbody></table>
+<hr>
+<h2 id="registration--license-31-39-register_">Registration / License (31-39: REGISTER_*)</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Code</th><th>Mode</th><th>Description</th></tr></thead><tbody><tr><td>31</td><td><code dir="auto">REGISTER_VIEW</code></td><td>View registration info</td></tr><tr><td>33</td><td><code dir="auto">REGISTER_CONTRACT</code></td><td>License contract</td></tr><tr><td>34</td><td><code dir="auto">REGISTER_SET</code></td><td>Set registration</td></tr><tr><td>35</td><td><code dir="auto">REGISTER_GET</code></td><td>Get registration</td></tr><tr><td>36</td><td><code dir="auto">REGISTER_VALID</code></td><td>Validate registration</td></tr><tr><td>37</td><td><code dir="auto">REGISTER_SCRIPT</code></td><td>Registration script</td></tr><tr><td>38</td><td><code dir="auto">REGISTER_NAME</code></td><td>Registration name</td></tr><tr><td>39</td><td><code dir="auto">REGISTER_VERIFY</code></td><td>Verify registration</td></tr></tbody></table>
+<hr>
+<h2 id="offer--coupon-9-offer">Offer / Coupon (9: OFFER)</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Sub-command</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">COUNT</code></td><td>Offer count</td></tr><tr><td><code dir="auto">COUNTCLIP</code></td><td>Clipped offer count</td></tr><tr><td><code dir="auto">STATUS</code></td><td>Offer status</td></tr><tr><td><code dir="auto">QUANTITY</code></td><td>Offer quantity</td></tr><tr><td><code dir="auto">ADDITEM</code></td><td>Add item to offer</td></tr></tbody></table>
+<hr>
+<h2 id="other-modes">Other Modes</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Code</th><th>Mode</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td><code dir="auto">TABLE_RECORD</code></td><td>Current table record name</td></tr><tr><td>2-5</td><td><code dir="auto">DBALIAS</code> / <code dir="auto">DBUSERNAME</code> / <code dir="auto">DBPASSWORD</code> / <code dir="auto">DBPASSWORDC</code></td><td>DB connection credentials</td></tr><tr><td>22</td><td><code dir="auto">BROWSER</code></td><td>Browser control</td></tr><tr><td>43</td><td><code dir="auto">FINDWINDOW</code></td><td>Find window by caption</td></tr><tr><td>44</td><td><code dir="auto">FINDTABLE</code></td><td>Check if database table exists</td></tr><tr><td>45</td><td><code dir="auto">DONOTNORMALIZEUPC</code></td><td>UPC normalization flag</td></tr><tr><td>59</td><td><code dir="auto">TABLEBYTERMINAL</code></td><td>Terminal-specific table path</td></tr><tr><td>61-62</td><td><code dir="auto">DETAIL_CHOICES</code> / <code dir="auto">DETAIL_NAME</code></td><td>Detail configuration</td></tr><tr><td>66</td><td><code dir="auto">REGIONAL</code></td><td>Regional settings</td></tr><tr><td>67</td><td><code dir="auto">FIELDS</code></td><td>Field definitions</td></tr><tr><td>68-70</td><td><code dir="auto">DETAIL_PERIODS</code> / <code dir="auto">DETAIL_DETAILS</code> / <code dir="auto">DETAIL_NAMES</code></td><td>Detail periods/details/names</td></tr><tr><td>71</td><td><code dir="auto">WEEKSTART</code></td><td>Week start day</td></tr><tr><td>72</td><td><code dir="auto">SYS_TAB</code></td><td>System table access</td></tr><tr><td>80</td><td><code dir="auto">PAYMENT</code></td><td>Payment XML (GETXML / SETXML)</td></tr><tr><td>81-82</td><td><code dir="auto">PORTAL_SETKEY</code> / <code dir="auto">PORTAL_GETKEY</code></td><td>Portal key management</td></tr></tbody></table>
+<hr>
+<h2 id="complete-mode-table">Complete Mode Table</h2>
+<p>All 82 dispatch modes with their internal codes:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Code</th><th>Mode</th><th>Code</th><th>Mode</th></tr></thead><tbody><tr><td>01</td><td>TABLE_RECORD</td><td>42</td><td>FINDFIRST</td></tr><tr><td>02</td><td>DBALIAS</td><td>43</td><td>FINDWINDOW</td></tr><tr><td>03</td><td>DBUSERNAME</td><td>44</td><td>FINDTABLE</td></tr><tr><td>04</td><td>DBPASSWORD</td><td>45</td><td>DONOTNORMALIZEUPC</td></tr><tr><td>05</td><td>DBPASSWORDC</td><td>46</td><td>VARSET</td></tr><tr><td>06</td><td>REG</td><td>47</td><td>VARGET</td></tr><tr><td>07</td><td>HOT_URL</td><td>48</td><td>VARRESET</td></tr><tr><td>08</td><td>CURRENT</td><td>51</td><td>COMPUTER</td></tr><tr><td>09</td><td>OFFER</td><td>52</td><td>REDIRMSG</td></tr><tr><td>11</td><td>SAL_REG</td><td>53</td><td>REDIRMAIL</td></tr><tr><td>12</td><td>SAL_HDR</td><td>54</td><td>USERLEVEL</td></tr><tr><td>13</td><td>REC_REG</td><td>55</td><td>LEVELFIELD</td></tr><tr><td>14</td><td>REC_HDR</td><td>56</td><td>LANGUAGE</td></tr><tr><td>15</td><td>INV_REG</td><td>57</td><td>REGGEN</td></tr><tr><td>16</td><td>INV_HDR</td><td>58</td><td>REGVALUE</td></tr><tr><td>17</td><td>REC_TTL</td><td>59</td><td>TABLEBYTERMINAL</td></tr><tr><td>18</td><td>SAL_TTL</td><td>60</td><td>CNCURRENT</td></tr><tr><td>21</td><td>HOT_IDX</td><td>61</td><td>DETAIL_CHOICES</td></tr><tr><td>22</td><td>BROWSER</td><td>62</td><td>DETAIL_NAME</td></tr><tr><td>23</td><td>SAL_TTL_FIND</td><td>63</td><td>CNTABLE</td></tr><tr><td>24</td><td>SAL_REG_FIND</td><td>64</td><td>REGSET</td></tr><tr><td>25</td><td>NET_OFFICE</td><td>65</td><td>HOT_MEM</td></tr><tr><td>26</td><td>CLK</td><td>66</td><td>REGIONAL</td></tr><tr><td>27</td><td>SUBQUERY</td><td>67</td><td>FIELDS</td></tr><tr><td>28</td><td>REC_TTL_FIND</td><td>68</td><td>DETAIL_PERIODS</td></tr><tr><td>29</td><td>RECALCULATE</td><td>69</td><td>DETAIL_DETAILS</td></tr><tr><td>31</td><td>REGISTER_VIEW</td><td>70</td><td>DETAIL_NAMES</td></tr><tr><td>33</td><td>REGISTER_CONTRACT</td><td>71</td><td>WEEKSTART</td></tr><tr><td>34</td><td>REGISTER_SET</td><td>72</td><td>SYS_TAB</td></tr><tr><td>35</td><td>REGISTER_GET</td><td>73</td><td>HOT_WIZ</td></tr><tr><td>36</td><td>REGISTER_VALID</td><td>74</td><td>CNCURRENT_SET</td></tr><tr><td>37</td><td>REGISTER_SCRIPT</td><td>75</td><td>APPLICATION</td></tr><tr><td>38</td><td>REGISTER_NAME</td><td>76</td><td>CONFIG</td></tr><tr><td>39</td><td>REGISTER_VERIFY</td><td>77</td><td>DEVICE</td></tr><tr><td>41</td><td>INI</td><td>78</td><td>MSSQL</td></tr><tr><td></td><td></td><td>79</td><td>PERIPHERAL</td></tr><tr><td></td><td></td><td>80</td><td>PAYMENT</td></tr><tr><td></td><td></td><td>81</td><td>PORTAL_SETKEY</td></tr><tr><td></td><td></td><td>82</td><td>PORTAL_GETKEY</td></tr></tbody></table> </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/sqi-docs/reference/commands/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>  <span class="astro-u2l5gyhi"> Previous <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Command Reference</span> </span> </a> <a href="/sqi-docs/reference/exec/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-u2l5gyhi"> Next <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">@EXEC Operations</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

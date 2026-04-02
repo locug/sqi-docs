@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 620" width="600" height="620">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, -apple-system, sans-serif; }
+      .stage-box { fill: #1e293b; stroke: #475569; stroke-width: 1.5; rx: 8; }
+      .stage-label { fill: #e2e8f0; font-size: 14px; font-weight: 600; }
+      .stage-detail { fill: #94a3b8; font-size: 11px; }
+      .arrow-line { stroke: #666; stroke-width: 2; marker-end: url(#arrow); }
+      .input-box { fill: #1e3a5f; stroke: #3b82f6; stroke-width: 1.5; rx: 8; }
+      .output-box { fill: #14532d; stroke: #22c55e; stroke-width: 1.5; rx: 8; }
+      .io-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; }
+      .io-detail { fill: #94a3b8; font-size: 10px; }
+    </style>
+  </defs>
+
+  <!-- Input -->
+  <rect class="input-box" x="150" y="10" width="300" height="50"/>
+  <text class="io-label" x="300" y="32" text-anchor="middle">.sqi File</text>
+  <text class="io-detail" x="300" y="48" text-anchor="middle">Loaded as ONE BIG STRING</text>
+
+  <line class="arrow-line" x1="300" y1="60" x2="300" y2="80"/>
+
+  <!-- Stage 1 -->
+  <rect class="stage-box" x="100" y="80" width="400" height="60"/>
+  <text class="stage-label" x="120" y="105">1. Pre-cleanup</text>
+  <text class="stage-detail" x="120" y="125">Strip @; patterns, resolve paired delimiters</text>
+
+  <line class="arrow-line" x1="300" y1="140" x2="300" y2="160"/>
+
+  <!-- Stage 2 -->
+  <rect class="stage-box" x="100" y="160" width="400" height="80"/>
+  <text class="stage-label" x="120" y="185">2. Preprocessor</text>
+  <text class="stage-detail" x="120" y="205">@STORE → "001", @TER → "901", @USER → "DEMO"</text>
+  <text class="stage-detail" x="120" y="225">13 built-in variables + @Dxxx date tokens</text>
+
+  <line class="arrow-line" x1="300" y1="240" x2="300" y2="260"/>
+
+  <!-- Stage 3 -->
+  <rect class="stage-box" x="100" y="260" width="400" height="120"/>
+  <text class="stage-label" x="120" y="285">3. Dispatch Loop (main engine)</text>
+  <text class="stage-detail" x="120" y="308">Find first ) → walk back to ( → walk back to @</text>
+  <text class="stage-detail" x="120" y="328">Look up command in 68-entry table</text>
+  <text class="stage-detail" x="120" y="348">Replace @CMD(args) with handler result</text>
+  <text class="stage-detail" x="120" y="368">Repeat until no more ) found</text>
+
+  <line class="arrow-line" x1="300" y1="380" x2="300" y2="400"/>
+
+  <!-- Stage 4 -->
+  <rect class="stage-box" x="100" y="400" width="400" height="60"/>
+  <text class="stage-label" x="120" y="425">4. Final Cleanup</text>
+  <text class="stage-detail" x="120" y="445">Restore escaped characters → literal ( and )</text>
+
+  <line class="arrow-line" x1="300" y1="460" x2="300" y2="480"/>
+
+  <!-- Stage 5 -->
+  <rect class="stage-box" x="100" y="480" width="400" height="80"/>
+  <text class="stage-label" x="120" y="505">5. SQL Execution</text>
+  <text class="stage-detail" x="120" y="525">Send pure SQL to database via SDAC/DAScript</text>
+  <text class="stage-detail" x="120" y="545">CHR(26) = exit success, CHR(27) = abort</text>
+
+  <line class="arrow-line" x1="300" y1="560" x2="300" y2="580"/>
+
+  <!-- Output -->
+  <rect class="output-box" x="150" y="580" width="300" height="35"/>
+  <text class="io-label" x="300" y="603" text-anchor="middle">Pure SQL → Database</text>
+</svg>
